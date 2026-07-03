@@ -1,0 +1,174 @@
+.settings-command-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+
+.settings-command-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(15, 23, 42, 0.24);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  cursor: default;
+}
+
+.settings-command-dialog {
+  position: fixed;
+  top: clamp(72px, 18vh, 160px);
+  left: 50%;
+  z-index: 1;
+  display: flex;
+  width: min(460px, calc(100vw - 32px));
+  max-height: calc(100vh - clamp(72px, 18vh, 160px) - 24px);
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.22);
+  transform: translateX(-50%);
+}
+
+.settings-command-search {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.settings-command-input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #111827;
+  font-size: 0.98rem;
+  line-height: 1.4;
+}
+
+.settings-command-input::placeholder {
+  color: #94a3b8;
+}
+
+.settings-command-spinner {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-command-spinner-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(148, 163, 184, 0.35);
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: settings-command-spin 0.7s linear infinite;
+}
+
+@keyframes settings-command-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.settings-command-list {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  padding: 10px;
+  scroll-padding-block: 8px;
+}
+
+.settings-command-state,
+.settings-command-error {
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+}
+
+.settings-command-state {
+  color: #64748b;
+}
+
+.settings-command-error {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.settings-command-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 11px 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #111827;
+  cursor: pointer;
+}
+
+.settings-command-item[data-selected='true'] {
+  border-color: rgba(59, 130, 246, 0.35);
+  background: #eff6ff;
+}
+
+.settings-command-item-title {
+  font-size: 0.94rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.settings-command-item-description {
+  color: #64748b;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.theme-dark .settings-command-dialog {
+  border-color: rgba(148, 163, 184, 0.2);
+  background: #111827;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+}
+
+.theme-dark .settings-command-search {
+  border-bottom-color: rgba(51, 65, 85, 0.9);
+}
+
+.theme-dark .settings-command-input,
+.theme-dark .settings-command-item {
+  color: #e5eefb;
+}
+
+.theme-dark .settings-command-spinner-icon {
+  border-color: rgba(148, 163, 184, 0.35);
+  border-top-color: #60a5fa;
+}
+
+.theme-dark .settings-command-item[data-selected='true'] {
+  border-color: rgba(96, 165, 250, 0.45);
+  background: rgba(30, 64, 175, 0.24);
+}
+
+.theme-dark .settings-command-item-description,
+.theme-dark .settings-command-state {
+  color: #94a3b8;
+}
+
+@media (max-width: 480px) {
+  .settings-command-dialog {
+    top: 18px;
+    width: calc(100vw - 36px);
+    max-height: calc(100vh - 36px);
+    border-radius: 14px;
+  }
+}

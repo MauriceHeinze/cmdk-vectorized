@@ -1,0 +1,94 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #111827;
+  background: #f8f9fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shortcut-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(37, 99, 235, 0.35);
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 45%, #6366f1 100%);
+  color: #eff6ff;
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.22);
+}
+
+.app-shortcut-hint kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.6rem;
+  padding: 2px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.app-shell.theme-dark .app-shortcut-hint {
+  border-bottom-color: rgba(96, 165, 250, 0.45);
+  background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 45%, #4f46e5 100%);
+  color: #dbeafe;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.45);
+}
+
+.app-shell.theme-dark .app-shortcut-hint kbd {
+  border-color: rgba(191, 219, 254, 0.35);
+  background: rgba(15, 23, 42, 0.28);
+  color: #f8fafc;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.app-shell {
+  min-height: 100vh;
+  color: #111827;
+  background:
+    radial-gradient(circle at top, rgba(96, 165, 250, 0.14), transparent 28%),
+    linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    background 160ms ease;
+}
+
+.app-shell.theme-dark {
+  color: #e5eefb;
+  background:
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.16), transparent 24%),
+    linear-gradient(180deg, #0f172a 0%, #111827 100%);
+}

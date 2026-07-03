@@ -1,0 +1,21 @@
+.settings-page {
+  max-width: 800px;
+}
+
+.settings-page-header {
+  margin-bottom: 28px;
+}
+
+.settings-page h1 {
+  margin: 0 0 6px;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.settings-page-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 1rem;
+  line-height: 1.5;
+}

@@ -2,9 +2,15 @@
 
 Vector-database search for `cmdk` command palettes, with optional speech-to-text voice input.
 
-Keep your existing command palette UI. Query a vector database (Weaviate) for ranked results instead of client-side filtering.
+Keep your existing command palette UI. Query a vector database (Weaviate) for ranked results instead of client-side filtering. Navigation, actions, and routing stay in your app — this package handles search hooks, result rendering, and optional voice transcription.
 
-**Live demo:** https://settings-demo-redux.vercel.app
+**[Live demo](https://settings-demo-redux.vercel.app)** · [API docs](./docs/api.md) · [AGENTS.md](./AGENTS.md) · [LLM guide](./docs/llm-guide.md)
+
+<video src="https://settings-demo-redux.vercel.app/demo.mp4" controls width="100%">
+  <a href="https://settings-demo-redux.vercel.app/demo.mp4">Watch demo video</a>
+</video>
+
+In the demo above, a vague typed query and speech-to-text voice input both hit the same vector search endpoint. Ranked results render in `cmdk`, and selecting one triggers app-owned navigation or an action handler.
 
 ## Looking for…
 
@@ -15,59 +21,6 @@ Keep your existing command palette UI. Query a vector database (Weaviate) for ra
 | Add speech-to-text voice to a command palette | `CommandVoice` / `useCommandVoice` (Web Speech API) |
 | Integrate with shadcn/ui `Command` | Drop-in `cmdk` hooks with `shouldFilter={false}` |
 
-**Agent docs:** [AGENTS.md](./AGENTS.md) · [LLM guide](./docs/llm-guide.md) · `npx cmdk-vectorized integrate`
-
-## What it does
-
-- Uses your backend as the source of truth for search results.
-- Keeps navigation and actions explicit and app-owned.
-- Works well when your app already uses `cmdk` or shadcn/ui command components.
-- Ships a CLI for agentic intent-map generation, Weaviate upload, and integration skills.
-- Optional browser speech-to-text voice input via `CommandVoice`.
-
-## Product preview
-
-<video src="https://settings-demo-redux.vercel.app/demo.mp4" controls width="100%">
-  <a href="https://settings-demo-redux.vercel.app/demo.mp4">Watch demo video</a>
-</video>
-
-The demo shows:
-
-- a user typing a vague query
-- vector-database-ranked results appearing in `cmdk`
-- selecting a result triggering app-owned navigation or action execution
-- optional speech-to-text voice input
-
-## Example app
-
-This repo includes a Redux-backed settings demo under `examples/settings-demo-redux`.
-
-Run it locally:
-
-```bash
-npx pnpm@10.12.4 install
-npx pnpm@10.12.4 example:redux:dev
-```
-
-If you want the semantic route search and voice flow to hit Weaviate, start it with:
-
-```bash
-VITE_WEAVIATE_DATABASE_URL=your_cluster_url \
-VITE_WEAVIATE_API_KEY=your_key_here \
-npx pnpm@10.12.4 example:redux:dev
-```
-
-The example uses the local `src/index.ts` entry directly, so it reflects in-repo `cmdk-vectorized` changes without needing a package publish step.
-
-## Requirements
-
-- `react` and `react-dom`
-- `cmdk`
-- A backend search endpoint
-- Weaviate is recommended if you want semantic or vector-backed retrieval
-
-If `cmdk` is already installed in your app, integration is usually straightforward.
-
 ## Install
 
 ```bash
@@ -76,36 +29,7 @@ npm install cmdk-vectorized cmdk react react-dom
 
 `cmdk` is also re-exported from this package as `Command`.
 
-## Agentic setup
-
-Install the integration skill for coding agents:
-
-```bash
-npx cmdk-vectorized integrate
-```
-
-Generate and maintain your command corpus with:
-
-```bash
-npx cmdk-vectorized init
-```
-
-This installs local workflow files for Codex, Claude, and OpenCode so an agent can generate:
-
-```txt
-public/intent-map.json
-public/intent-map.csv
-```
-
-Then upload the canonical JSON map to Weaviate:
-
-```bash
-WEAVIATE_URL="https://example.weaviate.cloud" \
-WEAVIATE_API_KEY="..." \
-npx cmdk-vectorized upload
-```
-
-`cmdk-vectorized-agent` still works as a legacy alias, but `cmdk-vectorized` is the primary command.
+**Requirements:** `react`, `react-dom`, `cmdk`, and a backend search endpoint. Weaviate is recommended for semantic retrieval.
 
 ## Quick start
 
@@ -148,25 +72,58 @@ export function CommandMenu() {
 }
 ```
 
-Important: render `<Command shouldFilter={false}>` so `cmdk` does not override backend ranking.
+Render `<Command shouldFilter={false}>` so `cmdk` does not override vector-database ranking.
 
-## Play with it locally
+## Agentic setup
 
-The fastest way to try the package is:
+Install the integration skill for coding agents:
 
-1. Run your app locally.
-2. Start a small search server that talks to your Weaviate instance.
-3. Point `useAICommand({ endpoint })` at that local endpoint.
+```bash
+npx cmdk-vectorized integrate
+```
 
-Use the copy-pasteable local setup guide here:
+Generate and upload a command corpus to Weaviate:
 
-- [Local Weaviate Playbook](./docs/local-weaviate.md)
+```bash
+npx cmdk-vectorized init
+```
 
-## API docs
+```txt
+public/intent-map.json
+public/intent-map.csv
+```
 
-Detailed imports, result contracts, client hooks, server helpers, tooling exports, and route placeholder notes live here:
+```bash
+WEAVIATE_URL="https://example.weaviate.cloud" \
+WEAVIATE_API_KEY="..." \
+npx cmdk-vectorized upload
+```
 
-- [API Documentation](./docs/api.md)
+`cmdk-vectorized-agent` still works as a legacy alias.
+
+## Example app
+
+Redux-backed settings demo: [`examples/settings-demo-redux`](./examples/settings-demo-redux)
+
+```bash
+npx pnpm@10.12.4 install
+npx pnpm@10.12.4 example:redux:dev
+```
+
+With Weaviate:
+
+```bash
+VITE_WEAVIATE_DATABASE_URL=your_cluster_url \
+VITE_WEAVIATE_API_KEY=your_key_here \
+npx pnpm@10.12.4 example:redux:dev
+```
+
+The example imports the local `src/index.ts` entry, so in-repo changes show up without publishing.
+
+## Documentation
+
+- [API reference](./docs/api.md) — hooks, result contract, server helpers, tooling
+- [Local Weaviate playbook](./docs/local-weaviate.md) — copy-paste local dev setup
 
 ## Notes
 
@@ -174,13 +131,3 @@ Detailed imports, result contracts, client hooks, server helpers, tooling export
 - Placeholder styles like `[workspaceId]`, `:workspaceId`, `{workspaceId}`, or `$workspaceId` are just examples.
 - Use `href` for navigation results and `actionKey` for action results.
 - Weaviate is recommended, not required.
-
-## What moved out of this README
-
-The README now stays focused on product value, setup, and first success. These details belong in dedicated docs instead:
-
-- Full result contract
-- Hook and server helper reference
-- Local Weaviate dev setup
-- Tooling module details
-- Execution edge cases and integration notes

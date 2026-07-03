@@ -9,7 +9,8 @@ type ScoredGraphQlRow = GraphQlRow & {
   _additional?: WeaviateAdditional
 }
 
-const HYBRID_SEARCH_PROPERTIES = ['label', 'description', 'longDescription'] as const
+const HYBRID_SEARCH_PROPERTIES = ['label', 'description', 'longDescription', 'phrases'] as const
+const HYBRID_SEARCH_ALPHA = 0.3
 
 export type WeaviateRouteRow = {
   route: string
@@ -58,6 +59,7 @@ export async function searchWeaviateRoutes(
         Routes(
           hybrid: {
             query: ${escapedQuery}
+            alpha: ${HYBRID_SEARCH_ALPHA}
             properties: ${hybridProperties}
           }
           limit: ${limit}

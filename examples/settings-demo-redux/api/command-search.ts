@@ -11,7 +11,8 @@ type ScoredGraphQlRow = GraphQlRow & {
   _additional?: WeaviateAdditional
 }
 
-const HYBRID_SEARCH_PROPERTIES = ['label', 'description', 'longDescription'] as const
+const HYBRID_SEARCH_PROPERTIES = ['label', 'description', 'longDescription', 'phrases'] as const
+const HYBRID_SEARCH_ALPHA = 0.7
 
 type WeaviateRouteRow = {
   route: string
@@ -66,6 +67,7 @@ async function searchWeaviateRoutes(query: string, limit = 10): Promise<Weaviate
         Routes(
           hybrid: {
             query: ${escapedQuery}
+            alpha: ${HYBRID_SEARCH_ALPHA}
             properties: ${hybridProperties}
           }
           limit: ${limit}
@@ -158,7 +160,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       id: `route:${route.route}`,
       type: 'navigation' as const,
       title: route.label || route.route,
-      description: route.longDescription || route.description || undefined,
+      description: route.description || undefined,
       href: route.route,
       score: route.score,
       meta: route.explainScore ? { explainScore: route.explainScore } : undefined,

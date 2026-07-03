@@ -11,7 +11,7 @@ export const GET = createCommandSearchHandler({
       id: `route:${route.route}`,
       type: 'navigation' as const,
       title: route.label || route.route,
-      description: route.longDescription || route.description || undefined,
+      description: route.description || undefined,
       href: route.route,
       score: route.score,
       meta: route.explainScore ? { explainScore: route.explainScore } : undefined,

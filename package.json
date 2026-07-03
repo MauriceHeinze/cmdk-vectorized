@@ -1,11 +1,11 @@
 {
   "name": "cmdk-vectorized",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Remote AI and vector-backed search hooks for cmdk command palettes.",
   "type": "module",
   "bin": {
-    "cmdk-vectorized": "./dist/cli.js",
-    "cmdk-vectorized-agent": "./dist/cli.js"
+    "cmdk-vectorized": "dist/cli.js",
+    "cmdk-vectorized-agent": "dist/cli.js"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

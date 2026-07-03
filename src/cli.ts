@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { intentMapToCsv } from "./csv";
 import { INTENT_MAP_CSV_PATH, readIntentMap } from "./intent-map";
 import { uploadIntentMap } from "./weaviate";
-import { installAgentWorkflows } from "./workflows";
+import { installAgentWorkflows, installIntegrationSkill } from "./workflows";
 
 export async function main(argv = process.argv.slice(2), cwd = process.cwd()) {
   const [command] = argv;
@@ -17,6 +17,14 @@ export async function main(argv = process.argv.slice(2), cwd = process.cwd()) {
 
   if (command === "init") {
     const written = await installAgentWorkflows({ cwd });
+    for (const file of written) {
+      console.log(`created ${file}`);
+    }
+    return;
+  }
+
+  if (command === "integrate") {
+    const written = await installIntegrationSkill({ cwd });
     for (const file of written) {
       console.log(`created ${file}`);
     }
@@ -42,11 +50,13 @@ function printHelp() {
 
 Usage:
   cmdk-vectorized init
+  cmdk-vectorized integrate
   cmdk-vectorized upload
 
 Commands:
-  init     Install local-agent workflow files for Codex, Claude, and OpenCode.
-  upload   Validate public/intent-map.json, write public/intent-map.csv, and upload JSON to Weaviate.
+  init        Install local-agent workflow files for intent-map generation.
+  integrate   Install local-agent skill files for package integration.
+  upload      Validate public/intent-map.json, write public/intent-map.csv, and upload JSON to Weaviate.
 
 Environment for upload:
   WEAVIATE_URL

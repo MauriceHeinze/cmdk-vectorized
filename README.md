@@ -1,25 +1,42 @@
 # cmdk-vectorized
 
-Remote AI and vector search for `cmdk`.
+Vector-database search for `cmdk` command palettes, with optional speech-to-text voice input.
 
-Keep your existing command palette UI. Move ranking and retrieval to your backend or vector database.
+Keep your existing command palette UI. Query a vector database (Weaviate) for ranked results instead of client-side filtering.
+
+**Live demo:** https://settings-demo-redux.vercel.app
+
+## Looking for…
+
+| You want to… | This package provides… |
+|--------------|------------------------|
+| Add vector search to a `cmdk` command palette | `useAICommand` + `createCommandSearchHandler` |
+| Use Weaviate for semantic command search | CLI `init` + `upload` for intent maps |
+| Add speech-to-text voice to a command palette | `CommandVoice` / `useCommandVoice` (Web Speech API) |
+| Integrate with shadcn/ui `Command` | Drop-in `cmdk` hooks with `shouldFilter={false}` |
+
+**Agent docs:** [AGENTS.md](./AGENTS.md) · [LLM guide](./docs/llm-guide.md) · `npx cmdk-vectorized integrate`
 
 ## What it does
 
 - Uses your backend as the source of truth for search results.
 - Keeps navigation and actions explicit and app-owned.
 - Works well when your app already uses `cmdk` or shadcn/ui command components.
-- Ships a CLI for agentic intent-map generation and Weaviate upload.
+- Ships a CLI for agentic intent-map generation, Weaviate upload, and integration skills.
+- Optional browser speech-to-text voice input via `CommandVoice`.
 
 ## Product preview
 
-Screenshot / video placeholder.
+<video src="https://settings-demo-redux.vercel.app/demo.mp4" controls width="100%">
+  <a href="https://settings-demo-redux.vercel.app/demo.mp4">Watch demo video</a>
+</video>
 
-Add a short demo here that shows:
+The demo shows:
 
 - a user typing a vague query
-- backend-ranked results appearing in `cmdk`
+- vector-database-ranked results appearing in `cmdk`
 - selecting a result triggering app-owned navigation or action execution
+- optional speech-to-text voice input
 
 ## Example app
 
@@ -61,7 +78,13 @@ npm install cmdk-vectorized cmdk react react-dom
 
 ## Agentic setup
 
-Use the built-in CLI when you want local agents to generate and maintain your command corpus.
+Install the integration skill for coding agents:
+
+```bash
+npx cmdk-vectorized integrate
+```
+
+Generate and maintain your command corpus with:
 
 ```bash
 npx cmdk-vectorized init

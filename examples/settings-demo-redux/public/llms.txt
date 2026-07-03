@@ -1,0 +1,21 @@
+# cmdk-vectorized demo
+
+> Live demo of vector-database search for a cmdk command palette, with browser speech-to-text voice input.
+
+This app demonstrates cmdk-vectorized: a Redux-backed settings shell where the command palette queries Weaviate for ranked results. Voice mode transcribes speech and runs the same vector search.
+
+## Links
+
+- [Live demo](https://settings-demo-redux.vercel.app)
+- [Demo video](https://settings-demo-redux.vercel.app/demo.mp4)
+- [Package README](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/README.md)
+- [LLM guide](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/docs/llm-guide.md)
+- [API docs](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/docs/api.md)
+- [Example source](https://github.com/MauriceHeinze/cmdk-vectorized/tree/main/examples/settings-demo-redux)
+
+## Install the package
+
+```bash
+npm install cmdk-vectorized cmdk react react-dom
+npx cmdk-vectorized integrate
+```

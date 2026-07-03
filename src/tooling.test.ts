@@ -9,7 +9,7 @@ import { intentMapToCsv } from "./csv";
 import { INTENT_MAP_PATH, validateIntentMap } from "./intent-map";
 import type { CmdkVectorizedIntent } from "./tooling-types";
 import { createWeaviateClassSchema, uploadIntentMap } from "./weaviate";
-import { installAgentWorkflows } from "./workflows";
+import { installAgentWorkflows, installIntegrationSkill } from "./workflows";
 
 const SAMPLE_INTENT: CmdkVectorizedIntent = {
   recordType: "tab",
@@ -91,6 +91,28 @@ describe("installAgentWorkflows", () => {
     const codexSkill = await readFile(join(cwd, ".codex", "skills", "cmdk-vectorized", "SKILL.md"), "utf8");
     expect(codexSkill).toContain("public/intent-map.json");
     expect(codexSkill).toContain("Do not generate llms.txt files.");
+  });
+});
+
+
+describe("installIntegrationSkill", () => {
+  it("installs Codex, OpenCode, and Claude integration skill files", async () => {
+    const cwd = await createTempProject();
+    const written = await installIntegrationSkill({ cwd });
+
+    expect(written).toEqual([
+      join(".codex", "skills", "cmdk-vectorized-integrate", "SKILL.md"),
+      join(".opencode", "skill", "cmdk-vectorized-integrate", "SKILL.md"),
+      join(".claude", "commands", "cmdk-vectorized-integrate.md"),
+    ]);
+
+    const codexSkill = await readFile(
+      join(cwd, ".codex", "skills", "cmdk-vectorized-integrate", "SKILL.md"),
+      "utf8",
+    );
+    expect(codexSkill).toContain("vector database");
+    expect(codexSkill).toContain("shouldFilter={false}");
+    expect(codexSkill).toContain("Do not generate `llms.txt` files in the consumer app");
   });
 });
 

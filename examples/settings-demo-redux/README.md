@@ -2,6 +2,10 @@
 
 This demo wires `cmdk-vectorized` into a Redux-backed settings app shell.
 
+**Live demo:** https://settings-demo-redux.vercel.app
+
+Serves [`/llms.txt`](https://settings-demo-redux.vercel.app/llms.txt) for LLM discoverability.
+
 ## Weaviate search
 
 The command palette and voice shortcut search Weaviate route results through `/api/command-search`.

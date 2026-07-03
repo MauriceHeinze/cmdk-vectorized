@@ -1,0 +1,34 @@
+# cmdk-vectorized
+
+> Vector-database search for cmdk command palettes, with optional browser speech-to-text voice input.
+
+cmdk-vectorized adds React hooks and server helpers that query a vector database (Weaviate) for ranked command palette results. Keep your existing cmdk or shadcn/ui command menu UI. Optional CommandVoice transcribes spoken queries via the Web Speech API and runs them through the same search endpoint.
+
+## Docs
+
+- [README](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/README.md): install, quick start, CLI
+- [LLM guide](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/docs/llm-guide.md): dense reference for agents
+- [API docs](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/docs/api.md): hooks, result contract, server handler
+- [Local Weaviate playbook](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/docs/local-weaviate.md): copy-paste local dev setup
+- [AGENTS.md](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/AGENTS.md): integration checklist for coding agents
+- [Integration skill](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/skills/cmdk-vectorized-integrate/SKILL.md): install with `npx cmdk-vectorized integrate`
+
+## Live demo
+
+- [settings-demo-redux](https://settings-demo-redux.vercel.app): vector search command palette with voice input
+- [Demo video](https://settings-demo-redux.vercel.app/demo.mp4): product walkthrough
+
+## Common queries this package answers
+
+- Add vector search to a cmdk command palette
+- Weaviate semantic search for a shadcn command menu
+- Speech-to-text voice command palette in React
+- Search a vector database from cmdk instead of client-side filtering
+- Generate and upload an intent map for command palette search
+
+## Install
+
+```bash
+npm install cmdk-vectorized cmdk react react-dom
+npx cmdk-vectorized integrate
+```

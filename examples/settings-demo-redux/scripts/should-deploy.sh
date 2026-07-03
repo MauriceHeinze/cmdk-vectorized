@@ -10,6 +10,7 @@ cd "$REPO_ROOT"
 
 WATCH_PATHS=(
   examples/settings-demo-redux
+  docs/videos
   src
   package.json
   pnpm-lock.yaml

@@ -4,13 +4,15 @@ Vector-database search for `cmdk` command palettes, with optional speech-to-text
 
 Keep your existing command palette UI. Query a vector database (Weaviate) for ranked results instead of client-side filtering. Navigation, actions, and routing stay in your app — this package handles search hooks, result rendering, and optional voice transcription.
 
-**[Live demo](https://settings-demo-redux.vercel.app)** · [API docs](./docs/api.md) · [AGENTS.md](./AGENTS.md) · [LLM guide](./docs/llm-guide.md)
+<a href="https://www.youtube.com/watch?v=JwHRA-bXtiA" target="_blank" rel="noopener noreferrer">
+  <img src="docs/demo-thumbnail.jpg" alt="cmdk-vectorized demo" width="100%">
+</a>
 
-<video src="https://settings-demo-redux.vercel.app/demo.mp4" controls width="100%">
-  <a href="https://settings-demo-redux.vercel.app/demo.mp4">Watch demo video</a>
-</video>
+In the **[video demo](https://www.youtube.com/watch?v=JwHRA-bXtiA)** above, a vague typed query and speech-to-text voice input both hit the same vector search endpoint. Ranked results render in `cmdk`, and selecting one triggers app-owned navigation or an action handler.
 
-In the demo above, a vague typed query and speech-to-text voice input both hit the same vector search endpoint. Ranked results render in `cmdk`, and selecting one triggers app-owned navigation or an action handler.
+Try it yourself here 👉 **[Live demo](https://settings-demo-redux.vercel.app)**
+
+[API docs](./docs/api.md) · [AGENTS.md](./AGENTS.md) · [LLM guide](./docs/llm-guide.md)
 
 ## Looking for…
 

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "settings.plans",
+    "type": "navigation",
+    "title": "Plans",
+    "description": "Compare plans, upgrade, or change billing frequency",
+    "href": "/settings/plans",
+    "phrases": ["plans", "compare plans", "upgrade plan", "current plan"],
+    "keywords": ["plans", "starter", "pro", "enterprise", "pricing"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.plans.downgrade",
+    "type": "action",
+    "title": "Downgrade plan",
+    "description": "Switch to the Starter plan",
+    "actionKey": "settings.plans.downgrade",
+    "phrases": ["downgrade plan", "switch to starter"],
+    "keywords": ["downgrade", "plan", "starter"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.plans.contact-sales",
+    "type": "action",
+    "title": "Contact sales for Enterprise",
+    "description": "Reach out to the sales team about the Enterprise plan",
+    "actionKey": "settings.plans.contact-sales",
+    "phrases": ["talk to sales", "enterprise pricing", "contact sales"],
+    "keywords": ["sales", "enterprise", "contact"],
+    "section": "workspace"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "settings.developers",
+    "type": "navigation",
+    "title": "Developer settings",
+    "description": "Manage API keys, webhooks, and integration settings",
+    "href": "/settings/developers",
+    "phrases": ["developer settings", "api keys", "webhooks", "integrations"],
+    "keywords": ["developers", "api", "keys", "webhooks"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.developers.create-key",
+    "type": "action",
+    "title": "Create API key",
+    "description": "Generate a new API key for the workspace",
+    "actionKey": "settings.developers.create-key",
+    "phrases": ["create api key", "generate new key", "new api key"],
+    "keywords": ["api", "key", "create"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.developers.copy-key",
+    "type": "action",
+    "title": "Copy API key",
+    "description": "Copy an API key to the clipboard",
+    "actionKey": "settings.developers.copy-key",
+    "phrases": ["copy api key", "copy key value"],
+    "keywords": ["api", "key", "copy"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.developers.rotate-key",
+    "type": "action",
+    "title": "Rotate API key",
+    "description": "Rotate an API key to a new value",
+    "actionKey": "settings.developers.rotate-key",
+    "phrases": ["rotate api key", "regenerate key"],
+    "keywords": ["api", "key", "rotate"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.developers.revoke-key",
+    "type": "action",
+    "title": "Revoke API key",
+    "description": "Revoke an API key so it can no longer be used",
+    "actionKey": "settings.developers.revoke-key",
+    "phrases": ["revoke api key", "delete key", "deactivate key"],
+    "keywords": ["api", "key", "revoke", "delete"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.developers.configure-webhooks",
+    "type": "action",
+    "title": "Configure webhooks",
+    "description": "Enable webhooks and set the webhook URL and events",
+    "actionKey": "settings.developers.configure-webhooks",
+    "phrases": ["set up webhook", "webhook url", "webhook events"],
+    "keywords": ["webhooks", "url", "events"],
+    "section": "workspace"
+  }
+]

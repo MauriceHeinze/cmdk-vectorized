@@ -1,0 +1,32 @@
+[
+  {
+    "id": "settings.call-recorder",
+    "type": "navigation",
+    "title": "Call recorder settings",
+    "description": "Manage your call recorder name, style, and preview",
+    "href": "/settings/call-recorder",
+    "phrases": ["call recorder", "recorder settings", "call recorder style"],
+    "keywords": ["call recorder", "recorder", "style", "branding"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.call-recorder.rename",
+    "type": "action",
+    "title": "Rename call recorder",
+    "description": "Set the name shown on the call recorder",
+    "actionKey": "settings.call-recorder.rename",
+    "phrases": ["rename the recorder", "change recorder name"],
+    "keywords": ["recorder", "name", "rename"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.call-recorder.style",
+    "type": "action",
+    "title": "Change recorder style",
+    "description": "Switch between default, workspace, minimal, or no recorder branding",
+    "actionKey": "settings.call-recorder.style",
+    "phrases": ["change recorder style", "minimal recorder", "remove recorder branding"],
+    "keywords": ["recorder", "style", "branding", "logo"],
+    "section": "workspace"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "settings.objects",
+    "type": "navigation",
+    "title": "Objects",
+    "description": "Define custom objects and configure their attributes",
+    "href": "/settings/objects",
+    "phrases": ["objects", "custom objects", "data model"],
+    "keywords": ["objects", "data model", "attributes"],
+    "section": "data"
+  },
+  {
+    "id": "settings.objects.add-object",
+    "type": "action",
+    "title": "Add object type",
+    "description": "Create a new custom object type",
+    "actionKey": "settings.objects.add-object",
+    "phrases": ["add an object", "create object type"],
+    "keywords": ["objects", "add", "create"],
+    "section": "data"
+  },
+  {
+    "id": "settings.objects.configure-object",
+    "type": "action",
+    "title": "Configure object type",
+    "description": "Edit attributes of an existing object type",
+    "actionKey": "settings.objects.configure-object",
+    "phrases": ["configure object", "edit object attributes"],
+    "keywords": ["objects", "configure", "attributes"],
+    "section": "data"
+  }
+]

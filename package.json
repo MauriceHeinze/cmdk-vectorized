@@ -67,7 +67,10 @@
     "lint": "tsc --noEmit",
     "example:redux:dev": "pnpm --dir examples/settings-demo-redux dev",
     "example:redux:typecheck": "pnpm --dir examples/settings-demo-redux typecheck",
-    "example:redux:build": "pnpm --dir examples/settings-demo-redux build"
+    "example:redux:build": "pnpm --dir examples/settings-demo-redux build",
+    "example:plain:dev": "pnpm --dir examples/settings-demo-plain dev",
+    "example:plain:typecheck": "pnpm --dir examples/settings-demo-plain typecheck",
+    "example:plain:build": "pnpm --dir examples/settings-demo-plain build"
   },
   "peerDependencies": {
     "react": "^19.0.0",

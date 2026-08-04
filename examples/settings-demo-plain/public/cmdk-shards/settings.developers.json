@@ -1,0 +1,102 @@
+[
+  {
+    "id": "settings.developers.open",
+    "type": "navigation",
+    "title": "Developer settings",
+    "description": "Manage API keys, webhooks, and integration settings",
+    "href": "/settings/developers",
+    "phrases": [
+      "developer settings",
+      "api keys",
+      "webhook settings",
+      "api settings"
+    ],
+    "keywords": [
+      "developers",
+      "api",
+      "webhooks",
+      "keys"
+    ]
+  },
+  {
+    "id": "settings.developers.create-key",
+    "type": "action",
+    "title": "Create API key",
+    "description": "Create a new API key for accessing the API",
+    "actionKey": "settings.developers.create-key",
+    "phrases": [
+      "create api key",
+      "generate api key",
+      "new api key"
+    ],
+    "keywords": [
+      "api key",
+      "create",
+      "token"
+    ]
+  },
+  {
+    "id": "settings.developers.copy-key",
+    "type": "action",
+    "title": "Copy API key",
+    "description": "Copy an existing API key",
+    "actionKey": "settings.developers.copy-key",
+    "phrases": [
+      "copy api key",
+      "show api key"
+    ],
+    "keywords": [
+      "copy",
+      "api key"
+    ]
+  },
+  {
+    "id": "settings.developers.rotate-key",
+    "type": "action",
+    "title": "Rotate API key",
+    "description": "Rotate an API key to a new value",
+    "actionKey": "settings.developers.rotate-key",
+    "phrases": [
+      "rotate api key",
+      "regenerate api key"
+    ],
+    "keywords": [
+      "rotate",
+      "api key"
+    ]
+  },
+  {
+    "id": "settings.developers.revoke-key",
+    "type": "action",
+    "title": "Revoke API key",
+    "description": "Revoke access for an API key",
+    "actionKey": "settings.developers.revoke-key",
+    "phrases": [
+      "revoke api key",
+      "delete api key",
+      "disable api key"
+    ],
+    "keywords": [
+      "revoke",
+      "api key"
+    ]
+  },
+  {
+    "id": "settings.developers.webhooks",
+    "type": "action",
+    "title": "Configure webhooks",
+    "description": "Enable webhooks and set the webhook URL and events",
+    "actionKey": "settings.developers.webhooks",
+    "phrases": [
+      "enable webhooks",
+      "set webhook url",
+      "webhook events",
+      "configure webhook endpoint"
+    ],
+    "keywords": [
+      "webhooks",
+      "endpoint",
+      "events"
+    ]
+  }
+]

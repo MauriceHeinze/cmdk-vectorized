@@ -1,0 +1,12 @@
+[
+  {
+    "id": "app.voice-navigator.start",
+    "type": "action",
+    "title": "Start voice navigation",
+    "description": "Navigate the app by speaking a destination",
+    "actionKey": "app.voice-navigator.start",
+    "phrases": ["voice navigation", "navigate by voice", "speak a destination", "command m"],
+    "keywords": ["voice", "navigation", "speech"],
+    "section": "app"
+  }
+]

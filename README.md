@@ -103,13 +103,17 @@ npx cmdk-vectorized upload
 
 `cmdk-vectorized-agent` still works as a legacy alias.
 
-## Example app
+## Example apps
 
-Redux-backed settings demo: [`examples/settings-demo-redux`](./examples/settings-demo-redux)
+| Example | Description |
+|---------|-------------|
+| [`examples/settings-demo-redux`](./examples/settings-demo-redux) | Full demo with `cmdk-vectorized` command palette + voice |
+| [`examples/settings-demo-plain`](./examples/settings-demo-plain) | Same settings shell **without** cmdk — integrate from scratch |
 
 ```bash
 npx pnpm@10.12.4 install
-npx pnpm@10.12.4 example:redux:dev
+npx pnpm@10.12.4 example:redux:dev   # wired demo
+npx pnpm@10.12.4 example:plain:dev   # baseline app (no palette)
 ```
 
 With Weaviate:

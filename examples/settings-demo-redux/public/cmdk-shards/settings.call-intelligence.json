@@ -1,0 +1,52 @@
+[
+  {
+    "id": "settings.call-intelligence",
+    "type": "navigation",
+    "title": "Call intelligence settings",
+    "description": "Configure transcription, summaries, and coaching insights",
+    "href": "/settings/call-intelligence",
+    "phrases": ["call intelligence", "transcription settings", "call summaries", "coaching insights"],
+    "keywords": ["calls", "transcription", "summaries", "coaching", "retention"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.call-intelligence.transcription",
+    "type": "action",
+    "title": "Toggle call transcription",
+    "description": "Enable or disable converting calls into searchable text",
+    "actionKey": "settings.call-intelligence.transcription",
+    "phrases": ["turn on transcription", "disable transcription", "change transcription language"],
+    "keywords": ["transcription", "calls", "language"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.call-intelligence.summary-length",
+    "type": "action",
+    "title": "Set default summary length",
+    "description": "Choose short paragraph, bullet points, or detailed recap for call summaries",
+    "actionKey": "settings.call-intelligence.summary-length",
+    "phrases": ["change summary length", "default summary format", "bullet point summaries"],
+    "keywords": ["summary", "recap", "bullets", "length"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.call-intelligence.coaching",
+    "type": "action",
+    "title": "Enable coaching insights",
+    "description": "Turn on or off coaching insights on your calls",
+    "actionKey": "settings.call-intelligence.coaching",
+    "phrases": ["turn on coaching", "coaching insights", "enable coaching"],
+    "keywords": ["coaching", "insights", "calls"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.call-intelligence.retention",
+    "type": "action",
+    "title": "Set transcript retention",
+    "description": "Choose how long to keep transcripts before deletion",
+    "actionKey": "settings.call-intelligence.retention",
+    "phrases": ["transcript retention", "how long to keep transcripts", "delete transcripts"],
+    "keywords": ["retention", "transcripts", "data", "privacy"],
+    "section": "personal"
+  }
+]

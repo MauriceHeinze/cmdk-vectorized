@@ -1,0 +1,32 @@
+[
+  {
+    "id": "settings.support",
+    "type": "navigation",
+    "title": "Support requests",
+    "description": "Open and track support conversations with our team",
+    "href": "/settings/support",
+    "phrases": ["support requests", "contact support", "my tickets"],
+    "keywords": ["support", "tickets", "help"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.support.submit-request",
+    "type": "action",
+    "title": "Submit support request",
+    "description": "Open a new support ticket with a subject and message",
+    "actionKey": "settings.support.submit-request",
+    "phrases": ["submit a support request", "open a ticket", "contact support"],
+    "keywords": ["support", "ticket", "submit"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.support.view-ticket",
+    "type": "action",
+    "title": "View support ticket",
+    "description": "Open and read a support request",
+    "actionKey": "settings.support.view-ticket",
+    "phrases": ["view my ticket", "open support request"],
+    "keywords": ["support", "ticket", "view"],
+    "section": "workspace"
+  }
+]

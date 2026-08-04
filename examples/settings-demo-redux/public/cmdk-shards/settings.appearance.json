@@ -1,0 +1,42 @@
+[
+  {
+    "id": "settings.appearance",
+    "type": "navigation",
+    "title": "Appearance settings",
+    "description": "Customize theme, density, and accent color",
+    "href": "/settings/appearance",
+    "phrases": ["appearance settings", "change appearance", "customize look and feel"],
+    "keywords": ["appearance", "theme", "density", "accent", "colors"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.appearance.theme",
+    "type": "action",
+    "title": "Change theme",
+    "description": "Switch between light, dark, and system theme",
+    "actionKey": "settings.appearance.theme",
+    "phrases": ["switch to dark mode", "light mode", "change theme"],
+    "keywords": ["theme", "dark mode", "light mode", "system"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.appearance.density",
+    "type": "action",
+    "title": "Change density",
+    "description": "Switch between comfortable and compact interface density",
+    "actionKey": "settings.appearance.density",
+    "phrases": ["make the interface more compact", "comfortable density", "change density"],
+    "keywords": ["density", "compact", "spacing"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.appearance.accent",
+    "type": "action",
+    "title": "Change accent color",
+    "description": "Pick an accent color for the interface",
+    "actionKey": "settings.appearance.accent",
+    "phrases": ["change accent color", "pick accent", "accent color"],
+    "keywords": ["accent", "color", "highlight"],
+    "section": "personal"
+  }
+]

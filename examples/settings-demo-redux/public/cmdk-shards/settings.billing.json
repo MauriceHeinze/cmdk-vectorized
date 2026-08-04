@@ -1,0 +1,52 @@
+[
+  {
+    "id": "settings.billing",
+    "type": "navigation",
+    "title": "Billing",
+    "description": "Update your payment method, download invoices, and change your plan",
+    "href": "/settings/billing",
+    "phrases": ["billing", "billing settings", "payment method", "invoices"],
+    "keywords": ["billing", "payment", "invoice", "card", "subscription"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.billing.update-card",
+    "type": "action",
+    "title": "Update payment card",
+    "description": "Change the card used for billing",
+    "actionKey": "settings.billing.update-card",
+    "phrases": ["update credit card", "change payment method", "add new card"],
+    "keywords": ["card", "payment method", "update"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.billing.update-details",
+    "type": "action",
+    "title": "Update billing details",
+    "description": "Change your billing email and billing address",
+    "actionKey": "settings.billing.update-details",
+    "phrases": ["change billing email", "update billing address"],
+    "keywords": ["billing", "email", "address"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.billing.download-invoice",
+    "type": "action",
+    "title": "Download invoice",
+    "description": "Download a past invoice as a document",
+    "actionKey": "settings.billing.download-invoice",
+    "phrases": ["download invoice", "get a receipt", "invoice history"],
+    "keywords": ["invoice", "download", "receipt"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.billing.cancel-subscription",
+    "type": "action",
+    "title": "Cancel subscription",
+    "description": "Cancel your subscription and stop recurring billing",
+    "actionKey": "settings.billing.cancel-subscription",
+    "phrases": ["cancel my plan", "cancel subscription", "stop billing"],
+    "keywords": ["cancel", "subscription", "billing"],
+    "section": "workspace"
+  }
+]

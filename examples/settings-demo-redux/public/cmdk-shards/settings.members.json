@@ -1,0 +1,42 @@
+[
+  {
+    "id": "settings.members",
+    "type": "navigation",
+    "title": "Members",
+    "description": "Invite teammates, manage roles, and set permissions",
+    "href": "/settings/members",
+    "phrases": ["workspace members", "team members", "member settings"],
+    "keywords": ["members", "team", "roles", "permissions"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.members.invite",
+    "type": "action",
+    "title": "Invite member",
+    "description": "Invite a new teammate to the workspace",
+    "actionKey": "settings.members.invite",
+    "phrases": ["invite teammate", "add a member", "send invite"],
+    "keywords": ["invite", "member", "teammate", "team"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.members.change-role",
+    "type": "action",
+    "title": "Change member role",
+    "description": "Promote or demote a member's role in the workspace",
+    "actionKey": "settings.members.change-role",
+    "phrases": ["make admin", "change member role", "promote member"],
+    "keywords": ["role", "admin", "member", "permissions"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.members.remove",
+    "type": "action",
+    "title": "Remove member",
+    "description": "Remove a teammate from the workspace",
+    "actionKey": "settings.members.remove",
+    "phrases": ["remove a member", "kick a teammate", "remove from workspace"],
+    "keywords": ["remove", "member", "team"],
+    "section": "workspace"
+  }
+]

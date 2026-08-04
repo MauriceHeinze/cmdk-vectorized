@@ -1,0 +1,42 @@
+[
+  {
+    "id": "settings.email-calendar",
+    "type": "navigation",
+    "title": "Email and calendar accounts",
+    "description": "Connect and manage your email and calendar integrations",
+    "href": "/settings/email-calendar",
+    "phrases": ["email accounts", "calendar accounts", "connected accounts", "integrations"],
+    "keywords": ["email", "calendar", "google", "outlook", "icloud", "accounts"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.email-calendar.add-account",
+    "type": "action",
+    "title": "Add email or calendar account",
+    "description": "Connect a new email or calendar provider",
+    "actionKey": "settings.email-calendar.add-account",
+    "phrases": ["add an account", "connect email", "connect calendar", "link account"],
+    "keywords": ["email", "calendar", "connect", "add"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.email-calendar.remove-account",
+    "type": "action",
+    "title": "Remove email or calendar account",
+    "description": "Disconnect an email or calendar provider",
+    "actionKey": "settings.email-calendar.remove-account",
+    "phrases": ["remove an account", "disconnect email", "disconnect calendar"],
+    "keywords": ["email", "calendar", "remove", "disconnect"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.email-calendar.toggle-sync",
+    "type": "action",
+    "title": "Toggle account sync",
+    "description": "Enable or disable syncing for a connected account",
+    "actionKey": "settings.email-calendar.toggle-sync",
+    "phrases": ["pause email sync", "resume calendar sync", "toggle account sync"],
+    "keywords": ["sync", "email", "calendar"],
+    "section": "personal"
+  }
+]

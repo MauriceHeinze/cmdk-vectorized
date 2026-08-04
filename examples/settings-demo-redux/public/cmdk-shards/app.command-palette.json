@@ -1,0 +1,12 @@
+[
+  {
+    "id": "app.command-palette.open",
+    "type": "action",
+    "title": "Open command palette",
+    "description": "Search settings or describe where you want to go",
+    "actionKey": "app.command-palette.open",
+    "phrases": ["open command palette", "search settings", "command k", "go to settings"],
+    "keywords": ["command", "search", "palette", "shortcut"],
+    "section": "app"
+  }
+]

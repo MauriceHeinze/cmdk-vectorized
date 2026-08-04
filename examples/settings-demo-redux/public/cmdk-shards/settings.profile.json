@@ -1,0 +1,42 @@
+[
+  {
+    "id": "settings.profile",
+    "type": "navigation",
+    "title": "Profile settings",
+    "description": "View and edit your profile information",
+    "href": "/settings/profile",
+    "phrases": ["edit my profile", "my profile", "profile settings", "display name"],
+    "keywords": ["profile", "account", "display name", "avatar"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.profile.save",
+    "type": "action",
+    "title": "Save profile",
+    "description": "Persist display name, email, bio, and avatar changes",
+    "actionKey": "settings.profile.save",
+    "phrases": ["save my profile", "update profile", "save profile changes"],
+    "keywords": ["profile", "save", "update"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.profile.toggle-public",
+    "type": "action",
+    "title": "Make profile public",
+    "description": "Control who can see your profile on the workspace",
+    "actionKey": "settings.profile.toggle-public",
+    "phrases": ["make profile public", "hide my profile", "profile visibility"],
+    "keywords": ["profile", "visibility", "public"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.profile.change-avatar",
+    "type": "action",
+    "title": "Change profile avatar",
+    "description": "Upload a new avatar photo for your profile",
+    "actionKey": "settings.profile.change-avatar",
+    "phrases": ["change my avatar", "upload profile picture", "new profile photo"],
+    "keywords": ["avatar", "photo", "profile picture"],
+    "section": "personal"
+  }
+]

@@ -1,0 +1,32 @@
+:root {
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #16324f;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 214, 165, 0.45), transparent 25%),
+    linear-gradient(180deg, #fef6e4, #f4f1de 42%, #e9f1f7);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "id": "settings.plans.open",
+    "type": "navigation",
+    "title": "Plans",
+    "description": "Compare plans, upgrade, or change billing frequency",
+    "href": "/settings/plans",
+    "phrases": [
+      "view plans",
+      "compare pricing plans",
+      "upgrade plan",
+      "billing plans"
+    ],
+    "keywords": [
+      "plans",
+      "pricing",
+      "upgrade"
+    ]
+  },
+  {
+    "id": "settings.plans.downgrade",
+    "type": "action",
+    "title": "Downgrade to Starter",
+    "description": "Switch to the free Starter plan",
+    "actionKey": "settings.plans.downgrade",
+    "phrases": [
+      "downgrade plan",
+      "switch to starter",
+      "move to free plan"
+    ],
+    "keywords": [
+      "downgrade",
+      "starter"
+    ]
+  },
+  {
+    "id": "settings.plans.contact-sales",
+    "type": "action",
+    "title": "Contact sales",
+    "description": "Reach out about the Enterprise plan",
+    "actionKey": "settings.plans.contact-sales",
+    "phrases": [
+      "contact sales",
+      "talk to sales",
+      "enterprise plan pricing"
+    ],
+    "keywords": [
+      "sales",
+      "enterprise",
+      "contact"
+    ]
+  }
+]

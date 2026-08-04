@@ -1,0 +1,52 @@
+[
+  {
+    "id": "settings.storage",
+    "type": "navigation",
+    "title": "Storage accounts",
+    "description": "Link cloud storage providers and manage file attachments",
+    "href": "/settings/storage",
+    "phrases": ["storage accounts", "storage settings", "cloud storage", "file storage"],
+    "keywords": ["storage", "google drive", "dropbox", "onedrive", "cloud"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.storage.add-storage",
+    "type": "action",
+    "title": "Add storage account",
+    "description": "Connect a new cloud storage provider",
+    "actionKey": "settings.storage.add-storage",
+    "phrases": ["add storage", "connect storage provider", "link cloud storage"],
+    "keywords": ["storage", "connect", "add", "provider"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.storage.configure-storage",
+    "type": "action",
+    "title": "Configure storage account",
+    "description": "Adjust settings for a connected storage provider",
+    "actionKey": "settings.storage.configure-storage",
+    "phrases": ["configure storage", "storage settings for provider"],
+    "keywords": ["storage", "configure", "provider"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.storage.toggle-storage",
+    "type": "action",
+    "title": "Toggle storage account",
+    "description": "Enable or disable syncing for a storage provider",
+    "actionKey": "settings.storage.toggle-storage",
+    "phrases": ["pause storage sync", "enable storage", "disable storage"],
+    "keywords": ["storage", "sync", "toggle"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.storage.view-usage",
+    "type": "action",
+    "title": "View storage usage",
+    "description": "See total and per-provider storage usage",
+    "actionKey": "settings.storage.view-usage",
+    "phrases": ["how much storage", "storage usage", "storage quota"],
+    "keywords": ["storage", "usage", "quota"],
+    "section": "personal"
+  }
+]

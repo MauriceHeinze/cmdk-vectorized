@@ -1,0 +1,71 @@
+[
+  {
+    "id": "settings.billing.open",
+    "type": "navigation",
+    "title": "Billing settings",
+    "description": "Update your payment method, download invoices, and change your plan",
+    "href": "/settings/billing",
+    "phrases": [
+      "billing settings",
+      "payment settings",
+      "view invoices",
+      "subscription settings"
+    ],
+    "keywords": [
+      "billing",
+      "payment",
+      "invoices",
+      "subscription"
+    ]
+  },
+  {
+    "id": "settings.billing.update-card",
+    "type": "action",
+    "title": "Update payment card",
+    "description": "Change the credit card used for billing",
+    "actionKey": "settings.billing.update-card",
+    "phrases": [
+      "update credit card",
+      "change payment method",
+      "add new card"
+    ],
+    "keywords": [
+      "card",
+      "payment method",
+      "credit card"
+    ]
+  },
+  {
+    "id": "settings.billing.download-invoice",
+    "type": "action",
+    "title": "Download invoice",
+    "description": "Download a past invoice as a file",
+    "actionKey": "settings.billing.download-invoice",
+    "phrases": [
+      "download invoice",
+      "get invoice pdf",
+      "export invoice"
+    ],
+    "keywords": [
+      "invoice",
+      "download",
+      "receipt"
+    ]
+  },
+  {
+    "id": "settings.billing.cancel",
+    "type": "action",
+    "title": "Cancel subscription",
+    "description": "Cancel the workspace subscription",
+    "actionKey": "settings.billing.cancel",
+    "phrases": [
+      "cancel subscription",
+      "cancel plan",
+      "stop billing"
+    ],
+    "keywords": [
+      "cancel",
+      "subscription"
+    ]
+  }
+]

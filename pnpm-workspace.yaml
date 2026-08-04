@@ -1,2 +1,3 @@
 packages:
   - examples/settings-demo-redux
+  - examples/settings-demo-plain

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "settings.sessions",
+    "type": "navigation",
+    "title": "Sessions",
+    "description": "Review active sessions and sign out of devices remotely",
+    "href": "/settings/sessions",
+    "phrases": ["active sessions", "signed in devices", "session settings"],
+    "keywords": ["sessions", "devices", "sign out"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.sessions.revoke-device",
+    "type": "action",
+    "title": "Revoke device session",
+    "description": "Sign a single device out of your account",
+    "actionKey": "settings.sessions.revoke-device",
+    "phrases": ["sign out this device", "revoke a session", "remove device"],
+    "keywords": ["sessions", "revoke", "device", "sign out"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.sessions.logout-all",
+    "type": "action",
+    "title": "Log out all devices",
+    "description": "End every active session on your account",
+    "actionKey": "settings.sessions.logout-all",
+    "phrases": ["log out everywhere", "sign out of all devices", "logout all sessions"],
+    "keywords": ["logout", "sessions", "all devices", "security"],
+    "section": "personal"
+  }
+]

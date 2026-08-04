@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { normalizeCommandSearchResponse } from "./guards";
 import type { CommandSearchResult, UseAICommandSearchOptions } from "./types";
 
-const DEFAULT_DEBOUNCE_MS = 200;
+const DEFAULT_DEBOUNCE_MS = 300;
 const DEFAULT_MIN_QUERY_LENGTH = 1;
 const DEFAULT_MAX_RESULTS = 20;
 const DEFAULT_MIN_CONFIDENCE = 0.7;
@@ -60,6 +60,31 @@ export function useAICommandSearch(
   const requestIdRef = useRef(0);
   const skipNextEffectRef = useRef(false);
 
+  // Keep latest request options in refs so object identity (headers, fetcher,
+  // etc.) does not re-trigger the debounced search effect on every render.
+  const optionsRef = useRef({
+    endpoint,
+    maxResults,
+    minConfidence,
+    minQueryLength,
+    searchOnEmptyQuery,
+    headers,
+    fetcher,
+    transformResponse,
+    initialResults,
+  });
+  optionsRef.current = {
+    endpoint,
+    maxResults,
+    minConfidence,
+    minQueryLength,
+    searchOnEmptyQuery,
+    headers,
+    fetcher,
+    transformResponse,
+    initialResults,
+  };
+
   const cancelPendingWork = useCallback(() => {
     if (timerRef.current !== null) {
       window.clearTimeout(timerRef.current);
@@ -71,89 +96,94 @@ export function useAICommandSearch(
     requestIdRef.current += 1;
   }, []);
 
-  const resetToInitialResults = useCallback(() => {
-    setResults(initialResults);
-    setLoading(false);
-  }, [initialResults]);
+  const performSearch = useCallback(async (requestedQuery: string) => {
+    const {
+      endpoint: activeEndpoint,
+      maxResults: activeMaxResults,
+      minConfidence: activeMinConfidence,
+      minQueryLength: activeMinQueryLength,
+      searchOnEmptyQuery: activeSearchOnEmpty,
+      headers: activeHeaders,
+      fetcher: optionFetcher,
+      transformResponse: activeTransform,
+      initialResults: activeInitial,
+    } = optionsRef.current;
 
-  const performSearch = useCallback(
-    async (requestedQuery: string) => {
-      const effectiveQuery =
-        requestedQuery.length < minQueryLength && searchOnEmptyQuery ? "" : requestedQuery;
+    const effectiveQuery =
+      requestedQuery.length < activeMinQueryLength && activeSearchOnEmpty
+        ? ""
+        : requestedQuery;
 
-      if (requestedQuery.length < minQueryLength && !searchOnEmptyQuery) {
-        cancelPendingWork();
-        resetToInitialResults();
-        setError(null);
-        return;
-      }
-
-      const activeFetcher = fetcher ?? globalThis.fetch;
-
-      if (!activeFetcher) {
-        const fetcherError = createMissingFetcherError();
-        setError(fetcherError);
-        setResults([]);
-        setLoading(false);
-        return;
-      }
-
-      abortControllerRef.current?.abort();
-      const controller = new AbortController();
-      abortControllerRef.current = controller;
-
-      const requestId = requestIdRef.current + 1;
-      requestIdRef.current = requestId;
-
-      setLoading(true);
+    if (requestedQuery.length < activeMinQueryLength && !activeSearchOnEmpty) {
+      cancelPendingWork();
+      setResults(activeInitial);
+      setLoading(false);
       setError(null);
+      return;
+    }
 
-      try {
-        const response = await activeFetcher(buildSearchUrl(endpoint, effectiveQuery, maxResults), {
+    const activeFetcher = optionFetcher ?? globalThis.fetch;
+
+    if (!activeFetcher) {
+      const fetcherError = createMissingFetcherError();
+      setError(fetcherError);
+      setResults([]);
+      setLoading(false);
+      return;
+    }
+
+    abortControllerRef.current?.abort();
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
+    const requestId = requestIdRef.current + 1;
+    requestIdRef.current = requestId;
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await activeFetcher(
+        buildSearchUrl(activeEndpoint, effectiveQuery, activeMaxResults),
+        {
           method: "GET",
-          headers,
+          headers: activeHeaders,
           signal: controller.signal,
-        });
+        },
+      );
 
-        if (!response.ok) {
-          throw new Error(`Command search request failed with status ${response.status}.`);
-        }
-
-        const data = await response.json();
-        const normalizedResults = normalizeCommandSearchResponse(data, transformResponse);
-        const filteredResults = normalizedResults.filter(
-          (result) => result.score === undefined || result.score >= minConfidence,
+      if (!response.ok) {
+        throw new Error(
+          `Command search request failed with status ${response.status}.`,
         );
-
-        if (requestId !== requestIdRef.current) {
-          return;
-        }
-
-        setResults(filteredResults);
-        setLoading(false);
-      } catch (caughtError) {
-        if (controller.signal.aborted || requestId !== requestIdRef.current) {
-          return;
-        }
-
-        setError(toError(caughtError));
-        setResults([]);
-        setLoading(false);
       }
-    },
-    [
-      cancelPendingWork,
-      endpoint,
-      fetcher,
-      headers,
-      maxResults,
-      minConfidence,
-      minQueryLength,
-      resetToInitialResults,
-      searchOnEmptyQuery,
-      transformResponse,
-    ],
-  );
+
+      const data = await response.json();
+      const normalizedResults = normalizeCommandSearchResponse(
+        data,
+        activeTransform,
+      );
+      const filteredResults = normalizedResults.filter(
+        (result) =>
+          result.score === undefined || result.score >= activeMinConfidence,
+      );
+
+      if (requestId !== requestIdRef.current) {
+        return;
+      }
+
+      setResults(filteredResults);
+      setLoading(false);
+    } catch (caughtError) {
+      if (controller.signal.aborted || requestId !== requestIdRef.current) {
+        return;
+      }
+
+      setError(toError(caughtError));
+      setResults([]);
+      setLoading(false);
+    }
+  }, [cancelPendingWork]);
 
   useEffect(() => {
     if (skipNextEffectRef.current) {
@@ -167,7 +197,8 @@ export function useAICommandSearch(
 
     if (query.length < minQueryLength && !searchOnEmptyQuery) {
       cancelPendingWork();
-      resetToInitialResults();
+      setResults(optionsRef.current.initialResults);
+      setLoading(false);
       setError(null);
       return;
     }
@@ -189,7 +220,6 @@ export function useAICommandSearch(
     minQueryLength,
     performSearch,
     query,
-    resetToInitialResults,
     searchOnEmptyQuery,
   ]);
 
@@ -200,8 +230,9 @@ export function useAICommandSearch(
     cancelPendingWork();
     setQuery("");
     setError(null);
-    resetToInitialResults();
-  }, [cancelPendingWork, resetToInitialResults]);
+    setResults(optionsRef.current.initialResults);
+    setLoading(false);
+  }, [cancelPendingWork]);
 
   const refetch = useCallback(async () => {
     if (timerRef.current !== null) {

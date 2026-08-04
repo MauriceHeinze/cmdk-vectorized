@@ -1,0 +1,22 @@
+[
+  {
+    "id": "settings.general",
+    "type": "navigation",
+    "title": "General workspace settings",
+    "description": "Manage workspace name, timezone, and default behaviors",
+    "href": "/settings/general",
+    "phrases": ["workspace settings", "general settings", "workspace name", "timezone"],
+    "keywords": ["general", "workspace", "timezone", "language", "week start"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.general.save-changes",
+    "type": "action",
+    "title": "Save workspace settings",
+    "description": "Save workspace name, timezone, default language, and week start changes",
+    "actionKey": "settings.general.save-changes",
+    "phrases": ["save workspace changes", "update workspace name", "change timezone"],
+    "keywords": ["workspace", "save", "timezone", "language"],
+    "section": "workspace"
+  }
+]

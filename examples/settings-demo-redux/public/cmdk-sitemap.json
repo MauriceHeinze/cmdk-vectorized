@@ -1,0 +1,400 @@
+{
+  "generatedAt": "2026-08-03T00:00:00.000Z",
+  "framework": "react-router",
+  "appName": "settings-demo-redux",
+  "nodes": [
+    {
+      "id": "settings.profile",
+      "path": "/settings/profile",
+      "sourceFiles": [
+        "src/features/settings/forms/personal-forms.tsx"
+      ],
+      "titleHint": "Profile",
+      "section": "personal",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.profile",
+        "settings.profile.save",
+        "settings.profile.toggle-public",
+        "settings.profile.change-avatar"
+      ]
+    },
+    {
+      "id": "settings.appearance",
+      "path": "/settings/appearance",
+      "sourceFiles": [
+        "src/features/settings/forms/personal-forms.tsx"
+      ],
+      "titleHint": "Appearance",
+      "section": "personal",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.appearance",
+        "settings.appearance.theme",
+        "settings.appearance.density",
+        "settings.appearance.accent"
+      ]
+    },
+    {
+      "id": "settings.email-calendar",
+      "path": "/settings/email-calendar",
+      "sourceFiles": [
+        "src/features/settings/forms/personal-forms.tsx"
+      ],
+      "titleHint": "Email and calendar accounts",
+      "section": "personal",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.email-calendar",
+        "settings.email-calendar.add-account",
+        "settings.email-calendar.remove-account",
+        "settings.email-calendar.toggle-sync"
+      ]
+    },
+    {
+      "id": "settings.call-intelligence",
+      "path": "/settings/call-intelligence",
+      "sourceFiles": [
+        "src/features/settings/forms/personal-forms.tsx"
+      ],
+      "titleHint": "Call intelligence",
+      "section": "personal",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.call-intelligence",
+        "settings.call-intelligence.transcription",
+        "settings.call-intelligence.summary-length",
+        "settings.call-intelligence.coaching",
+        "settings.call-intelligence.retention"
+      ]
+    },
+    {
+      "id": "settings.storage",
+      "path": "/settings/storage",
+      "sourceFiles": [
+        "src/features/settings/forms/personal-forms.tsx"
+      ],
+      "titleHint": "Storage accounts",
+      "section": "personal",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.storage",
+        "settings.storage.add-storage",
+        "settings.storage.configure-storage",
+        "settings.storage.toggle-storage",
+        "settings.storage.view-usage"
+      ]
+    },
+    {
+      "id": "settings.refer",
+      "path": "/settings/refer",
+      "sourceFiles": [
+        "src/features/settings/forms/personal-forms.tsx"
+      ],
+      "titleHint": "Refer another team",
+      "section": "personal",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.refer",
+        "settings.refer.send-invite",
+        "settings.refer.copy-link",
+        "settings.refer.view-rewards"
+      ]
+    },
+    {
+      "id": "settings.notifications",
+      "path": "/settings/notifications",
+      "sourceFiles": [
+        "src/features/settings/forms/personal-forms.tsx"
+      ],
+      "titleHint": "Notifications",
+      "section": "personal",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.notifications",
+        "settings.notifications.channels",
+        "settings.notifications.digest",
+        "settings.notifications.quiet-hours"
+      ]
+    },
+    {
+      "id": "settings.sessions",
+      "path": "/settings/sessions",
+      "sourceFiles": [
+        "src/features/settings/forms/personal-forms.tsx"
+      ],
+      "titleHint": "Sessions",
+      "section": "personal",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.sessions",
+        "settings.sessions.revoke-device",
+        "settings.sessions.logout-all"
+      ]
+    },
+    {
+      "id": "settings.general",
+      "path": "/settings/general",
+      "sourceFiles": [
+        "src/features/settings/forms/workspace-forms.tsx"
+      ],
+      "titleHint": "General",
+      "section": "workspace",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.general",
+        "settings.general.save-changes"
+      ]
+    },
+    {
+      "id": "settings.call-recorder",
+      "path": "/settings/call-recorder",
+      "sourceFiles": [
+        "src/features/settings/CallRecorderPage.tsx"
+      ],
+      "titleHint": "Call recorder",
+      "section": "workspace",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.call-recorder",
+        "settings.call-recorder.rename",
+        "settings.call-recorder.style"
+      ]
+    },
+    {
+      "id": "settings.members",
+      "path": "/settings/members",
+      "sourceFiles": [
+        "src/features/settings/forms/workspace-forms.tsx"
+      ],
+      "titleHint": "Members",
+      "section": "workspace",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.members",
+        "settings.members.invite",
+        "settings.members.change-role",
+        "settings.members.remove"
+      ]
+    },
+    {
+      "id": "settings.plans",
+      "path": "/settings/plans",
+      "sourceFiles": [
+        "src/features/settings/forms/workspace-forms.tsx"
+      ],
+      "titleHint": "Plans",
+      "section": "workspace",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.plans",
+        "settings.plans.downgrade",
+        "settings.plans.contact-sales"
+      ]
+    },
+    {
+      "id": "settings.billing",
+      "path": "/settings/billing",
+      "sourceFiles": [
+        "src/features/settings/forms/workspace-forms.tsx"
+      ],
+      "titleHint": "Billing",
+      "section": "workspace",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.billing",
+        "settings.billing.update-card",
+        "settings.billing.update-details",
+        "settings.billing.download-invoice",
+        "settings.billing.cancel-subscription"
+      ]
+    },
+    {
+      "id": "settings.developers",
+      "path": "/settings/developers",
+      "sourceFiles": [
+        "src/features/settings/forms/workspace-forms.tsx"
+      ],
+      "titleHint": "Developers",
+      "section": "workspace",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.developers",
+        "settings.developers.create-key",
+        "settings.developers.copy-key",
+        "settings.developers.rotate-key",
+        "settings.developers.revoke-key",
+        "settings.developers.configure-webhooks"
+      ]
+    },
+    {
+      "id": "settings.security",
+      "path": "/settings/security",
+      "sourceFiles": [
+        "src/features/settings/forms/workspace-forms.tsx"
+      ],
+      "titleHint": "Security",
+      "section": "workspace",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.security",
+        "settings.security.sso",
+        "settings.security.mfa",
+        "settings.security.password-policy",
+        "settings.security.audit-log"
+      ]
+    },
+    {
+      "id": "settings.records",
+      "path": "/settings/records",
+      "sourceFiles": [
+        "src/features/settings/forms/workspace-forms.tsx"
+      ],
+      "titleHint": "Records",
+      "section": "workspace",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.records",
+        "settings.records.visibility",
+        "settings.records.history-retention",
+        "settings.records.audit-log",
+        "settings.records.save"
+      ]
+    },
+    {
+      "id": "settings.support",
+      "path": "/settings/support",
+      "sourceFiles": [
+        "src/features/settings/forms/workspace-forms.tsx"
+      ],
+      "titleHint": "Support requests",
+      "section": "workspace",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.support",
+        "settings.support.submit-request",
+        "settings.support.view-ticket"
+      ]
+    },
+    {
+      "id": "settings.migrate",
+      "path": "/settings/migrate-crm",
+      "sourceFiles": [
+        "src/features/settings/forms/workspace-forms.tsx"
+      ],
+      "titleHint": "Migrate CRM",
+      "section": "workspace",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.migrate",
+        "settings.migrate.source-crm",
+        "settings.migrate.test-connection",
+        "settings.migrate.start-import"
+      ]
+    },
+    {
+      "id": "settings.objects",
+      "path": "/settings/objects",
+      "sourceFiles": [
+        "src/features/settings/forms/data-forms.tsx"
+      ],
+      "titleHint": "Objects",
+      "section": "data",
+      "dynamic": false,
+      "authLikely": true,
+      "kind": "page",
+      "status": "done",
+      "intentIds": [
+        "settings.objects",
+        "settings.objects.add-object",
+        "settings.objects.configure-object"
+      ]
+    },
+    {
+      "id": "app.command-palette",
+      "path": "/app/command-palette",
+      "sourceFiles": [
+        "src/app/CommandDialog.tsx"
+      ],
+      "titleHint": "Command palette",
+      "section": "app",
+      "dynamic": false,
+      "authLikely": false,
+      "kind": "action-surface",
+      "status": "done",
+      "intentIds": [
+        "app.command-palette.open"
+      ]
+    },
+    {
+      "id": "app.voice-navigator",
+      "path": "/app/voice-navigator",
+      "sourceFiles": [
+        "src/app/SiriVoiceNavigator.tsx"
+      ],
+      "titleHint": "Voice navigation",
+      "section": "app",
+      "dynamic": false,
+      "authLikely": false,
+      "kind": "action-surface",
+      "status": "done",
+      "intentIds": [
+        "app.voice-navigator.start"
+      ]
+    }
+  ]
+}

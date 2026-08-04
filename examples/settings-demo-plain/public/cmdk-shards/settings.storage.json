@@ -1,0 +1,54 @@
+[
+  {
+    "id": "settings.storage.open",
+    "type": "navigation",
+    "title": "Storage accounts",
+    "description": "Link cloud storage providers and manage file attachments",
+    "href": "/settings/storage",
+    "phrases": [
+      "storage accounts settings",
+      "manage cloud storage",
+      "storage provider settings"
+    ],
+    "keywords": [
+      "storage",
+      "cloud",
+      "drive",
+      "dropbox"
+    ]
+  },
+  {
+    "id": "settings.storage.add",
+    "type": "action",
+    "title": "Add storage account",
+    "description": "Connect a cloud storage provider like Google Drive or Dropbox",
+    "actionKey": "settings.storage.add",
+    "phrases": [
+      "connect google drive",
+      "add dropbox",
+      "link storage provider",
+      "add onedrive"
+    ],
+    "keywords": [
+      "add",
+      "connect",
+      "google drive",
+      "dropbox"
+    ]
+  },
+  {
+    "id": "settings.storage.configure",
+    "type": "action",
+    "title": "Configure storage account",
+    "description": "Configure an existing connected storage provider",
+    "actionKey": "settings.storage.configure",
+    "phrases": [
+      "configure google drive",
+      "manage dropbox storage"
+    ],
+    "keywords": [
+      "configure",
+      "storage"
+    ]
+  }
+]

@@ -1,0 +1,59 @@
+[
+  {
+    "id": "settings.email-calendar.open",
+    "type": "navigation",
+    "title": "Email and calendar accounts",
+    "description": "Connect and manage your email and calendar integrations",
+    "href": "/settings/email-calendar",
+    "phrases": [
+      "manage email accounts",
+      "connected calendar accounts",
+      "email and calendar settings",
+      "manage integrations"
+    ],
+    "keywords": [
+      "email",
+      "calendar",
+      "accounts",
+      "integrations"
+    ]
+  },
+  {
+    "id": "settings.email-calendar.add",
+    "type": "action",
+    "title": "Add email or calendar account",
+    "description": "Connect a new email or calendar provider",
+    "actionKey": "settings.email-calendar.add",
+    "phrases": [
+      "connect google account",
+      "add outlook account",
+      "link email account",
+      "add calendar account",
+      "connect icloud"
+    ],
+    "keywords": [
+      "add",
+      "connect",
+      "gmail",
+      "outlook",
+      "icloud"
+    ]
+  },
+  {
+    "id": "settings.email-calendar.remove",
+    "type": "action",
+    "title": "Remove connected account",
+    "description": "Disconnect an email or calendar account",
+    "actionKey": "settings.email-calendar.remove",
+    "phrases": [
+      "remove google account",
+      "disconnect email account",
+      "unlink calendar"
+    ],
+    "keywords": [
+      "remove",
+      "disconnect",
+      "unlink"
+    ]
+  }
+]

@@ -1,0 +1,103 @@
+[
+  {
+    "id": "settings.call-intelligence.open",
+    "type": "navigation",
+    "title": "Call intelligence settings",
+    "description": "Configure transcription, summaries, and coaching insights",
+    "href": "/settings/call-intelligence",
+    "phrases": [
+      "call intelligence settings",
+      "transcription settings",
+      "call summaries",
+      "coaching insights settings"
+    ],
+    "keywords": [
+      "call intelligence",
+      "transcription",
+      "summaries",
+      "coaching"
+    ]
+  },
+  {
+    "id": "settings.call-intelligence.transcription",
+    "type": "action",
+    "title": "Enable call transcription",
+    "description": "Turn on automatic transcription of calls",
+    "actionKey": "settings.call-intelligence.transcription",
+    "phrases": [
+      "enable transcription",
+      "transcribe my calls",
+      "turn on call transcription"
+    ],
+    "keywords": [
+      "transcription",
+      "enable",
+      "calls"
+    ]
+  },
+  {
+    "id": "settings.call-intelligence.language",
+    "type": "action",
+    "title": "Change transcription language",
+    "description": "Set the language used for call transcription",
+    "actionKey": "settings.call-intelligence.language",
+    "phrases": [
+      "set transcription language",
+      "transcribe calls in german",
+      "change transcription language"
+    ],
+    "keywords": [
+      "transcription",
+      "language"
+    ]
+  },
+  {
+    "id": "settings.call-intelligence.summary-length",
+    "type": "action",
+    "title": "Set default summary length",
+    "description": "Choose short paragraph, bullet points, or detailed recap",
+    "actionKey": "settings.call-intelligence.summary-length",
+    "phrases": [
+      "change summary length",
+      "summarize calls in bullets",
+      "detailed call summaries"
+    ],
+    "keywords": [
+      "summary",
+      "length",
+      "bullet points"
+    ]
+  },
+  {
+    "id": "settings.call-intelligence.coaching",
+    "type": "action",
+    "title": "Enable coaching insights",
+    "description": "Turn on coaching insights for your calls",
+    "actionKey": "settings.call-intelligence.coaching",
+    "phrases": [
+      "enable coaching insights",
+      "get coaching feedback on calls"
+    ],
+    "keywords": [
+      "coaching",
+      "insights"
+    ]
+  },
+  {
+    "id": "settings.call-intelligence.retention",
+    "type": "action",
+    "title": "Change transcript retention",
+    "description": "Set how long transcripts are kept",
+    "actionKey": "settings.call-intelligence.retention",
+    "phrases": [
+      "keep transcripts for 90 days",
+      "change transcript retention",
+      "delete transcripts after a year"
+    ],
+    "keywords": [
+      "retention",
+      "transcripts",
+      "storage"
+    ]
+  }
+]

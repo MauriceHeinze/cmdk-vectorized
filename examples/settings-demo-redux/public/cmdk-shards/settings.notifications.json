@@ -1,0 +1,42 @@
+[
+  {
+    "id": "settings.notifications",
+    "type": "navigation",
+    "title": "Notification settings",
+    "description": "Tune digests, delivery channels, and quiet hours",
+    "href": "/settings/notifications",
+    "phrases": ["notification settings", "change notifications", "email digests", "quiet hours"],
+    "keywords": ["notifications", "email", "push", "slack", "digest", "quiet hours"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.notifications.channels",
+    "type": "action",
+    "title": "Manage notification channels",
+    "description": "Toggle email, push, and Slack notifications",
+    "actionKey": "settings.notifications.channels",
+    "phrases": ["turn off email notifications", "enable push notifications", "slack notifications"],
+    "keywords": ["notifications", "email", "push", "slack", "channels"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.notifications.digest",
+    "type": "action",
+    "title": "Set email digest",
+    "description": "Turn the daily digest on or off and choose its frequency",
+    "actionKey": "settings.notifications.digest",
+    "phrases": ["daily digest", "weekly digest", "stop the digest"],
+    "keywords": ["digest", "email", "frequency", "daily", "weekly"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.notifications.quiet-hours",
+    "type": "action",
+    "title": "Set quiet hours",
+    "description": "Enable quiet hours and choose the time window",
+    "actionKey": "settings.notifications.quiet-hours",
+    "phrases": ["quiet hours", "do not disturb", "mute notifications at night"],
+    "keywords": ["quiet hours", "mute", "time", "notifications"],
+    "section": "personal"
+  }
+]

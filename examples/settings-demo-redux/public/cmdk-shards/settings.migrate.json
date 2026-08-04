@@ -1,0 +1,42 @@
+[
+  {
+    "id": "settings.migrate",
+    "type": "navigation",
+    "title": "Migrate CRM",
+    "description": "Import contacts, companies, and deals from another CRM",
+    "href": "/settings/migrate-crm",
+    "phrases": ["migrate crm", "import from crm", "crm migration"],
+    "keywords": ["migrate", "crm", "import", "salesforce", "hubspot"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.migrate.source-crm",
+    "type": "action",
+    "title": "Choose source CRM",
+    "description": "Pick which CRM to import from or upload a CSV",
+    "actionKey": "settings.migrate.source-crm",
+    "phrases": ["import from salesforce", "import from hubspot", "upload csv"],
+    "keywords": ["crm", "source", "salesforce", "hubspot", "pipedrive", "csv"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.migrate.test-connection",
+    "type": "action",
+    "title": "Test CRM connection",
+    "description": "Verify the connection to your source CRM",
+    "actionKey": "settings.migrate.test-connection",
+    "phrases": ["test crm connection", "verify connection"],
+    "keywords": ["crm", "connection", "test"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.migrate.start-import",
+    "type": "action",
+    "title": "Start CRM import",
+    "description": "Begin importing your data from the source CRM",
+    "actionKey": "settings.migrate.start-import",
+    "phrases": ["start the import", "begin migration", "import my data"],
+    "keywords": ["import", "migrate", "start"],
+    "section": "workspace"
+  }
+]

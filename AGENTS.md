@@ -71,10 +71,14 @@ Upload requires `WEAVIATE_URL` and `WEAVIATE_API_KEY`.
 pnpm install
 pnpm build
 pnpm test
-pnpm example:redux:dev
+pnpm example:redux:dev   # full cmdk-vectorized demo
+pnpm example:plain:dev   # settings shell without cmdk
 ```
 
-Example app lives in `examples/settings-demo-redux`.
+Examples:
+
+- `examples/settings-demo-redux` — wired command palette + Weaviate search
+- `examples/settings-demo-plain` — baseline app with no cmdk (integrate from scratch)
 
 ## Constraints for consumer apps
 

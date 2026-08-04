@@ -1,0 +1,42 @@
+[
+  {
+    "id": "settings.refer",
+    "type": "navigation",
+    "title": "Refer another team",
+    "description": "Invite other teams and earn workspace credits",
+    "href": "/settings/refer",
+    "phrases": ["refer a team", "invite a team", "referral program", "earn credits"],
+    "keywords": ["refer", "invite", "referral", "credits"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.refer.send-invite",
+    "type": "action",
+    "title": "Send referral invite",
+    "description": "Send an invite to another team and earn credits",
+    "actionKey": "settings.refer.send-invite",
+    "phrases": ["send a referral invite", "invite a team by email", "refer a team"],
+    "keywords": ["refer", "invite", "referral", "email"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.refer.copy-link",
+    "type": "action",
+    "title": "Copy referral link",
+    "description": "Copy your personal referral link to share",
+    "actionKey": "settings.refer.copy-link",
+    "phrases": ["copy referral link", "share referral link"],
+    "keywords": ["referral", "link", "share"],
+    "section": "personal"
+  },
+  {
+    "id": "settings.refer.view-rewards",
+    "type": "action",
+    "title": "View referral rewards",
+    "description": "Check successful referrals and credits earned",
+    "actionKey": "settings.refer.view-rewards",
+    "phrases": ["my referral credits", "how many credits", "referral rewards"],
+    "keywords": ["referral", "credits", "rewards"],
+    "section": "personal"
+  }
+]

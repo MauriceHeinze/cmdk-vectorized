@@ -1,0 +1,52 @@
+[
+  {
+    "id": "settings.records",
+    "type": "navigation",
+    "title": "Records settings",
+    "description": "Configure record visibility, history, and retention rules",
+    "href": "/settings/records",
+    "phrases": ["record settings", "record visibility", "retention rules"],
+    "keywords": ["records", "visibility", "retention", "history"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.records.visibility",
+    "type": "action",
+    "title": "Set default record visibility",
+    "description": "Choose private, workspace, or public as the default for records",
+    "actionKey": "settings.records.visibility",
+    "phrases": ["default record visibility", "who can see records"],
+    "keywords": ["records", "visibility", "private", "public"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.records.history-retention",
+    "type": "action",
+    "title": "Set record history retention",
+    "description": "Choose how long record history is kept",
+    "actionKey": "settings.records.history-retention",
+    "phrases": ["record history retention", "how long to keep record history"],
+    "keywords": ["records", "history", "retention"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.records.audit-log",
+    "type": "action",
+    "title": "Keep audit log for record changes",
+    "description": "Toggle audit logging for record changes",
+    "actionKey": "settings.records.audit-log",
+    "phrases": ["audit record changes", "keep record audit log"],
+    "keywords": ["records", "audit", "changes"],
+    "section": "workspace"
+  },
+  {
+    "id": "settings.records.save",
+    "type": "action",
+    "title": "Save record settings",
+    "description": "Persist record visibility and retention changes",
+    "actionKey": "settings.records.save",
+    "phrases": ["save record settings"],
+    "keywords": ["records", "save"],
+    "section": "workspace"
+  }
+]

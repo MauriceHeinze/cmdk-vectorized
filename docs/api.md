@@ -22,11 +22,13 @@ import {
 import "cmdk-vectorized/styles.css";
 ```
 
-Server code:
+Search handler (use in a host route; this is not a running process):
 
 ```ts
-import { createCommandSearchHandler } from "cmdk-vectorized/server";
+import { createCommandSearchHandler } from "cmdk-vectorized/search-handler";
 ```
+
+`cmdk-vectorized/server` is a compatibility alias for the same helper.
 
 Intent-map CLI and Weaviate upload:
 
@@ -224,7 +226,7 @@ const search = useAICommandSearch({
 Use `createCommandSearchHandler` for standard `Request` -> `Response` handlers.
 
 ```ts
-import { createCommandSearchHandler } from "cmdk-vectorized/server";
+import { createCommandSearchHandler } from "cmdk-vectorized/search-handler";
 
 export const GET = createCommandSearchHandler({
   defaultLimit: 20,

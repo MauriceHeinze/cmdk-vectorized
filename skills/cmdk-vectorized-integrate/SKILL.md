@@ -15,7 +15,7 @@ Wire vector search into a React command palette. Ranking comes from a search end
 ## Integration
 
 1. Install cmdk-vectorized, cmdk, react, and react-dom.
-2. Point endpoint at SupaSearch with a publishable Bearer key, or implement GET /api/command-search with createCommandSearchHandler from cmdk-vectorized/server.
+2. Point endpoint at SupaSearch with a publishable Bearer key, or implement GET /api/command-search with createCommandSearchHandler from cmdk-vectorized/search-handler.
 3. Pass app-owned navigate and actions handlers.
 4. Set shouldFilter={false} on custom Command components so cmdk preserves vector ranking.
 5. Add useCommandVoice only when browser speech input is wanted.

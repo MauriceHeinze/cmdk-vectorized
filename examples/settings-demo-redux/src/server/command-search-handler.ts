@@ -1,4 +1,4 @@
-import { createCommandSearchHandler } from 'cmdk-vectorized/server'
+import { createCommandSearchHandler } from 'cmdk-vectorized/search-handler'
 import { searchWeaviateRoutes } from './weaviate-search'
 
 export const GET = createCommandSearchHandler({

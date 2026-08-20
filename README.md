@@ -85,7 +85,7 @@ Use `useAICommandSearch` for search state only, `useCommandVoice` for speech, or
 ## Search endpoint
 
 ```ts
-import { createCommandSearchHandler } from "cmdk-vectorized/server";
+import { createCommandSearchHandler } from "cmdk-vectorized/search-handler";
 
 export const GET = createCommandSearchHandler({
   search: ({ query, limit }) => searchVectorDatabase(query, limit),
@@ -115,11 +115,11 @@ WEAVIATE_URL="..." WEAVIATE_API_KEY="..." npx cmdk-vectorized-cli upload
 ```txt
 src/client   React hooks, palette, speech adapter, voice decisions
 src/core     Result contracts, validation, command execution
-src/server   Framework-neutral Request -> Response helper
+src/search-handler   Framework-neutral Request -> Response helper
 examples/settings-demo-redux   deployed end-to-end demo
 ```
 
-The root and `/server` entry points keep browser and server code separate.
+The root and `/search-handler` entry points keep browser code separate from the HTTP helper. `cmdk-vectorized/server` is a compatibility alias for the same helper.
 
 ## Design decisions
 

@@ -2,13 +2,13 @@
 
 > Vector-database search for cmdk command palettes, with optional browser speech-to-text voice input.
 
-cmdk-vectorized adds React hooks and server helpers that query a vector database (Weaviate) for ranked command palette results. Keep your existing cmdk or shadcn/ui command menu UI. Optional CommandVoice transcribes spoken queries via the Web Speech API and runs them through the same search endpoint.
+cmdk-vectorized adds React hooks and a search-handler helper that query a vector database (Weaviate) for ranked command palette results. Keep your existing cmdk or shadcn/ui command menu UI. Optional CommandVoice transcribes spoken queries via the Web Speech API and runs them through the same search endpoint.
 
 ## Docs
 
 - [README](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/README.md): install, quick start
 - [LLM guide](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/docs/llm-guide.md): dense reference for agents
-- [API docs](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/docs/api.md): hooks, result contract, server handler
+- [API docs](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/docs/api.md): hooks, result contract, search handler
 - [Local Weaviate playbook](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/docs/local-weaviate.md): copy-paste local dev setup
 - [AGENTS.md](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/AGENTS.md): integration checklist for coding agents
 - [Integration skill](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/skills/cmdk-vectorized-integrate/SKILL.md): install with `npx cmdk-vectorized-cli integrate`

@@ -1,4 +1,4 @@
-export { createCommandSearchHandler } from "./server/create-command-search-handler";
+export { createCommandSearchHandler } from "./search-handler/create-command-search-handler";
 
 export type {
   ActionCommandResult,

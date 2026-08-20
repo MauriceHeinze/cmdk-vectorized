@@ -7,7 +7,7 @@ Dense reference for coding agents integrating vector-database search into `cmdk`
 - **Vector-database search** for `cmdk` command palettes (Weaviate recommended)
 - **React hooks** that fetch ranked results from your backend search endpoint
 - **Optional styled drop-in** (`AICommandPalette` + scoped `styles.css`)
-- **Server helper** (`createCommandSearchHandler`) for standard HTTP handlers
+- **Search-handler helper** (`createCommandSearchHandler`) for standard HTTP handlers
 - **Optional speech-to-text** via `CommandVoice` / `useCommandVoice` (browser Web Speech API)
 - Use **cmdk-vectorized-cli** for agent-generated intent maps and Weaviate upload
 
@@ -70,7 +70,7 @@ user query (typed or transcribed)
 
 Optional default look for `AICommandPalette`. All rules under `.cmdk-ai`.
 
-### `cmdk-vectorized/server`
+### `cmdk-vectorized/search-handler`
 
 | Export | Use when |
 |--------|----------|
@@ -143,10 +143,10 @@ export function CommandMenu() {
 }
 ```
 
-## Minimal server handler
+## Minimal search handler
 
 ```ts
-import { createCommandSearchHandler } from "cmdk-vectorized/server";
+import { createCommandSearchHandler } from "cmdk-vectorized/search-handler";
 
 export const GET = createCommandSearchHandler({
   search: async ({ query, limit }) => {

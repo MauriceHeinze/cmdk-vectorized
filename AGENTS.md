@@ -38,7 +38,7 @@ typed query or speech-to-text transcript
 ## Integration checklist
 
 1. `npm install cmdk-vectorized cmdk react react-dom`
-2. Create a search endpoint (use `createCommandSearchHandler` from `cmdk-vectorized/server`) **or** point at SupaSearch with a publishable key in `headers`
+2. Create a search endpoint (use `createCommandSearchHandler` from `cmdk-vectorized/search-handler`) **or** point at SupaSearch with a publishable key in `headers`
 3. **Either** mount `<AICommandPalette endpoint navigate … />` **or** wire `useAICommand` + `<Command shouldFilter={false}>`
 4. Optional voice: drop-in includes ⌘M; headless uses `useCommandVoice` / `useAICommandPalette`
 5. Optional: `npx cmdk-vectorized-cli init` → `public/intent-map.json`, then `npx cmdk-vectorized-cli upload` to seed Weaviate
@@ -62,8 +62,8 @@ import {
   useCommandVoice,
 } from "cmdk-vectorized";
 
-// Server
-import { createCommandSearchHandler } from "cmdk-vectorized/server";
+// Host route helper (not a running process)
+import { createCommandSearchHandler } from "cmdk-vectorized/search-handler";
 ```
 
 Do not import from `dist/*` or `src/*` (except documented CSS: `cmdk-vectorized/styles.css`).

@@ -11,7 +11,7 @@ cmdk-vectorized adds React hooks and a search-handler helper that query a vector
 - [API docs](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/docs/api.md): hooks, result contract, search handler
 - [Local Weaviate playbook](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/docs/local-weaviate.md): copy-paste local dev setup
 - [AGENTS.md](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/AGENTS.md): integration checklist for coding agents
-- [Integration skill](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/skills/cmdk-vectorized-integrate/SKILL.md): install with `npx cmdk-vectorized-cli integrate`
+- [Integration skill](https://github.com/MauriceHeinze/cmdk-vectorized-cli/blob/main/skills/cmdk-vectorized-integrate/SKILL.md): install with `npx cmdk-vectorized-cli integrate`
 
 ## Live demo
 

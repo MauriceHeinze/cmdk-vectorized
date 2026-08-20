@@ -54,8 +54,7 @@
     "llms.txt",
     "docs/api.md",
     "docs/llm-guide.md",
-    "docs/local-weaviate.md",
-    "skills"
+    "docs/local-weaviate.md"
   ],
   "scripts": {
     "build": "tsup && tsc --emitDeclarationOnly --outDir dist && cp src/client/styles/palette.css dist/styles.css",

@@ -8,7 +8,9 @@ import type {
   CommandVoiceStatus,
   UseCommandVoiceOptions,
   UseCommandVoiceResult,
+  VoiceDecision,
 } from "./types";
+import { resolveVoiceDecision } from "./voice-decision";
 
 type SpeechRecognitionAlternativeLike = {
   transcript: string;
@@ -54,8 +56,14 @@ type WindowWithSpeechRecognition = Window &
   };
 
 const DEFAULT_LANGUAGE = "en-US";
-const DEFAULT_MAX_RESULTS = 1;
-const DEFAULT_MIN_CONFIDENCE = 0.7;
+const DEFAULT_MAX_RESULTS = 5;
+const DEFAULT_MIN_CONFIDENCE = 0.6;
+const DEFAULT_VOICE_LIST_LIMIT = 3;
+const DEFAULT_AUTO_EXECUTE = "single" as const;
+/** Max score distance below top to stay in peer band. */
+const DEFAULT_PEER_GAP = 0.15;
+/** Stop peer band at first neighbor cliff (billing: 0.03 keep, 0.058 drop plans). */
+const DEFAULT_STEP_GAP = 0.05;
 
 function createUnsupportedError() {
   return new Error("Speech recognition is not available in this browser.");
@@ -136,15 +144,6 @@ function buildSearchUrl(endpoint: string, query: string, maxResults: number) {
     : `${url.pathname}${url.search}`;
 }
 
-function getTopResult(
-  results: CommandSearchResult[],
-  minConfidence: number,
-): CommandSearchResult | null {
-  return (
-    results.find((result) => result.score === undefined || result.score >= minConfidence) ?? null
-  );
-}
-
 function isDefaultVoiceShortcut(event: KeyboardEvent) {
   return (
     !event.defaultPrevented &&
@@ -164,7 +163,11 @@ export function useCommandVoice(options: UseCommandVoiceOptions): UseCommandVoic
     minConfidence = DEFAULT_MIN_CONFIDENCE,
     lang = DEFAULT_LANGUAGE,
     maxResults = DEFAULT_MAX_RESULTS,
-    autoExecute = true,
+    autoExecute = DEFAULT_AUTO_EXECUTE,
+    ambiguityGap,
+    peerGap = DEFAULT_PEER_GAP,
+    stepGap = DEFAULT_STEP_GAP,
+    voiceListLimit = DEFAULT_VOICE_LIST_LIMIT,
     shortcut = "mod+m",
     onShortcut,
   } = options;
@@ -175,6 +178,8 @@ export function useCommandVoice(options: UseCommandVoiceOptions): UseCommandVoic
   const [transcript, setTranscript] = useState("");
   const [error, setError] = useState<Error | null>(null);
   const [result, setResult] = useState<CommandSearchResult | null>(null);
+  const [results, setResults] = useState<CommandSearchResult[]>([]);
+  const [decision, setDecision] = useState<VoiceDecision>("pending");
 
   const recognitionRef = useRef<SpeechRecognitionInstanceLike | null>(null);
   const transcriptRef = useRef("");
@@ -198,7 +203,32 @@ export function useCommandVoice(options: UseCommandVoiceOptions): UseCommandVoic
     setTranscript("");
     setError(null);
     setResult(null);
+    setResults([]);
+    setDecision("pending");
   }, []);
+
+  const executeResult = useCallback(async (target?: CommandSearchResult) => {
+    const next = target ?? result;
+    if (!next) {
+      return;
+    }
+
+    setStatus("executing");
+    setError(null);
+    setResult(next);
+
+    try {
+      await executeAICommand(next, optionsRef.current);
+      setDecision("executed");
+      setOpen(false);
+      setStatus("idle");
+      setResults([]);
+    } catch (caughtError) {
+      setStatus("error");
+      setDecision("error");
+      setError(toError(caughtError));
+    }
+  }, [result]);
 
   const runSearch = useCallback(
     async (query: string) => {
@@ -210,11 +240,14 @@ export function useCommandVoice(options: UseCommandVoiceOptions): UseCommandVoic
       hasSubmittedRef.current = true;
       setStatus("searching");
       setError(null);
+      setDecision("pending");
+      setResults([]);
 
       const activeFetcher = fetcher ?? globalThis.fetch;
 
       if (!activeFetcher) {
         setStatus("error");
+        setDecision("error");
         setError(createMissingFetcherError());
         return;
       }
@@ -230,32 +263,57 @@ export function useCommandVoice(options: UseCommandVoiceOptions): UseCommandVoic
         }
 
         const data = await response.json();
-        const nextResult = getTopResult(
-          normalizeCommandSearchResponse(data, transformResponse),
+        const allResults = normalizeCommandSearchResponse(data, transformResponse);
+        const resolved = resolveVoiceDecision({
+          results: allResults,
           minConfidence,
-        );
+          autoExecute,
+          ambiguityGap,
+          peerGap,
+          stepGap,
+          voiceListLimit,
+        });
 
-        if (!nextResult) {
+        setResults(resolved.results);
+        setResult(resolved.top);
+        setDecision(resolved.decision);
+
+        if (resolved.decision === "empty") {
           throw new Error(`No command match found for "${trimmed}".`);
         }
 
-        setResult(nextResult);
-
-        if (!autoExecute) {
+        if (resolved.shouldExecute && resolved.top) {
+          setStatus("executing");
+          // Navigation-first: top is already a navigation command for the page href.
+          await executeAICommand(resolved.top, optionsRef.current);
+          setDecision("executed");
+          setOpen(false);
           setStatus("idle");
+          setResults([]);
           return;
         }
 
-        setStatus("executing");
-        await executeAICommand(nextResult, optionsRef.current);
-        setOpen(false);
-        setStatus("idle");
+        // Ambiguous (or never-auto): keep open for user selection.
+        setStatus("results");
       } catch (caughtError) {
         setStatus("error");
+        setDecision("error");
         setError(toError(caughtError));
       }
     },
-    [autoExecute, endpoint, fetcher, headers, maxResults, minConfidence, transformResponse],
+    [
+      ambiguityGap,
+      autoExecute,
+      endpoint,
+      fetcher,
+      headers,
+      maxResults,
+      minConfidence,
+      peerGap,
+      stepGap,
+      transformResponse,
+      voiceListLimit,
+    ],
   );
 
   const start = useCallback(() => {
@@ -265,6 +323,7 @@ export function useCommandVoice(options: UseCommandVoiceOptions): UseCommandVoic
     if (!Recognition) {
       setOpen(true);
       setStatus("error");
+      setDecision("error");
       setError(createUnsupportedError());
       return;
     }
@@ -288,6 +347,8 @@ export function useCommandVoice(options: UseCommandVoiceOptions): UseCommandVoic
     setTranscript("");
     setError(null);
     setResult(null);
+    setResults([]);
+    setDecision("pending");
 
     recognition.onresult = (event) => {
       const { finalTranscript, visibleTranscript } = getTranscriptFromEvent(event);
@@ -305,6 +366,7 @@ export function useCommandVoice(options: UseCommandVoiceOptions): UseCommandVoic
     recognition.onerror = (event) => {
       hasRecognitionErrorRef.current = true;
       setStatus("error");
+      setDecision("error");
       setError(new Error(getSpeechErrorMessage(event)));
     };
 
@@ -321,6 +383,7 @@ export function useCommandVoice(options: UseCommandVoiceOptions): UseCommandVoic
         if (!hasSubmittedRef.current) {
           setOpen(false);
           setStatus("idle");
+          setDecision("pending");
         }
         return;
       }
@@ -333,6 +396,7 @@ export function useCommandVoice(options: UseCommandVoiceOptions): UseCommandVoic
     } catch {
       recognitionRef.current = null;
       setStatus("error");
+      setDecision("error");
       setError(new Error("Voice command could not start."));
     }
   }, [lang, runSearch]);
@@ -344,7 +408,12 @@ export function useCommandVoice(options: UseCommandVoiceOptions): UseCommandVoic
       // The browser may already have stopped recognition.
     }
     recognitionRef.current = null;
-    setStatus((current) => (current === "listening" ? "idle" : current));
+    setStatus((current) => {
+      if (current === "listening") {
+        return "idle";
+      }
+      return current;
+    });
   }, []);
 
   useEffect(() => {
@@ -387,9 +456,12 @@ export function useCommandVoice(options: UseCommandVoiceOptions): UseCommandVoic
     transcript,
     error,
     result,
+    results,
+    decision,
     start,
     stop,
     reset,
+    execute: executeResult,
   };
 }
 
@@ -412,11 +484,13 @@ export function CommandVoice({
       ? labels?.listening ?? "Listening"
       : voice.status === "searching"
         ? labels?.searching ?? "Searching"
-        : voice.status === "executing"
-          ? labels?.executing ?? "Executing"
-          : voice.status === "error" && voice.error
-            ? labels?.error?.(voice.error) ?? voice.error.message
-            : null;
+        : voice.status === "results"
+          ? labels?.results ?? "Choose a result"
+          : voice.status === "executing"
+            ? labels?.executing ?? "Executing"
+            : voice.status === "error" && voice.error
+              ? labels?.error?.(voice.error) ?? voice.error.message
+              : null;
 
   return (
     <div data-cmdk-voice="" data-cmdk-voice-open={voice.open ? "" : undefined}>
@@ -441,6 +515,18 @@ export function CommandVoice({
 
       {voice.transcript ? (
         <div data-cmdk-voice-transcript="">{voice.transcript}</div>
+      ) : null}
+
+      {voice.status === "results" && voice.results.length > 0 ? (
+        <ul data-cmdk-voice-results="">
+          {voice.results.map((item) => (
+            <li key={item.id}>
+              <button type="button" onClick={() => void voice.execute(item)}>
+                {item.title}
+              </button>
+            </li>
+          ))}
+        </ul>
       ) : null}
     </div>
   );

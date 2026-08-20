@@ -135,6 +135,90 @@
   color: #cbd5e1;
 }
 
+.siri-voice-panel--results {
+  width: min(420px, calc(100vw - 48px));
+  align-items: stretch;
+}
+
+.siri-voice-results {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.siri-voice-results-heading {
+  padding: 0 4px 8px;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.theme-dark .siri-voice-results-heading {
+  color: #94a3b8;
+}
+
+.siri-voice-result {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.siri-voice-result:hover,
+.siri-voice-result:focus-visible {
+  background: #f1f5f9;
+  outline: none;
+}
+
+.theme-dark .siri-voice-result:hover,
+.theme-dark .siri-voice-result:focus-visible {
+  background: #1e293b;
+}
+
+.siri-voice-result-arrow {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.siri-voice-result-title {
+  font-size: 0.92rem;
+  font-weight: 550;
+}
+
+.siri-voice-stop {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: #fecaca;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  align-self: center;
+}
+
+.siri-voice-stop:hover {
+  filter: brightness(0.97);
+}
+
+.siri-voice-stop-icon {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: #ef4444;
+}
+
 @keyframes siri-voice-spin {
   to {
     transform: rotate(360deg);

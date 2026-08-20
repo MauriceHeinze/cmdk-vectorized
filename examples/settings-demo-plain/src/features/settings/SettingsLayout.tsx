@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
-import { NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { NavLink, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { iconMap, SearchIcon, ChevronDownIcon } from '../../shared/ui/Icons.tsx'
-import { OPEN_PALETTE_EVENT } from '../../shared/ui/CmdkSaasPalette.tsx'
 import CallRecorderPage from './CallRecorderPage.tsx'
 import SettingsPage from './SettingsPage.tsx'
 import { routes, sectionLabels, type RouteSection } from './settings-routes.ts'
@@ -74,7 +73,9 @@ function SidebarNav({ filter }: { filter: string }) {
 
 function Shell() {
   const location = useLocation()
+  const navigate = useNavigate()
   const [search, setSearch] = useState('')
+  const [paletteOpen, setPaletteOpen] = useState(false)
 
   const currentRoute = useMemo(
     () => routes.find((route) => route.path === location.pathname) ?? routes[0],
@@ -116,8 +117,8 @@ function Shell() {
           <button
             type="button"
             className="topbar-help"
-            onClick={() => window.dispatchEvent(new Event(OPEN_PALETTE_EVENT))}
-            title="Open command palette (⌘K)"
+            title="Search settings (⌘K)"
+            onClick={() => setPaletteOpen(true)}
           >
             <SearchIcon className="topbar-help-icon" />
             <span>Search</span>
@@ -142,6 +143,12 @@ function Shell() {
           </Routes>
         </main>
       </div>
+
+      <CmdkSaasPalette
+        open={paletteOpen}
+        onOpenChange={setPaletteOpen}
+        navigate={(href) => navigate(href)}
+      />
     </div>
   )
 }

@@ -35,7 +35,8 @@
       "save",
       "update"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/profile"
   },
   {
     "id": "settings.profile.toggle-public",
@@ -53,7 +54,8 @@
       "visibility",
       "public"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/profile"
   },
   {
     "id": "settings.profile.change-avatar",
@@ -71,7 +73,8 @@
       "photo",
       "profile picture"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/profile"
   },
   {
     "id": "settings.appearance",
@@ -110,7 +113,8 @@
       "light mode",
       "system"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/appearance"
   },
   {
     "id": "settings.appearance.density",
@@ -128,7 +132,8 @@
       "compact",
       "spacing"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/appearance"
   },
   {
     "id": "settings.appearance.accent",
@@ -146,7 +151,8 @@
       "color",
       "highlight"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/appearance"
   },
   {
     "id": "settings.email-calendar",
@@ -188,7 +194,8 @@
       "connect",
       "add"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/email-calendar"
   },
   {
     "id": "settings.email-calendar.remove-account",
@@ -207,7 +214,8 @@
       "remove",
       "disconnect"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/email-calendar"
   },
   {
     "id": "settings.email-calendar.toggle-sync",
@@ -225,7 +233,8 @@
       "email",
       "calendar"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/email-calendar"
   },
   {
     "id": "settings.call-intelligence",
@@ -264,7 +273,8 @@
       "calls",
       "language"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/call-intelligence"
   },
   {
     "id": "settings.call-intelligence.summary-length",
@@ -283,7 +293,8 @@
       "bullets",
       "length"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/call-intelligence"
   },
   {
     "id": "settings.call-intelligence.coaching",
@@ -301,7 +312,8 @@
       "insights",
       "calls"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/call-intelligence"
   },
   {
     "id": "settings.call-intelligence.retention",
@@ -320,7 +332,8 @@
       "data",
       "privacy"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/call-intelligence"
   },
   {
     "id": "settings.storage",
@@ -360,7 +373,8 @@
       "add",
       "provider"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/storage"
   },
   {
     "id": "settings.storage.configure-storage",
@@ -377,7 +391,8 @@
       "configure",
       "provider"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/storage"
   },
   {
     "id": "settings.storage.toggle-storage",
@@ -395,7 +410,8 @@
       "sync",
       "toggle"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/storage"
   },
   {
     "id": "settings.storage.view-usage",
@@ -413,7 +429,8 @@
       "usage",
       "quota"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/storage"
   },
   {
     "id": "settings.refer",
@@ -452,7 +469,8 @@
       "referral",
       "email"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/refer"
   },
   {
     "id": "settings.refer.copy-link",
@@ -469,7 +487,8 @@
       "link",
       "share"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/refer"
   },
   {
     "id": "settings.refer.view-rewards",
@@ -487,7 +506,8 @@
       "credits",
       "rewards"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/refer"
   },
   {
     "id": "settings.notifications",
@@ -529,7 +549,8 @@
       "slack",
       "channels"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/notifications"
   },
   {
     "id": "settings.notifications.digest",
@@ -549,7 +570,8 @@
       "daily",
       "weekly"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/notifications"
   },
   {
     "id": "settings.notifications.quiet-hours",
@@ -568,7 +590,8 @@
       "time",
       "notifications"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/notifications"
   },
   {
     "id": "settings.sessions",
@@ -605,7 +628,8 @@
       "device",
       "sign out"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/sessions"
   },
   {
     "id": "settings.sessions.logout-all",
@@ -624,7 +648,8 @@
       "all devices",
       "security"
     ],
-    "section": "personal"
+    "section": "personal",
+    "href": "/settings/sessions"
   },
   {
     "id": "settings.general",
@@ -664,7 +689,8 @@
       "timezone",
       "language"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/general"
   },
   {
     "id": "settings.call-recorder",
@@ -700,7 +726,8 @@
       "name",
       "rename"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/call-recorder"
   },
   {
     "id": "settings.call-recorder.style",
@@ -719,7 +746,8 @@
       "branding",
       "logo"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/call-recorder"
   },
   {
     "id": "settings.members",
@@ -757,7 +785,8 @@
       "teammate",
       "team"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/members"
   },
   {
     "id": "settings.members.change-role",
@@ -776,7 +805,8 @@
       "member",
       "permissions"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/members"
   },
   {
     "id": "settings.members.remove",
@@ -794,7 +824,8 @@
       "member",
       "team"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/members"
   },
   {
     "id": "settings.plans",
@@ -832,7 +863,8 @@
       "plan",
       "starter"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/plans"
   },
   {
     "id": "settings.plans.contact-sales",
@@ -850,7 +882,8 @@
       "enterprise",
       "contact"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/plans"
   },
   {
     "id": "settings.billing",
@@ -889,7 +922,8 @@
       "payment method",
       "update"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/billing"
   },
   {
     "id": "settings.billing.update-details",
@@ -906,7 +940,8 @@
       "email",
       "address"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/billing"
   },
   {
     "id": "settings.billing.download-invoice",
@@ -924,7 +959,8 @@
       "download",
       "receipt"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/billing"
   },
   {
     "id": "settings.billing.cancel-subscription",
@@ -942,7 +978,8 @@
       "subscription",
       "billing"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/billing"
   },
   {
     "id": "settings.developers",
@@ -980,7 +1017,8 @@
       "key",
       "create"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/developers"
   },
   {
     "id": "settings.developers.copy-key",
@@ -997,7 +1035,8 @@
       "key",
       "copy"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/developers"
   },
   {
     "id": "settings.developers.rotate-key",
@@ -1014,7 +1053,8 @@
       "key",
       "rotate"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/developers"
   },
   {
     "id": "settings.developers.revoke-key",
@@ -1033,7 +1073,8 @@
       "revoke",
       "delete"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/developers"
   },
   {
     "id": "settings.developers.configure-webhooks",
@@ -1051,7 +1092,8 @@
       "url",
       "events"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/developers"
   },
   {
     "id": "settings.security",
@@ -1089,7 +1131,8 @@
       "sso",
       "single sign-on"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/security"
   },
   {
     "id": "settings.security.mfa",
@@ -1107,7 +1150,8 @@
       "2fa",
       "authentication"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/security"
   },
   {
     "id": "settings.security.password-policy",
@@ -1124,7 +1168,8 @@
       "policy",
       "strength"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/security"
   },
   {
     "id": "settings.security.audit-log",
@@ -1142,7 +1187,8 @@
       "log",
       "security events"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/security"
   },
   {
     "id": "settings.records",
@@ -1179,7 +1225,8 @@
       "private",
       "public"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/records"
   },
   {
     "id": "settings.records.history-retention",
@@ -1196,7 +1243,8 @@
       "history",
       "retention"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/records"
   },
   {
     "id": "settings.records.audit-log",
@@ -1213,7 +1261,8 @@
       "audit",
       "changes"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/records"
   },
   {
     "id": "settings.records.save",
@@ -1228,7 +1277,8 @@
       "records",
       "save"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/records"
   },
   {
     "id": "settings.support",
@@ -1264,7 +1314,8 @@
       "ticket",
       "submit"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/support"
   },
   {
     "id": "settings.support.view-ticket",
@@ -1281,7 +1332,8 @@
       "ticket",
       "view"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/support"
   },
   {
     "id": "settings.migrate",
@@ -1322,7 +1374,8 @@
       "pipedrive",
       "csv"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/migrate"
   },
   {
     "id": "settings.migrate.test-connection",
@@ -1339,7 +1392,8 @@
       "connection",
       "test"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/migrate"
   },
   {
     "id": "settings.migrate.start-import",
@@ -1357,7 +1411,8 @@
       "migrate",
       "start"
     ],
-    "section": "workspace"
+    "section": "workspace",
+    "href": "/settings/migrate"
   },
   {
     "id": "settings.objects",
@@ -1392,7 +1447,8 @@
       "add",
       "create"
     ],
-    "section": "data"
+    "section": "data",
+    "href": "/settings/objects"
   },
   {
     "id": "settings.objects.configure-object",
@@ -1409,7 +1465,8 @@
       "configure",
       "attributes"
     ],
-    "section": "data"
+    "section": "data",
+    "href": "/settings/objects"
   },
   {
     "id": "app.command-palette.open",

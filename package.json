@@ -1,7 +1,7 @@
 {
   "name": "cmdk-vectorized",
-  "version": "0.1.1",
-  "description": "Vector-database search hooks and speech-to-text voice input for cmdk command palettes. Weaviate tooling and agentic intent-map CLI.",
+  "version": "0.2.0",
+  "description": "Vector-database search hooks, optional styled command palette, and speech-to-text voice input for cmdk. Weaviate tooling and agentic intent-map CLI.",
   "type": "module",
   "bin": {
     "cmdk-vectorized": "dist/cli.js",
@@ -39,6 +39,7 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./styles.css": "./dist/styles.css",
     "./tooling": {
       "types": "./dist/tooling.d.ts",
       "import": "./dist/tooling.js",
@@ -61,7 +62,7 @@
     "skills"
   ],
   "scripts": {
-    "build": "tsup && tsc --emitDeclarationOnly --outDir dist",
+    "build": "tsup && tsc --emitDeclarationOnly --outDir dist && cp src/styles/palette.css dist/styles.css",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --environment jsdom",
     "lint": "tsc --noEmit",
@@ -70,7 +71,9 @@
     "example:redux:build": "pnpm --dir examples/settings-demo-redux build",
     "example:plain:dev": "pnpm --dir examples/settings-demo-plain dev",
     "example:plain:typecheck": "pnpm --dir examples/settings-demo-plain typecheck",
-    "example:plain:build": "pnpm --dir examples/settings-demo-plain build"
+    "example:plain:build": "pnpm --dir examples/settings-demo-plain build",
+    "example:plain:fresh": "node scripts/provide-clean-settings-demo.mjs",
+    "example:plain:fresh:dev": "node scripts/provide-clean-settings-demo.mjs --dev"
   },
   "peerDependencies": {
     "react": "^19.0.0",

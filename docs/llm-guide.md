@@ -6,6 +6,7 @@ Dense reference for coding agents integrating vector-database search into `cmdk`
 
 - **Vector-database search** for `cmdk` command palettes (Weaviate recommended)
 - **React hooks** that fetch ranked results from your backend search endpoint
+- **Optional styled drop-in** (`AICommandPalette` + scoped `styles.css`)
 - **Server helper** (`createCommandSearchHandler`) for standard HTTP handlers
 - **Optional speech-to-text** via `CommandVoice` / `useCommandVoice` (browser Web Speech API)
 - **CLI** for agent-generated intent maps and Weaviate upload
@@ -15,8 +16,14 @@ Dense reference for coding agents integrating vector-database search into `cmdk`
 - Not a generic "remote AI search" or LLM chat layer
 - Not a routing library — `href` resolution and `actionKey` handlers are app-owned
 - Not a replacement for `cmdk` — it extends `cmdk` with backend-ranked results
+- Not a global stylesheet — drop-in CSS is scoped to `.cmdk-ai` only
 
 ## FAQ
+
+### Drop-in or headless?
+
+- **Drop-in:** greenfield → `AICommandPalette` + optional `import "cmdk-vectorized/styles.css"`
+- **Headless:** existing `cmdk` UI → `useAICommand` / `useCommandVoice` / `useAICommandPalette`
 
 ### How is this different from plain cmdk filtering?
 
@@ -24,21 +31,22 @@ Plain `cmdk` filters a static item list client-side. `cmdk-vectorized` disables 
 
 ### Where does voice fit?
 
-`CommandVoice` uses the browser Web Speech API to transcribe speech into a search query, then calls the same `/api/command-search` endpoint. No separate voice AI — just speech-to-text → vector search.
+Browser Web Speech API → same search endpoint. Default `autoExecute: "single"` routes when one intent is clear; shows a short list only when multiple results are plausible.
 
 ### Do I need Weaviate?
 
-Recommended for semantic/vector retrieval, not required. Your `search` function in `createCommandSearchHandler` can query any backend.
+Recommended for semantic/vector retrieval, not required. Your `search` function in `createCommandSearchHandler` can query any backend. SupaSearch works via `endpoint` + Bearer publishable key.
 
 ## Architecture
 
 ```txt
 user query (typed or transcribed)
   -> useAICommandSearch / useAICommand / useCommandVoice
+     (or AICommandPalette / useAICommandPalette)
   -> GET /api/command-search?q=...&limit=...
   -> vector database query (Weaviate)
   -> { results: CommandSearchResult[] }
-  -> <Command shouldFilter={false}>
+  -> <Command shouldFilter={false}> or smart voice route/list
   -> executeAICommand -> navigate(href) or actions[actionKey]()
 ```
 
@@ -48,12 +56,19 @@ user query (typed or transcribed)
 
 | Export | Use when |
 |--------|----------|
+| `AICommandPalette` | Styled drop-in palette (text + voice modes) |
+| `useAICommandPalette` | Headless open/mode/shortcut controller |
 | `Command` | Re-export of `cmdk` Command component |
 | `useAICommand` | Search + execute (navigate/actions) in one hook |
 | `useAICommandSearch` | Search state only; you handle execution |
 | `executeAICommand` | Imperative execution of a result |
-| `CommandVoice` | Voice UI component with speech-to-text |
-| `useCommandVoice` | Voice hook (STT → search → execute) |
+| `CommandVoice` | Light voice UI / render-prop wrapper |
+| `useCommandVoice` | Voice hook (STT → search → smart execute/list) |
+| `VoiceWaveform` | Presentational bars for custom voice UIs |
+
+### `cmdk-vectorized/styles.css`
+
+Optional default look for `AICommandPalette`. All rules under `.cmdk-ai`.
 
 ### `cmdk-vectorized/server`
 

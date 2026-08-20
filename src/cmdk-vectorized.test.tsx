@@ -1,11 +1,13 @@
 import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import { useCommandVoice } from "./command-voice";
 import { createCommandSearchHandler } from "./create-command-search-handler";
 import { executeAICommand } from "./execute-ai-command";
 import { useAICommand } from "./use-ai-command";
 import { useAICommandSearch } from "./use-ai-command-search";
 import type { CommandSearchResult } from "./types";
+import { resolveVoiceDecision } from "./voice-decision";
 
 function createFetchResponse(results: CommandSearchResult[]) {
   return {
@@ -873,5 +875,385 @@ describe("createCommandSearchHandler", () => {
     const response = await handler(new Request("https://example.com/api/command-search?q=settings"));
 
     await expect(response.json()).resolves.toEqual({ results });
+  });
+});
+
+describe("resolveVoiceDecision", () => {
+  const defaults = {
+    minConfidence: 0.6,
+    autoExecute: "single" as const,
+    peerGap: 0.15,
+    stepGap: 0.05,
+    voiceListLimit: 3,
+  };
+
+  const home = {
+    id: "nav.home",
+    type: "navigation" as const,
+    title: "Home",
+    href: "/home",
+    score: 0.95,
+  };
+  const docs = {
+    id: "nav.docs",
+    type: "navigation" as const,
+    title: "Docs",
+    href: "/docs",
+    score: 0.9,
+  };
+  const components = {
+    id: "nav.components",
+    type: "navigation" as const,
+    title: "Components",
+    href: "/components",
+    score: 0.88,
+  };
+
+  it("routes straight for a single confident hit (single mode)", () => {
+    const resolved = resolveVoiceDecision({
+      ...defaults,
+      results: [home],
+    });
+
+    expect(resolved.shouldExecute).toBe(true);
+    expect(resolved.decision).toBe("executed");
+    expect(resolved.destinationHref).toBe("/home");
+    expect(resolved.top).toEqual(home);
+  });
+
+  it("shows a list when peer-band destinations disagree", () => {
+    // Scores within stepGap of neighbors and peerGap of top → full band, 3 pages
+    const resolved = resolveVoiceDecision({
+      ...defaults,
+      stepGap: 0.05,
+      peerGap: 0.15,
+      results: [
+        { ...home, score: 0.92 },
+        { ...docs, score: 0.9 },
+        { ...components, score: 0.88 },
+      ],
+    });
+
+    expect(resolved.shouldExecute).toBe(false);
+    expect(resolved.decision).toBe("ambiguous");
+    expect(resolved.results.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it("auto-routes multi-hit when ambiguityGap is clear", () => {
+    const resolved = resolveVoiceDecision({
+      ...defaults,
+      results: [
+        { ...home, score: 0.95 },
+        { ...docs, score: 0.7 },
+      ],
+      ambiguityGap: 0.12,
+    });
+
+    expect(resolved.shouldExecute).toBe(true);
+    expect(resolved.decision).toBe("executed");
+    expect(resolved.destinationHref).toBe("/home");
+  });
+
+  it("caps displayed results with voiceListLimit", () => {
+    const resolved = resolveVoiceDecision({
+      ...defaults,
+      results: [
+        { ...home, score: 0.95 },
+        { ...docs, score: 0.94 },
+        { ...components, score: 0.93 },
+        { ...home, id: "nav.extra", href: "/extra", score: 0.92 },
+      ],
+      autoExecute: "never",
+      voiceListLimit: 2,
+      stepGap: 0.05,
+    });
+
+    expect(resolved.results).toHaveLength(2);
+    expect(resolved.shouldExecute).toBe(false);
+  });
+
+  it("treats true as always and false as never", () => {
+    expect(
+      resolveVoiceDecision({
+        ...defaults,
+        results: [home, docs],
+        autoExecute: true,
+      }).shouldExecute,
+    ).toBe(true);
+
+    expect(
+      resolveVoiceDecision({
+        ...defaults,
+        results: [home],
+        autoExecute: false,
+      }).shouldExecute,
+    ).toBe(false);
+  });
+
+  it("returns empty when nothing passes confidence", () => {
+    const resolved = resolveVoiceDecision({
+      ...defaults,
+      results: [{ ...home, score: 0.1 }],
+      minConfidence: 0.7,
+    });
+
+    expect(resolved.decision).toBe("empty");
+    expect(resolved.shouldExecute).toBe(false);
+  });
+
+  it("billing fixture: same-page action+nav → navigate to billing (not list, not leaf action)", () => {
+    const billingResults: CommandSearchResult[] = [
+      {
+        id: "settings.billing.update-card",
+        type: "action",
+        title: "Update payment card",
+        description: "Change the credit card used for billing",
+        actionKey: "settings.billing.update-card",
+        href: "/settings/billing",
+        score: 0.7216892242431641,
+      },
+      {
+        id: "settings.billing.open",
+        type: "navigation",
+        title: "Billing settings",
+        description: "Update your payment method, download invoices, and change your plan",
+        href: "/settings/billing",
+        score: 0.6923880577087402,
+      },
+      {
+        id: "settings.plans.open",
+        type: "navigation",
+        title: "Plans",
+        description: "Compare plans, upgrade, or change billing frequency",
+        href: "/settings/plans",
+        score: 0.6344346702098846,
+      },
+      {
+        id: "settings.billing.cancel",
+        type: "action",
+        title: "Cancel subscription",
+        actionKey: "settings.billing.cancel",
+        href: "/settings/billing",
+        score: 0.633653074502945,
+      },
+      {
+        id: "settings.profile.open",
+        type: "navigation",
+        title: "Profile settings",
+        href: "/settings/profile",
+        score: 0.6167759895324707,
+      },
+    ];
+
+    const resolved = resolveVoiceDecision({
+      ...defaults,
+      results: billingResults,
+    });
+
+    expect(resolved.shouldExecute).toBe(true);
+    expect(resolved.decision).toBe("executed");
+    expect(resolved.destinationHref).toBe("/settings/billing");
+    expect(resolved.top?.type).toBe("navigation");
+    expect(resolved.top?.type === "navigation" && resolved.top.href).toBe("/settings/billing");
+    // Prefer the real navigation row when present
+    expect(resolved.top?.id).toBe("settings.billing.open");
+  });
+
+  it("profile cluster: action siblings share href → navigate to profile", () => {
+    const resolved = resolveVoiceDecision({
+      ...defaults,
+      results: [
+        {
+          id: "settings.profile.open",
+          type: "navigation",
+          title: "Profile settings",
+          href: "/settings/profile",
+          score: 0.91,
+        },
+        {
+          id: "settings.profile.save",
+          type: "action",
+          title: "Save profile",
+          actionKey: "settings.profile.save",
+          href: "/settings/profile",
+          score: 0.89,
+        },
+        {
+          id: "settings.profile.upload-avatar",
+          type: "action",
+          title: "Upload avatar",
+          actionKey: "settings.profile.upload-avatar",
+          href: "/settings/profile",
+          score: 0.88,
+        },
+      ],
+    });
+
+    expect(resolved.shouldExecute).toBe(true);
+    expect(resolved.destinationHref).toBe("/settings/profile");
+    expect(resolved.top?.id).toBe("settings.profile.open");
+  });
+
+  it("large score gap: only top is a peer → navigate without listing far results", () => {
+    const resolved = resolveVoiceDecision({
+      ...defaults,
+      results: [
+        { ...home, score: 0.9 },
+        { ...docs, score: 0.55 },
+      ],
+    });
+
+    expect(resolved.shouldExecute).toBe(true);
+    expect(resolved.destinationHref).toBe("/home");
+    expect(resolved.results).toHaveLength(1);
+  });
+});
+
+describe("useCommandVoice smart routing", () => {
+  type RecognitionHandlers = {
+    onresult: ((event: { results: ArrayLike<{ isFinal: boolean; 0: { transcript: string } }> }) => void) | null;
+    onerror: ((event: { error?: string }) => void) | null;
+    onend: (() => void) | null;
+  };
+
+  let lastRecognition: RecognitionHandlers & {
+    start: ReturnType<typeof vi.fn>;
+    stop: ReturnType<typeof vi.fn>;
+  };
+
+  beforeEach(() => {
+    lastRecognition = {
+      onresult: null,
+      onerror: null,
+      onend: null,
+      start: vi.fn(),
+      stop: vi.fn(),
+    };
+
+    class FakeSpeechRecognition {
+      continuous = false;
+      interimResults = false;
+      lang = "";
+      onresult = null;
+      onerror = null;
+      onend = null;
+      start = vi.fn(() => {
+        lastRecognition.onresult = this.onresult;
+        lastRecognition.onerror = this.onerror;
+        lastRecognition.onend = this.onend;
+        lastRecognition.start = this.start;
+        lastRecognition.stop = this.stop;
+      });
+      stop = vi.fn();
+
+      constructor() {
+        lastRecognition = this as unknown as typeof lastRecognition;
+      }
+    }
+
+    Object.defineProperty(window, "SpeechRecognition", {
+      configurable: true,
+      writable: true,
+      value: FakeSpeechRecognition,
+    });
+    Object.defineProperty(window, "webkitSpeechRecognition", {
+      configurable: true,
+      writable: true,
+      value: undefined,
+    });
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+    // @ts-expect-error cleanup
+    delete window.SpeechRecognition;
+  });
+
+  it("auto-executes a single confident match", async () => {
+    const navigate = vi.fn();
+    const fetcher = vi.fn<typeof fetch>().mockResolvedValue(
+      createFetchResponse([
+        { id: "nav.home", type: "navigation", title: "Home", href: "/home", score: 0.95 },
+      ]),
+    );
+
+    const { result } = renderHook(() =>
+      useCommandVoice({
+        endpoint: "/api/command-search",
+        fetcher,
+        navigate,
+        shortcut: false,
+        autoExecute: "single",
+      }),
+    );
+
+    act(() => {
+      result.current.start();
+    });
+
+    expect(result.current.status).toBe("listening");
+
+    await act(async () => {
+      lastRecognition.onresult?.({
+        results: [
+          {
+            isFinal: true,
+            0: { transcript: "go home" },
+          },
+        ],
+      });
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+
+    expect(fetcher).toHaveBeenCalled();
+    expect(navigate).toHaveBeenCalledWith("/home");
+    expect(result.current.decision).toBe("executed");
+  });
+
+  it("keeps results open when multiple intents match", async () => {
+    const navigate = vi.fn();
+    const fetcher = vi.fn<typeof fetch>().mockResolvedValue(
+      createFetchResponse([
+        { id: "nav.home", type: "navigation", title: "Home", href: "/home", score: 0.9 },
+        { id: "nav.docs", type: "navigation", title: "Docs", href: "/docs", score: 0.88 },
+        { id: "nav.components", type: "navigation", title: "Components", href: "/components", score: 0.85 },
+      ]),
+    );
+
+    const { result } = renderHook(() =>
+      useCommandVoice({
+        endpoint: "/api/command-search",
+        fetcher,
+        navigate,
+        shortcut: false,
+        autoExecute: "single",
+        voiceListLimit: 3,
+      }),
+    );
+
+    act(() => {
+      result.current.start();
+    });
+
+    await act(async () => {
+      lastRecognition.onresult?.({
+        results: [{ isFinal: true, 0: { transcript: "open something" } }],
+      });
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+
+    expect(navigate).not.toHaveBeenCalled();
+    expect(result.current.status).toBe("results");
+    expect(result.current.decision).toBe("ambiguous");
+    expect(result.current.results).toHaveLength(3);
+    expect(result.current.open).toBe(true);
+
+    await act(async () => {
+      await result.current.execute(result.current.results[1]);
+    });
+
+    expect(navigate).toHaveBeenCalledWith("/docs");
   });
 });

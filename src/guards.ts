@@ -75,12 +75,18 @@ function assertCommandSearchResult(value: unknown, index: number): CommandSearch
       throw new Error(`Action result ${index} is missing actionKey.`);
     }
 
+    const href = normalizeOptionalString(value.href);
+    if (href === null) {
+      throw new Error(`Action result ${index} has an invalid href.`);
+    }
+
     return {
       id: value.id,
       type: "action",
       title: value.title,
       description,
       actionKey: value.actionKey,
+      href,
       score,
       meta,
     };

@@ -1,0 +1,1190 @@
+{
+  "mode": "replace",
+  "version": "git:00076ba",
+  "intents": [
+    {
+      "id": "settings.profile.open",
+      "type": "navigation",
+      "title": "Profile settings",
+      "description": "Update your display name, avatar, email, and bio",
+      "href": "/settings/profile",
+      "phrases": [
+        "edit my profile",
+        "change display name",
+        "my profile settings",
+        "update bio",
+        "change avatar",
+        "email address settings"
+      ],
+      "keywords": [
+        "profile",
+        "display name",
+        "avatar",
+        "bio",
+        "email"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.profile.save",
+      "type": "action",
+      "title": "Save profile",
+      "description": "Save changes to display name, email, and bio",
+      "actionKey": "settings.profile.save",
+      "phrases": [
+        "save my profile",
+        "save display name",
+        "save profile changes"
+      ],
+      "keywords": [
+        "save",
+        "profile"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.profile.public",
+      "type": "action",
+      "title": "Make profile visible to everyone",
+      "description": "Toggle whether your profile is public",
+      "actionKey": "settings.profile.public",
+      "phrases": [
+        "make my profile public",
+        "public profile",
+        "hide my profile"
+      ],
+      "keywords": [
+        "visibility",
+        "public",
+        "profile"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.profile.avatar",
+      "type": "action",
+      "title": "Upload avatar",
+      "description": "Change your profile picture",
+      "actionKey": "settings.profile.avatar",
+      "phrases": [
+        "change profile picture",
+        "upload new avatar",
+        "set profile photo"
+      ],
+      "keywords": [
+        "avatar",
+        "photo",
+        "picture"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.appearance.open",
+      "type": "navigation",
+      "title": "Appearance settings",
+      "description": "Choose your theme, density, and accent color",
+      "href": "/settings/appearance",
+      "phrases": [
+        "change theme",
+        "appearance settings",
+        "dark mode settings",
+        "interface colors",
+        "accent color settings"
+      ],
+      "keywords": [
+        "appearance",
+        "theme",
+        "dark mode",
+        "accent",
+        "density"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.appearance.dark",
+      "type": "action",
+      "title": "Switch to dark mode",
+      "description": "Always use dark mode",
+      "actionKey": "settings.appearance.dark",
+      "phrases": [
+        "turn on dark mode",
+        "use dark theme",
+        "enable dark mode"
+      ],
+      "keywords": [
+        "dark",
+        "theme"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.appearance.light",
+      "type": "action",
+      "title": "Switch to light mode",
+      "description": "Always use light mode",
+      "actionKey": "settings.appearance.light",
+      "phrases": [
+        "turn on light mode",
+        "use light theme",
+        "enable light mode"
+      ],
+      "keywords": [
+        "light",
+        "theme"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.appearance.system",
+      "type": "action",
+      "title": "Follow system theme",
+      "description": "Automatically follow your device preference",
+      "actionKey": "settings.appearance.system",
+      "phrases": [
+        "use system theme",
+        "follow device theme",
+        "auto theme"
+      ],
+      "keywords": [
+        "system",
+        "theme"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.appearance.compact",
+      "type": "action",
+      "title": "Use compact density",
+      "description": "Fit more on screen with compact spacing",
+      "actionKey": "settings.appearance.compact",
+      "phrases": [
+        "compact mode",
+        "denser interface",
+        "compact density"
+      ],
+      "keywords": [
+        "density",
+        "compact"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.email-calendar.open",
+      "type": "navigation",
+      "title": "Email and calendar accounts",
+      "description": "Connect and manage email and calendar integrations",
+      "href": "/settings/email-calendar",
+      "phrases": [
+        "connected email accounts",
+        "link gmail",
+        "connect google calendar",
+        "outlook integration",
+        "calendar sync"
+      ],
+      "keywords": [
+        "email",
+        "calendar",
+        "gmail",
+        "outlook",
+        "icloud",
+        "accounts"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.email-calendar.add",
+      "type": "action",
+      "title": "Add email or calendar account",
+      "description": "Connect a new email or calendar integration",
+      "actionKey": "settings.email-calendar.add",
+      "phrases": [
+        "add email account",
+        "connect new account",
+        "link another calendar"
+      ],
+      "keywords": [
+        "add",
+        "connect",
+        "account"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.email-calendar.remove",
+      "type": "action",
+      "title": "Remove email or calendar account",
+      "description": "Disconnect an email or calendar integration",
+      "actionKey": "settings.email-calendar.remove",
+      "phrases": [
+        "disconnect email account",
+        "remove gmail",
+        "unlink calendar"
+      ],
+      "keywords": [
+        "remove",
+        "disconnect",
+        "unlink"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.call-intelligence.open",
+      "type": "navigation",
+      "title": "Call intelligence settings",
+      "description": "Configure transcription, summaries, and coaching insights",
+      "href": "/settings/call-intelligence",
+      "phrases": [
+        "call transcription settings",
+        "transcript settings",
+        "call summaries",
+        "coaching insights",
+        "speech to text settings"
+      ],
+      "keywords": [
+        "call",
+        "transcription",
+        "summary",
+        "coaching",
+        "retention"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.call-intelligence.transcription",
+      "type": "action",
+      "title": "Enable call transcription",
+      "description": "Convert calls into searchable text",
+      "actionKey": "settings.call-intelligence.transcription",
+      "phrases": [
+        "turn on transcription",
+        "enable transcriptions",
+        "transcribe my calls"
+      ],
+      "keywords": [
+        "transcription",
+        "transcript"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.call-intelligence.coaching",
+      "type": "action",
+      "title": "Enable coaching insights",
+      "description": "Get coaching feedback on your calls",
+      "actionKey": "settings.call-intelligence.coaching",
+      "phrases": [
+        "turn on coaching",
+        "enable call coaching",
+        "coaching insights"
+      ],
+      "keywords": [
+        "coaching",
+        "insights"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.call-intelligence.summary",
+      "type": "action",
+      "title": "Change default summary length",
+      "description": "Choose short paragraph, bullet points, or detailed recap",
+      "actionKey": "settings.call-intelligence.summary",
+      "phrases": [
+        "summary style",
+        "bullet point summaries",
+        "short summaries",
+        "detailed recap"
+      ],
+      "keywords": [
+        "summary",
+        "recap"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.storage.open",
+      "type": "navigation",
+      "title": "Storage accounts",
+      "description": "Link cloud storage providers and manage file attachments",
+      "href": "/settings/storage",
+      "phrases": [
+        "storage settings",
+        "connect google drive",
+        "link dropbox",
+        "cloud storage",
+        "onedrive connection"
+      ],
+      "keywords": [
+        "storage",
+        "drive",
+        "dropbox",
+        "onedrive",
+        "files"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.storage.add",
+      "type": "action",
+      "title": "Add storage provider",
+      "description": "Connect a new cloud storage account",
+      "actionKey": "settings.storage.add",
+      "phrases": [
+        "add storage",
+        "connect storage provider",
+        "link another drive"
+      ],
+      "keywords": [
+        "add",
+        "storage"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.storage.configure",
+      "type": "action",
+      "title": "Configure storage account",
+      "description": "Change settings for a connected storage provider",
+      "actionKey": "settings.storage.configure",
+      "phrases": [
+        "configure storage",
+        "manage drive account",
+        "storage preferences"
+      ],
+      "keywords": [
+        "configure",
+        "storage"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.refer.open",
+      "type": "navigation",
+      "title": "Refer another team",
+      "description": "Invite other teams and earn workspace credits",
+      "href": "/settings/refer",
+      "phrases": [
+        "refer a team",
+        "referral program",
+        "invite another team",
+        "earn credits",
+        "referral link"
+      ],
+      "keywords": [
+        "refer",
+        "referral",
+        "credits",
+        "invite"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.refer.invite",
+      "type": "action",
+      "title": "Send referral invite",
+      "description": "Send a referral email invite to another team",
+      "actionKey": "settings.refer.invite",
+      "phrases": [
+        "send referral invite",
+        "invite team for credits",
+        "refer a friend"
+      ],
+      "keywords": [
+        "invite",
+        "referral",
+        "credits"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.refer.copy-link",
+      "type": "action",
+      "title": "Copy referral link",
+      "description": "Copy your referral link to share",
+      "actionKey": "settings.refer.copy-link",
+      "phrases": [
+        "copy referral link",
+        "share referral link",
+        "get my referral link"
+      ],
+      "keywords": [
+        "copy",
+        "referral",
+        "link"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.notifications.open",
+      "type": "navigation",
+      "title": "Notification settings",
+      "description": "Tune digests, delivery channels, and quiet hours",
+      "href": "/settings/notifications",
+      "phrases": [
+        "notification settings",
+        "email alerts",
+        "digest settings",
+        "quiet hours",
+        "slack notifications"
+      ],
+      "keywords": [
+        "notifications",
+        "alerts",
+        "digest",
+        "quiet hours",
+        "slack"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.notifications.email",
+      "type": "action",
+      "title": "Enable email notifications",
+      "description": "Receive notifications by email",
+      "actionKey": "settings.notifications.email",
+      "phrases": [
+        "turn on email alerts",
+        "email me notifications",
+        "enable email notifications"
+      ],
+      "keywords": [
+        "email",
+        "notifications"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.notifications.digest",
+      "type": "action",
+      "title": "Send me a daily digest",
+      "description": "Receive a daily email digest",
+      "actionKey": "settings.notifications.digest",
+      "phrases": [
+        "daily digest",
+        "weekly digest email",
+        "enable digest"
+      ],
+      "keywords": [
+        "digest",
+        "daily",
+        "weekly"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.notifications.quiet-hours",
+      "type": "action",
+      "title": "Enable quiet hours",
+      "description": "Pause notifications during a time range",
+      "actionKey": "settings.notifications.quiet-hours",
+      "phrases": [
+        "quiet hours",
+        "do not disturb",
+        "silence notifications"
+      ],
+      "keywords": [
+        "quiet hours",
+        "dnd",
+        "silence"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.sessions.open",
+      "type": "navigation",
+      "title": "Active sessions",
+      "description": "Review active sessions and sign out of devices remotely",
+      "href": "/settings/sessions",
+      "phrases": [
+        "active sessions",
+        "logged in devices",
+        "session history",
+        "where am I logged in"
+      ],
+      "keywords": [
+        "sessions",
+        "devices",
+        "login"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.sessions.logout-all",
+      "type": "action",
+      "title": "Log out all devices",
+      "description": "Sign out of every active session",
+      "actionKey": "settings.sessions.logout-all",
+      "phrases": [
+        "log out everywhere",
+        "sign out all devices",
+        "end all sessions"
+      ],
+      "keywords": [
+        "logout",
+        "sign out",
+        "devices"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.sessions.revoke",
+      "type": "action",
+      "title": "Revoke a session",
+      "description": "Sign a specific device out remotely",
+      "actionKey": "settings.sessions.revoke",
+      "phrases": [
+        "revoke device session",
+        "sign out this device",
+        "remove session"
+      ],
+      "keywords": [
+        "revoke",
+        "session",
+        "device"
+      ],
+      "section": "personal"
+    },
+    {
+      "id": "settings.general.open",
+      "type": "navigation",
+      "title": "Workspace general settings",
+      "description": "Manage workspace name, timezone, and default behaviors",
+      "href": "/settings/general",
+      "phrases": [
+        "workspace settings",
+        "workspace name",
+        "change timezone",
+        "default language",
+        "week start day"
+      ],
+      "keywords": [
+        "workspace",
+        "general",
+        "timezone",
+        "language",
+        "week start"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.general.save",
+      "type": "action",
+      "title": "Save workspace changes",
+      "description": "Save workspace name, timezone, language, and week start",
+      "actionKey": "settings.general.save",
+      "phrases": [
+        "save workspace settings",
+        "update workspace name",
+        "save changes"
+      ],
+      "keywords": [
+        "save",
+        "workspace"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.call-recorder.open",
+      "type": "navigation",
+      "title": "Call recorder settings",
+      "description": "Manage your call recorder name, style, and preview",
+      "href": "/settings/call-recorder",
+      "phrases": [
+        "call recorder settings",
+        "recorder name",
+        "recorder style",
+        "recording preferences",
+        "open settings"
+      ],
+      "keywords": [
+        "recorder",
+        "call",
+        "style",
+        "settings"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.call-recorder.style",
+      "type": "action",
+      "title": "Change recorder style",
+      "description": "Choose default, workspace, minimal, or no branding for the recorder",
+      "actionKey": "settings.call-recorder.style",
+      "phrases": [
+        "recorder style",
+        "change recorder branding",
+        "minimal recorder",
+        "workspace branded recorder"
+      ],
+      "keywords": [
+        "style",
+        "branding",
+        "recorder"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.call-recorder.name",
+      "type": "action",
+      "title": "Rename call recorder",
+      "description": "Set the recorder name shown in meetings",
+      "actionKey": "settings.call-recorder.name",
+      "phrases": [
+        "rename recorder",
+        "change recorder name",
+        "recorder display name"
+      ],
+      "keywords": [
+        "name",
+        "recorder"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.members.open",
+      "type": "navigation",
+      "title": "Workspace members",
+      "description": "Invite teammates, manage roles, and set permissions",
+      "href": "/settings/members",
+      "phrases": [
+        "team members",
+        "member list",
+        "manage teammates",
+        "workspace people",
+        "roles and permissions"
+      ],
+      "keywords": [
+        "members",
+        "team",
+        "people",
+        "roles"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.members.invite",
+      "type": "action",
+      "title": "Invite member",
+      "description": "Send an email invite to join the workspace",
+      "actionKey": "settings.members.invite",
+      "phrases": [
+        "invite teammate",
+        "add team member",
+        "invite user",
+        "send member invite"
+      ],
+      "keywords": [
+        "invite",
+        "member",
+        "teammate"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.members.change-role",
+      "type": "action",
+      "title": "Change member role",
+      "description": "Change a teammate's role or permissions",
+      "actionKey": "settings.members.change-role",
+      "phrases": [
+        "change member role",
+        "make admin",
+        "change permissions",
+        "promote member"
+      ],
+      "keywords": [
+        "role",
+        "permissions",
+        "admin"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.members.remove",
+      "type": "action",
+      "title": "Remove member",
+      "description": "Remove a teammate from the workspace",
+      "actionKey": "settings.members.remove",
+      "phrases": [
+        "remove teammate",
+        "delete member",
+        "kick member"
+      ],
+      "keywords": [
+        "remove",
+        "delete",
+        "member"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.plans.open",
+      "type": "navigation",
+      "title": "Plans and pricing",
+      "description": "Compare plans, upgrade, or change billing frequency",
+      "href": "/settings/plans",
+      "phrases": [
+        "plans and pricing",
+        "upgrade plan",
+        "compare plans",
+        "current plan",
+        "seat usage"
+      ],
+      "keywords": [
+        "plans",
+        "pricing",
+        "upgrade",
+        "seats"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.plans.enterprise",
+      "type": "action",
+      "title": "Contact sales about Enterprise",
+      "description": "Get in touch about the Enterprise plan",
+      "actionKey": "settings.plans.enterprise",
+      "phrases": [
+        "upgrade to enterprise",
+        "enterprise plan",
+        "contact sales",
+        "talk to sales"
+      ],
+      "keywords": [
+        "enterprise",
+        "sales",
+        "upgrade"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.plans.starter",
+      "type": "action",
+      "title": "Downgrade to Starter",
+      "description": "Switch to the free Starter plan",
+      "actionKey": "settings.plans.starter",
+      "phrases": [
+        "downgrade plan",
+        "switch to starter",
+        "downgrade to free"
+      ],
+      "keywords": [
+        "downgrade",
+        "starter",
+        "plan"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.billing.open",
+      "type": "navigation",
+      "title": "Billing settings",
+      "description": "Update payment method, download invoices, and change your plan",
+      "href": "/settings/billing",
+      "phrases": [
+        "billing settings",
+        "payment method",
+        "invoices",
+        "subscription details",
+        "credit card settings"
+      ],
+      "keywords": [
+        "billing",
+        "payment",
+        "invoice",
+        "subscription",
+        "card"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.billing.update-card",
+      "type": "action",
+      "title": "Update payment card",
+      "description": "Change the credit card on file",
+      "actionKey": "settings.billing.update-card",
+      "phrases": [
+        "update credit card",
+        "change payment method",
+        "add new card"
+      ],
+      "keywords": [
+        "card",
+        "payment",
+        "update"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.billing.invoice",
+      "type": "action",
+      "title": "Download invoice",
+      "description": "Download a past invoice",
+      "actionKey": "settings.billing.invoice",
+      "phrases": [
+        "download invoice",
+        "get receipt",
+        "view invoices"
+      ],
+      "keywords": [
+        "invoice",
+        "receipt",
+        "download"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.billing.cancel",
+      "type": "action",
+      "title": "Cancel subscription",
+      "description": "Cancel the workspace subscription",
+      "actionKey": "settings.billing.cancel",
+      "phrases": [
+        "cancel subscription",
+        "cancel plan",
+        "stop billing"
+      ],
+      "keywords": [
+        "cancel",
+        "subscription"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.developers.open",
+      "type": "navigation",
+      "title": "Developer settings",
+      "description": "Manage API keys, webhooks, and integration settings",
+      "href": "/settings/developers",
+      "phrases": [
+        "developer settings",
+        "api keys",
+        "webhooks",
+        "integration settings",
+        "api access"
+      ],
+      "keywords": [
+        "developers",
+        "api",
+        "webhooks",
+        "keys"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.developers.create-key",
+      "type": "action",
+      "title": "Create API key",
+      "description": "Generate a new API key",
+      "actionKey": "settings.developers.create-key",
+      "phrases": [
+        "create api key",
+        "new api key",
+        "generate key"
+      ],
+      "keywords": [
+        "api key",
+        "create"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.developers.rotate",
+      "type": "action",
+      "title": "Rotate API key",
+      "description": "Rotate an existing API key",
+      "actionKey": "settings.developers.rotate",
+      "phrases": [
+        "rotate api key",
+        "reset key",
+        "regenerate key"
+      ],
+      "keywords": [
+        "rotate",
+        "api key"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.developers.webhooks",
+      "type": "action",
+      "title": "Enable webhooks",
+      "description": "Turn on webhook delivery for record and user events",
+      "actionKey": "settings.developers.webhooks",
+      "phrases": [
+        "enable webhooks",
+        "webhook url",
+        "webhook events",
+        "configure webhook"
+      ],
+      "keywords": [
+        "webhooks",
+        "events"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.security.open",
+      "type": "navigation",
+      "title": "Security settings",
+      "description": "Set up SSO, enforce MFA, and review audit logs",
+      "href": "/settings/security",
+      "phrases": [
+        "security settings",
+        "single sign on",
+        "two factor authentication",
+        "password policy",
+        "audit logs"
+      ],
+      "keywords": [
+        "security",
+        "sso",
+        "mfa",
+        "password",
+        "audit"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.security.sso",
+      "type": "action",
+      "title": "Enable SSO",
+      "description": "Turn on single sign-on for the workspace",
+      "actionKey": "settings.security.sso",
+      "phrases": [
+        "enable single sign on",
+        "turn on sso",
+        "saml settings"
+      ],
+      "keywords": [
+        "sso",
+        "single sign on"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.security.mfa",
+      "type": "action",
+      "title": "Require MFA for all members",
+      "description": "Enforce multi-factor authentication",
+      "actionKey": "settings.security.mfa",
+      "phrases": [
+        "require two factor",
+        "enforce mfa",
+        "multi factor authentication"
+      ],
+      "keywords": [
+        "mfa",
+        "2fa",
+        "two factor"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.security.password-policy",
+      "type": "action",
+      "title": "Change password policy",
+      "description": "Set basic, strong, or custom password requirements",
+      "actionKey": "settings.security.password-policy",
+      "phrases": [
+        "password requirements",
+        "strong passwords",
+        "password policy"
+      ],
+      "keywords": [
+        "password",
+        "policy"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.records.open",
+      "type": "navigation",
+      "title": "Records settings",
+      "description": "Configure record visibility, history, and retention rules",
+      "href": "/settings/records",
+      "phrases": [
+        "record settings",
+        "record visibility",
+        "history retention",
+        "data retention rules"
+      ],
+      "keywords": [
+        "records",
+        "visibility",
+        "retention",
+        "history"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.records.save",
+      "type": "action",
+      "title": "Save record settings",
+      "description": "Save visibility, retention, and audit preferences",
+      "actionKey": "settings.records.save",
+      "phrases": [
+        "save record settings",
+        "update retention rules",
+        "change record visibility"
+      ],
+      "keywords": [
+        "save",
+        "records",
+        "retention"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.support.open",
+      "type": "navigation",
+      "title": "Support requests",
+      "description": "Open and track support conversations with our team",
+      "href": "/settings/support",
+      "phrases": [
+        "support requests",
+        "contact support",
+        "help desk",
+        "my tickets",
+        "open a support ticket"
+      ],
+      "keywords": [
+        "support",
+        "tickets",
+        "help"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.support.submit",
+      "type": "action",
+      "title": "Submit support request",
+      "description": "Send a new support request with subject and message",
+      "actionKey": "settings.support.submit",
+      "phrases": [
+        "submit support ticket",
+        "send support request",
+        "get help",
+        "report a problem"
+      ],
+      "keywords": [
+        "submit",
+        "ticket",
+        "support"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.migrate.open",
+      "type": "navigation",
+      "title": "Migrate CRM",
+      "description": "Import contacts, companies, and deals from another CRM",
+      "href": "/settings/migrate-crm",
+      "phrases": [
+        "migrate crm",
+        "import from salesforce",
+        "import from hubspot",
+        "crm data import",
+        "pipedrive migration"
+      ],
+      "keywords": [
+        "migrate",
+        "import",
+        "crm",
+        "salesforce",
+        "hubspot",
+        "pipedrive"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.migrate.test",
+      "type": "action",
+      "title": "Test CRM connection",
+      "description": "Verify the source CRM connection or file",
+      "actionKey": "settings.migrate.test",
+      "phrases": [
+        "test connection",
+        "verify crm connection",
+        "check import source"
+      ],
+      "keywords": [
+        "test",
+        "connection"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.migrate.start",
+      "type": "action",
+      "title": "Start CRM import",
+      "description": "Begin importing contacts, companies, and deals",
+      "actionKey": "settings.migrate.start",
+      "phrases": [
+        "start import",
+        "begin migration",
+        "import my data"
+      ],
+      "keywords": [
+        "import",
+        "migrate",
+        "start"
+      ],
+      "section": "workspace"
+    },
+    {
+      "id": "settings.objects.open",
+      "type": "navigation",
+      "title": "Objects",
+      "description": "Define custom objects and configure their attributes",
+      "href": "/settings/objects",
+      "phrases": [
+        "custom objects",
+        "data model",
+        "object types",
+        "object attributes"
+      ],
+      "keywords": [
+        "objects",
+        "attributes",
+        "data model"
+      ],
+      "section": "data"
+    },
+    {
+      "id": "settings.objects.add",
+      "type": "action",
+      "title": "Add object type",
+      "description": "Create a new custom object type",
+      "actionKey": "settings.objects.add",
+      "phrases": [
+        "add object",
+        "new object type",
+        "create custom object"
+      ],
+      "keywords": [
+        "add",
+        "object"
+      ],
+      "section": "data"
+    },
+    {
+      "id": "settings.objects.configure",
+      "type": "action",
+      "title": "Configure object",
+      "description": "Edit attributes and settings for an object type",
+      "actionKey": "settings.objects.configure",
+      "phrases": [
+        "configure object",
+        "edit object attributes",
+        "manage object fields"
+      ],
+      "keywords": [
+        "configure",
+        "object",
+        "attributes"
+      ],
+      "section": "data"
+    }
+  ]
+}

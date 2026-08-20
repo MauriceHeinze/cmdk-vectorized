@@ -1,6 +1,6 @@
 ---
 name: cmdk-vectorized-integrate
-description: Integrate cmdk-vectorized vector-database search and optional speech-to-text voice input into a React cmdk command palette.
+description: Integrate cmdk-vectorized vector-database search and optional speech-to-text voice input into a React cmdk command palette (drop-in or headless).
 ---
 
 # cmdk-vectorized Integration
@@ -9,24 +9,59 @@ Wire vector-database search into an existing or new `cmdk` command palette.
 
 ## When to use
 
-- App uses `cmdk` or shadcn/ui `Command` components
-- Command palette should query a **vector database** (Weaviate) instead of client-side filtering
-- Optional: add **speech-to-text voice input** via browser Web Speech API
+- App uses `cmdk` or shadcn/ui `Command` components — **or** you want a styled drop-in palette
+- Command palette should query a **vector database** (Weaviate) or SupaSearch instead of client-side filtering
+- Optional: **speech-to-text voice** via browser Web Speech API
 
 This is vector DB retrieval, not a generic LLM chat API.
+
+## Choose a track
+
+| Track | When | API |
+|-------|------|-----|
+| **Drop-in** | Greenfield / fastest path | `AICommandPalette` + optional `cmdk-vectorized/styles.css` |
+| **Headless** | Existing `cmdk` chrome you want to keep | `useAICommand` + `Command` with `shouldFilter={false}` |
+
+Voice (both tracks): after speech → search, **auto-route** when one intent is clear; **show a short list** only when multiple results are plausible (`autoExecute: "single"` default).
 
 ## Integration steps
 
 1. Install: `npm install cmdk-vectorized cmdk react react-dom`
-2. Create search endpoint using `createCommandSearchHandler` from `cmdk-vectorized/server`
-3. Wire `useAICommand` with `endpoint`, `navigate`, and `actions`
-4. Render `<Command shouldFilter={false}>` — required
-5. Optional: add `CommandVoice` for speech-to-text voice search
-6. Optional Weaviate corpus:
-   - `npx cmdk-vectorized init` (separate skill) to generate `public/intent-map.json`
+2. Search backend:
+   - Self-hosted: `createCommandSearchHandler` from `cmdk-vectorized/server`
+   - SupaSearch: `endpoint` = `{base}/api/search`, `headers: { Authorization: "Bearer ck_site_…" }`
+3. **Drop-in:** mount `AICommandPalette`  
+   **Headless:** wire `useAICommand` + `<Command shouldFilter={false}>`
+4. Optional voice:
+   - Drop-in includes ⌘M
+   - Headless: `useCommandVoice` or `useAICommandPalette`
+5. Optional Weaviate corpus:
+   - `npx cmdk-vectorized init` → `public/intent-map.json`
    - `WEAVIATE_URL=... WEAVIATE_API_KEY=... npx cmdk-vectorized upload`
 
-## Client example
+## Drop-in example (greenfield)
+
+```tsx
+import { AICommandPalette } from "cmdk-vectorized";
+import "cmdk-vectorized/styles.css"; // scoped under .cmdk-ai — does not style host UI
+
+export function AppCommands() {
+  return (
+    <AICommandPalette
+      endpoint="/api/command-search"
+      navigate={(href) => router.push(href)}
+      actions={{
+        "team.invite": () => openInviteModal(),
+      }}
+      placeholder="Search…"
+    />
+  );
+}
+```
+
+Theme with CSS variables on the root (`--cmdk-ai-bg`, `--cmdk-ai-fg`, …). Never required for headless.
+
+## Headless example (existing cmdk)
 
 ```tsx
 import { Command, useAICommand } from "cmdk-vectorized";
@@ -72,16 +107,19 @@ export const GET = createCommandSearchHandler({
 });
 ```
 
-## Voice example
+## Voice example (headless)
 
 ```tsx
-import { CommandVoice } from "cmdk-vectorized";
+import { useCommandVoice } from "cmdk-vectorized";
 
-<CommandVoice
-  endpoint="/api/command-search"
-  navigate={(href) => router.push(href)}
-  actions={{ "settings.open": () => openSettings() }}
-/>
+const voice = useCommandVoice({
+  endpoint: "/api/command-search",
+  navigate: (href) => router.push(href),
+  autoExecute: "single", // default: route if one clear hit, else list
+  voiceListLimit: 3,
+});
+
+// voice.status === "results" → render voice.results and call voice.execute(item)
 ```
 
 ## Result contract
@@ -93,8 +131,9 @@ Each result must be either:
 
 ## Rules
 
-- Always set `shouldFilter={false}` on `<Command>`
+- Always set `shouldFilter={false}` on `<Command>` (drop-in does this for you)
 - Do not parse `id` to decide behavior — use `href` or `actionKey`
+- Drop-in CSS must stay scoped (package uses `.cmdk-ai` only)
 - Do not generate `llms.txt` files in the consumer app
 - Do not change unrelated app behavior during integration
 

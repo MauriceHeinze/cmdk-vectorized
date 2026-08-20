@@ -1,8 +1,17 @@
 # cmdk-vectorized
 
-Vector-database search for `cmdk` command palettes, with optional speech-to-text voice input.
+Vector-database search for `cmdk` command palettes, with optional speech-to-text voice input and an optional styled drop-in palette.
 
-Keep your existing command palette UI. Query a vector database (Weaviate) for ranked results instead of client-side filtering. Navigation, actions, and routing stay in your app — this package handles search hooks, result rendering, and optional voice transcription.
+Pick your integration depth:
+
+| Track | Use when… | What you import |
+|-------|-----------|-----------------|
+| **Drop-in** | Greenfield / want UI in minutes | `AICommandPalette` + `cmdk-vectorized/styles.css` |
+| **Headless** | You already have `cmdk` (or custom UI) | `useAICommand` / `useCommandVoice` + `Command` |
+
+Both tracks hit the same search endpoint. Voice uses the **browser Web Speech API**, then the same ranking API as typing. Voice **routes straight** when one intent is clear; it **shows a short list only when multiple intents are plausible**.
+
+Styles for the drop-in are **scoped under `.cmdk-ai`** and never restyle the rest of your app. Headless consumers never import CSS.
 
 <a href="https://www.youtube.com/watch?v=JwHRA-bXtiA" target="_blank" rel="noopener noreferrer">
   <img src="docs/demo-thumbnail.jpg" alt="cmdk-vectorized demo" width="100%">
@@ -18,10 +27,11 @@ Try it yourself here 👉 **[Live demo](https://settings-demo-redux.vercel.app)*
 
 | You want to… | This package provides… |
 |--------------|------------------------|
-| Add vector search to a `cmdk` command palette | `useAICommand` + `createCommandSearchHandler` |
+| Ship a palette in ~5 lines | `AICommandPalette` + optional `styles.css` |
+| Add vector search to existing `cmdk` | `useAICommand` + `shouldFilter={false}` |
+| Add voice (Web Speech) on top | `useCommandVoice` / `useAICommandPalette` |
 | Use Weaviate for semantic command search | CLI `init` + `upload` for intent maps |
-| Add speech-to-text voice to a command palette | `CommandVoice` / `useCommandVoice` (Web Speech API) |
-| Integrate with shadcn/ui `Command` | Drop-in `cmdk` hooks with `shouldFilter={false}` |
+| Hosted multi-tenant search | Point `endpoint` + `Authorization: Bearer` at SupaSearch |
 
 ## Install
 
@@ -33,7 +43,31 @@ npm install cmdk-vectorized cmdk react react-dom
 
 **Requirements:** `react`, `react-dom`, `cmdk`, and a backend search endpoint. Weaviate is recommended for semantic retrieval.
 
-## Quick start
+## Quick start — drop-in
+
+```tsx
+import { AICommandPalette } from "cmdk-vectorized";
+import "cmdk-vectorized/styles.css"; // optional default look (scoped to .cmdk-ai)
+
+export function AppCommands() {
+  return (
+    <AICommandPalette
+      endpoint="/api/command-search"
+      navigate={(href) => {
+        window.location.href = href;
+      }}
+      actions={{
+        "team.invite": () => openInviteModal(),
+      }}
+      placeholder="Search documentation…"
+    />
+  );
+}
+```
+
+Shortcuts: **⌘K** text mode · **⌘M** voice mode · **Esc** close. Theme via CSS variables on the root (`--cmdk-ai-bg`, `--cmdk-ai-fg`, …).
+
+## Quick start — headless (existing cmdk)
 
 ```tsx
 import { Command, useAICommand } from "cmdk-vectorized";
@@ -76,6 +110,8 @@ export function CommandMenu() {
 
 Render `<Command shouldFilter={false}>` so `cmdk` does not override vector-database ranking.
 
+For a headless mode controller (text + voice shortcuts without styles), use `useAICommandPalette`.
+
 ## Agentic setup
 
 Install the integration skill for coding agents:
@@ -107,8 +143,8 @@ npx cmdk-vectorized upload
 
 | Example | Description |
 |---------|-------------|
-| [`examples/settings-demo-redux`](./examples/settings-demo-redux) | Full demo with `cmdk-vectorized` command palette + voice |
-| [`examples/settings-demo-plain`](./examples/settings-demo-plain) | Same settings shell **without** cmdk — integrate from scratch |
+| [`examples/settings-demo-plain`](./examples/settings-demo-plain) | **Clean host** — no cmdk; use to test SupaSearch install prompt |
+| [`examples/settings-demo-redux`](./examples/settings-demo-redux) | **Wired demo** — custom `CommandDialog` + smart `useCommandVoice` |
 
 ```bash
 npx pnpm@10.12.4 install

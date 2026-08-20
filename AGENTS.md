@@ -7,37 +7,60 @@ Use `cmdk-vectorized` when an app already has (or will have) a `cmdk` command pa
 - **Vector-database search** instead of client-side `cmdk` filtering
 - **Weaviate** (or similar) as the ranking/retrieval backend
 - Optional **speech-to-text voice input** that feeds the same search endpoint
+- Optional **styled drop-in palette** (`AICommandPalette`) for greenfield DX
 
 This is not a generic LLM chat API. Ranking comes from vector DB retrieval.
+
+## Integration tracks
+
+| Track | Prefer when | API |
+|-------|-------------|-----|
+| **Drop-in** | Greenfield / fastest path | `AICommandPalette` + optional `import "cmdk-vectorized/styles.css"` |
+| **Headless** | Existing `cmdk` / custom UI | `useAICommand`, `useCommandVoice`, `useAICommandPalette`, `Command` |
+
+Drop-in is built **on top of** headless hooks. CSS is scoped to `.cmdk-ai` only.
+
+**Voice policy:** after Web Speech → search, **auto-execute** when one intent is clear (`autoExecute: "single"` default); **show a short list** only when multiple results are plausible.
 
 ## Architecture
 
 ```txt
 typed query or speech-to-text transcript
   -> useAICommandSearch / useAICommand / useCommandVoice
+     (or AICommandPalette / useAICommandPalette)
   -> GET /api/command-search?q=...&limit=...
   -> backend queries vector database (Weaviate)
   -> { results: CommandSearchResult[] }
-  -> render cmdk items (shouldFilter={false})
+  -> render cmdk items (shouldFilter={false})  OR  smart voice route/list
   -> executeAICommand -> app-owned navigate() or actions[actionKey]()
 ```
 
 ## Integration checklist
 
 1. `npm install cmdk-vectorized cmdk react react-dom`
-2. Create a search endpoint (use `createCommandSearchHandler` from `cmdk-vectorized/server`)
-3. Wire `useAICommand` with `endpoint`, `navigate`, and `actions`
-4. Render `<Command shouldFilter={false}>` — required so cmdk does not override vector DB ranking
-5. Optional: add `CommandVoice` / `useCommandVoice` for browser speech-to-text
-6. Optional: `npx cmdk-vectorized init` to generate `public/intent-map.json`, then `npx cmdk-vectorized upload` to seed Weaviate
+2. Create a search endpoint (use `createCommandSearchHandler` from `cmdk-vectorized/server`) **or** point at SupaSearch with a publishable key in `headers`
+3. **Either** mount `<AICommandPalette endpoint navigate … />` **or** wire `useAICommand` + `<Command shouldFilter={false}>`
+4. Optional voice: drop-in includes ⌘M; headless uses `useCommandVoice` / `useAICommandPalette`
+5. Optional: `npx cmdk-vectorized init` → `public/intent-map.json`, then `npx cmdk-vectorized upload` to seed Weaviate
 
 Run `npx cmdk-vectorized integrate` to install a detailed integration skill for Codex, Claude, and OpenCode.
 
 ## Imports
 
 ```ts
-// Client
-import { Command, useAICommand, useAICommandSearch, CommandVoice, useCommandVoice } from "cmdk-vectorized";
+// Client — drop-in
+import { AICommandPalette } from "cmdk-vectorized";
+import "cmdk-vectorized/styles.css";
+
+// Client — headless
+import {
+  Command,
+  useAICommand,
+  useAICommandSearch,
+  useAICommandPalette,
+  CommandVoice,
+  useCommandVoice,
+} from "cmdk-vectorized";
 
 // Server
 import { createCommandSearchHandler } from "cmdk-vectorized/server";
@@ -46,7 +69,7 @@ import { createCommandSearchHandler } from "cmdk-vectorized/server";
 import { installAgentWorkflows, installIntegrationSkill, uploadIntentMap, validateIntentMap } from "cmdk-vectorized/tooling";
 ```
 
-Do not import from `dist/*` or `src/*`.
+Do not import from `dist/*` or `src/*` (except documented CSS: `cmdk-vectorized/styles.css`).
 
 ## CLI
 
@@ -78,7 +101,7 @@ pnpm example:plain:dev   # settings shell without cmdk
 Examples:
 
 - `examples/settings-demo-redux` — wired command palette + Weaviate search
-- `examples/settings-demo-plain` — baseline app with no cmdk (integrate from scratch)
+- `examples/settings-demo-plain` — clean settings shell without cmdk (install-prompt / integrate skill sandbox)
 
 ## Constraints for consumer apps
 

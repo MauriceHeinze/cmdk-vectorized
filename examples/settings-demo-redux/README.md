@@ -1,6 +1,12 @@
-# Settings Demo (Redux)
+# Settings Demo (Redux) — headless track
 
-This demo wires `cmdk-vectorized` into a Redux-backed settings app shell.
+This demo wires **headless** `cmdk-vectorized` into a Redux-backed settings app shell:
+
+- `useAICommand` + custom `CommandDialog` (⌘K)
+- `useCommandVoice` + custom `SiriVoiceNavigator` (⌘M)
+- Smart voice routing: single clear intent navigates; multiple → pick from list
+
+For the **styled drop-in** path, see [`settings-demo-plain`](../settings-demo-plain).
 
 **Live demo:** https://settings-demo-redux.vercel.app
 

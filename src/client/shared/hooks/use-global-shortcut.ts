@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import { useLatest } from "./use-latest";
 
+/** Palette shortcuts: ⌘/Ctrl+K or ⌘/Ctrl+M. `false` disables. */
 export function useGlobalShortcut(
   key: "k" | "m" | false,
   handler: () => void,
@@ -20,7 +21,7 @@ export function useGlobalShortcut(
         !event.shiftKey;
       if (!matches) return;
 
-      event.preventDefault();
+      event.preventDefault(); // keep the key from reaching a focused input
       handlerRef.current();
     }
 

@@ -20,6 +20,11 @@ function toError(error: unknown) {
   return error instanceof Error ? error : new Error("Command search failed.");
 }
 
+/**
+ * Debounced GET to `endpoint?q=&limit=`. Does not execute results.
+ * Stale in-flight requests are aborted. Hits with `score < minConfidence` are
+ * dropped (default 0.7); missing scores are kept.
+ */
 export function useAICommandSearch(
   options: UseAICommandSearchOptions,
 ): UseAICommandSearchResult {
@@ -54,6 +59,7 @@ export function useAICommandSearch(
     const searchEmpty = active.searchOnEmptyQuery ?? false;
 
     if (requestedQuery.length < activeMinLength && !searchEmpty) {
+      // Stay on initialResults; do not hit the network for a stub query.
       cancel();
       setResults(active.initialResults ?? EMPTY_RESULTS);
       setLoading(false);
@@ -65,6 +71,7 @@ export function useAICommandSearch(
     const controller = new AbortController();
     const requestId = requestIdRef.current + 1;
     controllerRef.current = controller;
+    // Bump so a late response from the aborted fetch cannot land.
     requestIdRef.current = requestId;
     setLoading(true);
     setError(null);
@@ -75,7 +82,7 @@ export function useAICommandSearch(
         requestedQuery.length < activeMinLength ? "" : requestedQuery,
         { limit: active.maxResults ?? DEFAULTS.maxResults, signal: controller.signal },
       );
-      if (requestId !== requestIdRef.current) return;
+      if (requestId !== requestIdRef.current) return; // aborted or superseded
 
       const minConfidence = active.minConfidence ?? DEFAULTS.minConfidence;
       setResults(found.filter((item) => item.score === undefined || item.score >= minConfidence));
@@ -105,7 +112,7 @@ export function useAICommandSearch(
     };
   }, [cancel, debounceMs, minQueryLength, optionsRef, query, search, searchOnEmptyQuery]);
 
-  useEffect(() => cancel, [cancel]);
+  useEffect(() => cancel, [cancel]); // abort in-flight search on unmount
 
   const clear = useCallback(() => {
     cancel();

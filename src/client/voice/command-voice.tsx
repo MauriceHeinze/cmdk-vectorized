@@ -1,6 +1,9 @@
 import type { CommandVoiceProps } from "../types";
 import { useCommandVoice } from "./use-command-voice";
 
+/**
+ * Headless voice trigger. Pass `children` for a custom UI, or use the default button + list.
+ */
 export function CommandVoice({ children, labels, buttonProps, ...options }: CommandVoiceProps) {
   const voice = useCommandVoice(options);
   const isListening = voice.status === "listening";

@@ -1,5 +1,10 @@
 import { Command } from "cmdk";
 
+/*
+ * Internal drop-in list/input bodies. Not exported from the package.
+ * Selecting an item executes, then closes the palette.
+ */
+
 import type { CommandSearchResult } from "../../core/command-types";
 import type {
   AICommandPaletteClassNames,

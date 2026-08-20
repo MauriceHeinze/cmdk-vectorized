@@ -1,5 +1,11 @@
 import type { CommandSearchResult } from "../../core/command-types";
 
+/*
+ * Peer-band scoring for voice auto-route.
+ * Hits stay in the band while within `peerGap` of the top score and no neighbor
+ * drop exceeds `stepGap`. Destinations come from `href` on both result types.
+ */
+
 export function resultDestination(result: CommandSearchResult): string | null {
   return result.type === "navigation" ? result.href : result.href ?? null;
 }
@@ -29,6 +35,7 @@ export function buildPeerBand(
     const previous = sorted[index - 1]!;
     if (current.score === undefined || previous.score === undefined) break;
     if (topScore - current.score > peerGap) break;
+    // A cliff vs the previous neighbor ends the band even if still within peerGap.
     if (previous.score - current.score > stepGap) break;
     band.push(current);
   }
@@ -60,6 +67,7 @@ export function pickResultForDestination(
 
   const match = band.find((result) => resultDestination(result) === destination);
   if (match?.type === "action") {
+    // Auto-route must navigate the host page, never fire the leaf action.
     return {
       id: `voice-nav:${destination}`,
       type: "navigation",
@@ -91,6 +99,7 @@ export function listDestinations(
     if (seen.has(destination)) continue;
     seen.add(destination);
     listed.push(
+      // List pages, not leaf actions: promote action+href rows to navigation.
       result.type === "action" && result.href
         ? pickResultForDestination(band, result.href)
         : result,

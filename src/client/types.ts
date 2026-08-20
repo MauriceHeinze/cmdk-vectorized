@@ -5,6 +5,10 @@ import type {
   ExecuteAICommandContext,
 } from "../core/command-types";
 
+/**
+ * Debounced vector search against `endpoint`.
+ * Default `minConfidence` is 0.7; results without `score` are kept.
+ */
 export type UseAICommandSearchOptions = {
   endpoint: string;
   debounceMs?: number;
@@ -15,6 +19,7 @@ export type UseAICommandSearchOptions = {
   fetcher?: typeof fetch;
   transformResponse?: (data: unknown) => CommandSearchResult[];
   initialResults?: CommandSearchResult[];
+  /** When true, still GET the endpoint for an empty query (e.g. default list). */
   searchOnEmptyQuery?: boolean;
 };
 
@@ -28,6 +33,7 @@ export type UseAICommandSearchResult = {
   refetch: () => Promise<void>;
 };
 
+/** Search options plus host `navigate` / `actions` for `execute`. */
 export type UseAICommandOptions = UseAICommandSearchOptions & ExecuteAICommandContext;
 
 export type UseAICommandResult = UseAICommandSearchResult & {
@@ -42,10 +48,19 @@ export type CommandVoiceStatus =
   | "executing"
   | "error";
 
+/**
+ * Voice auto-route after search.
+ * `"single"` (default): execute when the peer band agrees on one page.
+ * `"always"` / `true`: top page. `"never"` / `false`: always list.
+ */
 export type VoiceAutoExecute = boolean | "single" | "always" | "never";
 export type VoiceDecision = "pending" | "executed" | "ambiguous" | "empty" | "error";
 export type CommandVoiceShortcut = "mod+m" | false;
 
+/**
+ * Web Speech plus the same search endpoint and execute context.
+ * Voice `minConfidence` defaults to 0.6 (lower than typed search).
+ */
 export type UseCommandVoiceOptions = ExecuteAICommandContext &
   Pick<
     UseAICommandSearchOptions,
@@ -54,8 +69,11 @@ export type UseCommandVoiceOptions = ExecuteAICommandContext &
     lang?: string;
     maxResults?: number;
     autoExecute?: VoiceAutoExecute;
+    /** Max score distance from the top hit to stay in the peer band. Default 0.15. */
     peerGap?: number;
+    /** Neighbor cliff that ends the peer band. Default 0.05. */
     stepGap?: number;
+    /** Cap for the ambiguous-result list. Default 3. */
     voiceListLimit?: number;
     shortcut?: CommandVoiceShortcut;
     onShortcut?: () => void;
@@ -78,6 +96,7 @@ export type UseCommandVoiceResult = {
 
 export type CommandVoiceRenderProps = UseCommandVoiceResult;
 
+/** Pass `children` for a custom UI; otherwise a default button + list is rendered. */
 export type CommandVoiceProps = UseCommandVoiceOptions & {
   children?: (props: UseCommandVoiceResult) => ReactNode;
   labels?: {
@@ -96,6 +115,10 @@ export type CommandVoiceProps = UseCommandVoiceOptions & {
 export type PaletteMode = "text" | "voice";
 export type PaletteOpenShortcut = "mod+k" | false;
 
+/**
+ * Drop-in / headless palette controller.
+ * Default shortcuts: ⌘/Ctrl+K text, ⌘/Ctrl+M voice.
+ */
 export type UseAICommandPaletteOptions = UseAICommandOptions &
   Pick<
     UseCommandVoiceOptions,
@@ -128,6 +151,7 @@ export type AICommandPaletteClassNames = Partial<Record<
   string
 >>;
 
+/** Styled drop-in palette. CSS is scoped to `.cmdk-ai` when using `cmdk-vectorized/styles.css`. */
 export type AICommandPaletteProps = UseAICommandPaletteOptions & {
   placeholder?: string;
   voiceResultsHeading?: string;

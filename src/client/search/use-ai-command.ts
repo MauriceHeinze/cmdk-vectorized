@@ -6,6 +6,10 @@ import type { UseAICommandOptions, UseAICommandResult } from "../types";
 import { useAICommandSearch } from "./use-ai-command-search";
 import { useLatest } from "../shared/hooks/use-latest";
 
+/**
+ * Headless search + execute for a custom cmdk UI.
+ * Pair with `<Command shouldFilter={false}>`. `execute` runs `navigate` or `actions[actionKey]`.
+ */
 export function useAICommand(options: UseAICommandOptions): UseAICommandResult {
   const search = useAICommandSearch(options);
   const executionContextRef = useLatest(options);

@@ -16,6 +16,11 @@ function modifierKey() {
     : "Ctrl";
 }
 
+/**
+ * Styled drop-in command palette (text + voice).
+ * Ranking comes from `endpoint`; cmdk filtering is off (`shouldFilter={false}`).
+ * Styles are scoped to `.cmdk-ai`.
+ */
 export function AICommandPalette({
   placeholder = "Search documentation…",
   voiceResultsHeading = "Top results:",
@@ -51,6 +56,7 @@ export function AICommandPalette({
     ? palette.voice.results
     : textResults;
   const listKey = activeResults.map((result) => result.id).join("\0");
+  // cmdk keeps a stale value when the list is replaced; pin to the new first item.
   const selectedValue = selection.listKey === listKey
     ? selection.value
     : activeResults[0]?.id ?? "";
@@ -80,7 +86,7 @@ export function AICommandPalette({
         role="dialog"
         aria-modal="true"
         aria-label="Command palette"
-        shouldFilter={false}
+        shouldFilter={false} // ranking is server-side; do not re-filter by title
         loop
         value={selectedValue}
         onValueChange={(value) => setSelection({ listKey, value })}

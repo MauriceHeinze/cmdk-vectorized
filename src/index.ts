@@ -1,3 +1,9 @@
+/*
+ * cmdk-vectorized — vector-ranked command palette, not client-side cmdk filtering.
+ * Drop-in: `AICommandPalette`. Headless: `useAICommand` + `<Command shouldFilter={false}>`.
+ */
+
+/** Re-export of `cmdk`. Headless UIs must render `<Command shouldFilter={false}>`. */
 export { Command } from "cmdk";
 
 export { AICommandPalette } from "./client/palette/ai-command-palette";

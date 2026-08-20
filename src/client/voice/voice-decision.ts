@@ -9,6 +9,14 @@ import {
   sortByScore,
 } from "./voice-peer-band";
 
+/*
+ * Voice routing after STT + vector search.
+ *
+ * Policy: auto-execute when one destination is clear (`autoExecute: "single"`);
+ * otherwise return a short list. Scoring lives in `voice-peer-band.ts`.
+ * This module does not call `navigate` — it only returns `shouldExecute`.
+ */
+
 export type ResolveVoiceDecisionInput = {
   results: CommandSearchResult[];
   minConfidence: number;
@@ -72,6 +80,7 @@ function listDecision(
   };
 }
 
+/** Decide auto-execute vs list. Does not navigate. */
 export function resolveVoiceDecision(
   input: ResolveVoiceDecisionInput,
 ): ResolvedVoiceDecision {
@@ -95,6 +104,7 @@ export function resolveVoiceDecision(
       : listDecision(band, input.voiceListLimit);
   }
 
+  // `single`: one shared page destination in the band is enough to auto-route.
   if (destinations.length === 1) {
     return executeDecision(band, destinations[0]!);
   }

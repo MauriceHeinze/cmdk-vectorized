@@ -2,6 +2,11 @@ import type { UseCommandVoiceOptions } from "../types";
 import { createCommandSearchClient } from "../search/search-client";
 import { resolveVoiceDecision } from "./voice-decision";
 
+/*
+ * Runs the command-search endpoint for a transcript, then `resolveVoiceDecision`.
+ * Voice defaults (`minConfidence` 0.6, `maxResults` 5) differ from typed search.
+ */
+
 const DEFAULTS = {
   maxResults: 5,
   minConfidence: 0.6,

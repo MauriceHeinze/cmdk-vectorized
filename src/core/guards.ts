@@ -1,5 +1,10 @@
 import type { CommandSearchResult } from "./command-types";
 
+/*
+ * Validates `{ results: CommandSearchResult[] }` from the search endpoint.
+ * One invalid row fails the whole request; the search hook surfaces that as `error`.
+ */
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }

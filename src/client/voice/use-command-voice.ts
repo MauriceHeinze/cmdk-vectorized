@@ -38,6 +38,11 @@ function toError(error: unknown) {
   return error instanceof Error ? error : new Error("Voice command failed.");
 }
 
+/**
+ * Web Speech → the same search endpoint → auto-execute or a short list.
+ * Default `autoExecute: "single"`: one clear page destination navigates;
+ * multiple destinations stay as `status: "results"`.
+ */
 export function useCommandVoice(
   options: UseCommandVoiceOptions,
 ): UseCommandVoiceResult {
@@ -74,6 +79,7 @@ export function useCommandVoice(
     const query = rawQuery.trim();
     if (!query || submittedRef.current) return;
 
+    // `onresult` (final) and `onend` can both see the same transcript.
     submittedRef.current = true;
     cancelRequest();
     const controller = new AbortController();
@@ -138,6 +144,7 @@ export function useCommandVoice(
           recognitionRef.current = null;
           if (recognitionErrorRef.current) return;
           const transcript = transcriptRef.current.trim();
+          // Fallback when the utterance ended without a `isFinal` result event.
           if (transcript && !submittedRef.current) void runSearch(transcript);
           if (!transcript && !submittedRef.current) {
             patchState({ open: false, status: "idle", decision: "pending" });

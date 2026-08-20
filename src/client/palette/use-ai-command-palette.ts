@@ -10,6 +10,10 @@ import { useCommandVoice } from "../voice/use-command-voice";
 import { useGlobalShortcut } from "../shared/hooks/use-global-shortcut";
 import { useLatest } from "../shared/hooks/use-latest";
 
+/**
+ * Palette shell: text vs voice, open state, ⌘K / ⌘M.
+ * Voice auto-execute closes the shell; this hook owns palette UI state, not ranking.
+ */
 export function useAICommandPalette(
   options: UseAICommandPaletteOptions,
 ): UseAICommandPaletteResult {
@@ -61,9 +65,10 @@ export function useAICommandPalette(
     peerGap: options.peerGap,
     stepGap: options.stepGap,
     voiceListLimit: options.voiceListLimit,
-    shortcut: false,
+    shortcut: false, // palette owns ⌘K/⌘M; the voice hook must not bind a second listener
     navigate: async (href) => {
       await navigateRef.current(href);
+      // Voice execute should dismiss the palette, not leave it in voice mode.
       setMode("text");
       setOpen(false);
       clearRef.current();

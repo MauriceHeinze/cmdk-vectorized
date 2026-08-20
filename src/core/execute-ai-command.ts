@@ -5,6 +5,11 @@ import type {
   NavigationCommandResult,
 } from "./command-types";
 
+/*
+ * Host-owned command execution. Navigation must resolve to an in-app path
+ * (`/` prefix). This module never talks to the search endpoint.
+ */
+
 function createNavigationHrefError(result: NavigationCommandResult) {
   return new Error(`Navigation command "${result.id}" must use an href starting with "/".`);
 }
@@ -23,6 +28,11 @@ function resolveAction(
   return actions?.[result.actionKey];
 }
 
+/**
+ * Runs a ranked command: `navigate(href)` or `actions[actionKey]()`.
+ * After `resolveHref`, navigation paths must start with `/`. Failures call
+ * `onUnknown*` / `onExecuteError` instead of rejecting to the caller.
+ */
 export async function executeAICommand(
   result: CommandSearchResult,
   context: ExecuteAICommandContext,
@@ -36,6 +46,7 @@ export async function executeAICommand(
         return;
       }
 
+      // Open-redirect guard: only in-app paths after resolveHref.
       if (!href.startsWith("/")) {
         throw createNavigationHrefError(result);
       }

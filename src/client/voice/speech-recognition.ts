@@ -1,3 +1,8 @@
+/*
+ * Thin adapter over `SpeechRecognition` / `webkitSpeechRecognition`.
+ * `continuous` is off: one utterance per start, then `onend`.
+ */
+
 type SpeechRecognitionResultLike = {
   isFinal: boolean;
   readonly [index: number]: { transcript: string } | undefined;
@@ -82,7 +87,7 @@ export function createSpeechRecognition(
   if (!Recognition) return null;
 
   const recognition = new Recognition();
-  recognition.continuous = false;
+  recognition.continuous = false; // one utterance per start; `onend` closes the session
   recognition.interimResults = true;
   recognition.lang = lang;
   recognition.onresult = (event) => {

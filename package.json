@@ -4,8 +4,7 @@
   "description": "Vector-database search hooks, optional styled command palette, and speech-to-text voice input for cmdk. Weaviate tooling and agentic intent-map CLI.",
   "type": "module",
   "bin": {
-    "cmdk-vectorized": "dist/cli.js",
-    "cmdk-vectorized-agent": "dist/cli.js"
+    "cmdk-vectorized": "dist/cli.js"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -62,34 +61,37 @@
     "skills"
   ],
   "scripts": {
-    "build": "tsup && tsc --emitDeclarationOnly --outDir dist && cp src/styles/palette.css dist/styles.css",
+    "build": "tsup && tsc --emitDeclarationOnly --outDir dist && cp src/client/styles/palette.css dist/styles.css",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --environment jsdom",
-    "lint": "tsc --noEmit",
+    "lint": "eslint src",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build",
     "example:redux:dev": "pnpm --dir examples/settings-demo-redux dev",
     "example:redux:typecheck": "pnpm --dir examples/settings-demo-redux typecheck",
-    "example:redux:build": "pnpm --dir examples/settings-demo-redux build",
-    "example:plain:dev": "pnpm --dir examples/settings-demo-plain dev",
-    "example:plain:typecheck": "pnpm --dir examples/settings-demo-plain typecheck",
-    "example:plain:build": "pnpm --dir examples/settings-demo-plain build"
+    "example:redux:build": "pnpm --dir examples/settings-demo-redux build"
   },
   "peerDependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "dependencies": {
     "cmdk": "^1.1.1"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@testing-library/react": "^16.3.0",
     "@types/node": "^24.12.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "eslint": "^10.3.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.6.0",
     "jsdom": "^27.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tsup": "^8.5.0",
     "typescript": "~6.0.2",
+    "typescript-eslint": "^8.59.2",
     "vitest": "^3.2.4"
   },
   "pnpm": {

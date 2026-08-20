@@ -6,12 +6,12 @@ cmdk-vectorized adds React hooks and server helpers that query a vector database
 
 ## Docs
 
-- [README](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/README.md): install, quick start, CLI
+- [README](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/README.md): install, quick start
 - [LLM guide](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/docs/llm-guide.md): dense reference for agents
 - [API docs](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/docs/api.md): hooks, result contract, server handler
 - [Local Weaviate playbook](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/docs/local-weaviate.md): copy-paste local dev setup
 - [AGENTS.md](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/AGENTS.md): integration checklist for coding agents
-- [Integration skill](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/skills/cmdk-vectorized-integrate/SKILL.md): install with `npx cmdk-vectorized integrate`
+- [Integration skill](https://github.com/MauriceHeinze/cmdk-vectorized/blob/main/skills/cmdk-vectorized-integrate/SKILL.md): install with `npx cmdk-vectorized-cli integrate`
 
 ## Live demo
 
@@ -30,5 +30,5 @@ cmdk-vectorized adds React hooks and server helpers that query a vector database
 
 ```bash
 npm install cmdk-vectorized cmdk react react-dom
-npx cmdk-vectorized integrate
+npx cmdk-vectorized-cli integrate
 ```

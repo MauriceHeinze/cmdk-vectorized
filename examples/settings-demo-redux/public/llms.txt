@@ -17,5 +17,5 @@ This app demonstrates cmdk-vectorized: a Redux-backed settings shell where the c
 
 ```bash
 npm install cmdk-vectorized cmdk react react-dom
-npx cmdk-vectorized integrate
+npx cmdk-vectorized-cli integrate
 ```

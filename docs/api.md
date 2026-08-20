@@ -28,7 +28,7 @@ Server code:
 import { createCommandSearchHandler } from "cmdk-vectorized/server";
 ```
 
-Tooling:
+Intent-map CLI and Weaviate upload:
 
 ```ts
 import {
@@ -36,7 +36,7 @@ import {
   uploadIntentMap,
   validateIntentMap,
   intentMapToCsv,
-} from "cmdk-vectorized/tooling";
+} from "cmdk-vectorized-cli";
 ```
 
 Do not import from `dist/*` or `src/*` (except the documented `styles.css` export).
@@ -266,7 +266,7 @@ export const GET = createCommandSearchHandler({
 
 ## Tooling exports
 
-The tooling subpath exposes:
+Intent-map and Weaviate ingest live in **`cmdk-vectorized-cli`**:
 
 - `installAgentWorkflows`
 - `uploadIntentMap`

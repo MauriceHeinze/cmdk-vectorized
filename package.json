@@ -1,11 +1,8 @@
 {
   "name": "cmdk-vectorized",
   "version": "0.2.0",
-  "description": "Vector-database search hooks, optional styled command palette, and speech-to-text voice input for cmdk. Weaviate tooling and agentic intent-map CLI.",
+  "description": "Vector-database search hooks, optional styled command palette, and speech-to-text voice input for cmdk.",
   "type": "module",
-  "bin": {
-    "cmdk-vectorized": "dist/cli.js"
-  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -39,11 +36,6 @@
       "require": "./dist/index.cjs"
     },
     "./styles.css": "./dist/styles.css",
-    "./tooling": {
-      "types": "./dist/tooling.d.ts",
-      "import": "./dist/tooling.js",
-      "require": "./dist/tooling.cjs"
-    },
     "./server": {
       "types": "./dist/server.d.ts",
       "import": "./dist/server.js",

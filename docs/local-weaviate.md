@@ -157,7 +157,7 @@ node server.mjs
 Install agent workflows:
 
 ```bash
-npx cmdk-vectorized init
+npx cmdk-vectorized-cli init
 ```
 
 Generate `public/intent-map.json`, then upload it:
@@ -165,7 +165,7 @@ Generate `public/intent-map.json`, then upload it:
 ```bash
 WEAVIATE_URL="https://example.weaviate.cloud" \
 WEAVIATE_API_KEY="..." \
-npx cmdk-vectorized upload
+npx cmdk-vectorized-cli upload
 ```
 
 ## Notes

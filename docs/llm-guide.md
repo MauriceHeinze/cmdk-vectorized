@@ -9,7 +9,7 @@ Dense reference for coding agents integrating vector-database search into `cmdk`
 - **Optional styled drop-in** (`AICommandPalette` + scoped `styles.css`)
 - **Server helper** (`createCommandSearchHandler`) for standard HTTP handlers
 - **Optional speech-to-text** via `CommandVoice` / `useCommandVoice` (browser Web Speech API)
-- **CLI** for agent-generated intent maps and Weaviate upload
+- Use **cmdk-vectorized-cli** for agent-generated intent maps and Weaviate upload
 
 ## What this package is not
 
@@ -76,7 +76,9 @@ Optional default look for `AICommandPalette`. All rules under `.cmdk-ai`.
 |--------|----------|
 | `createCommandSearchHandler` | Building `GET` handlers for search endpoints |
 
-### `cmdk-vectorized/tooling`
+### `cmdk-vectorized-cli`
+
+Intent maps and Weaviate upload are a separate package. See that package for `init` / `integrate` / `upload`.
 
 | Export | Use when |
 |--------|----------|
@@ -177,16 +179,16 @@ Speech is transcribed client-side, then sent to the same vector search endpoint 
 
 ## Weaviate setup
 
-1. `npx cmdk-vectorized init` — agent generates `public/intent-map.json`
-2. `WEAVIATE_URL=... WEAVIATE_API_KEY=... npx cmdk-vectorized upload`
+1. `npx cmdk-vectorized-cli init` — agent generates `public/intent-map.json`
+2. `WEAVIATE_URL=... WEAVIATE_API_KEY=... npx cmdk-vectorized-cli upload`
 3. Point your search handler at Weaviate (see [local-weaviate.md](./local-weaviate.md))
 
 ## Agent skills
 
 | Command | Skill installed |
 |---------|-----------------|
-| `npx cmdk-vectorized integrate` | How to wire vector search + optional voice into an app |
-| `npx cmdk-vectorized init` | How to scan an app and generate `public/intent-map.json` |
+| `npx cmdk-vectorized-cli integrate` | How to wire vector search + optional voice into an app |
+| `npx cmdk-vectorized-cli init` | How to scan an app and generate `public/intent-map.json` |
 
 ## Live demo
 

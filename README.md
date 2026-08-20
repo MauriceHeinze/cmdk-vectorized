@@ -98,10 +98,12 @@ Hosted SupaSearch users can point `endpoint` at the SupaSearch API and pass a pu
 
 ## Intent tooling
 
+Intent maps, agent skills, and Weaviate upload live in a separate package: **`cmdk-vectorized-cli`**.
+
 ```bash
-npx cmdk-vectorized integrate
-npx cmdk-vectorized init
-WEAVIATE_URL="..." WEAVIATE_API_KEY="..." npx cmdk-vectorized upload
+npx cmdk-vectorized-cli integrate
+npx cmdk-vectorized-cli init
+WEAVIATE_URL="..." WEAVIATE_API_KEY="..." npx cmdk-vectorized-cli upload
 ```
 
 - `integrate` installs concise integration guidance for coding agents.
@@ -114,11 +116,10 @@ WEAVIATE_URL="..." WEAVIATE_API_KEY="..." npx cmdk-vectorized upload
 src/client   React hooks, palette, speech adapter, voice decisions
 src/core     Result contracts, validation, command execution
 src/server   Framework-neutral Request -> Response helper
-src/tooling  Intent validation, CSV, workflows, Weaviate upload
 examples/settings-demo-redux   deployed end-to-end demo
 ```
 
-The root, `/server`, and `/tooling` entry points keep browser, server, and Node-only code separate.
+The root and `/server` entry points keep browser and server code separate.
 
 ## Design decisions
 

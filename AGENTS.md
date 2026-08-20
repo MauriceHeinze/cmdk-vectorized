@@ -41,9 +41,9 @@ typed query or speech-to-text transcript
 2. Create a search endpoint (use `createCommandSearchHandler` from `cmdk-vectorized/server`) **or** point at SupaSearch with a publishable key in `headers`
 3. **Either** mount `<AICommandPalette endpoint navigate … />` **or** wire `useAICommand` + `<Command shouldFilter={false}>`
 4. Optional voice: drop-in includes ⌘M; headless uses `useCommandVoice` / `useAICommandPalette`
-5. Optional: `npx cmdk-vectorized init` → `public/intent-map.json`, then `npx cmdk-vectorized upload` to seed Weaviate
+5. Optional: `npx cmdk-vectorized-cli init` → `public/intent-map.json`, then `npx cmdk-vectorized-cli upload` to seed Weaviate
 
-Run `npx cmdk-vectorized integrate` to install a detailed integration skill for Codex, Claude, and OpenCode.
+Run `npx cmdk-vectorized-cli integrate` to install a detailed integration skill for Codex, Claude, and OpenCode.
 
 ## Imports
 
@@ -64,20 +64,19 @@ import {
 
 // Server
 import { createCommandSearchHandler } from "cmdk-vectorized/server";
-
-// Tooling
-import { installAgentWorkflows, installIntegrationSkill, uploadIntentMap, validateIntentMap } from "cmdk-vectorized/tooling";
 ```
 
 Do not import from `dist/*` or `src/*` (except documented CSS: `cmdk-vectorized/styles.css`).
 
-## CLI
+Intent-map CLI, Weaviate upload, and agent skill install live in **`cmdk-vectorized-cli`**.
+
+## CLI (`cmdk-vectorized-cli`)
 
 | Command | Purpose |
 |---------|---------|
-| `npx cmdk-vectorized integrate` | Install integration skill for coding agents |
-| `npx cmdk-vectorized init` | Install intent-map generator skill; produces `public/intent-map.json` |
-| `npx cmdk-vectorized upload` | Validate intent map and upload to Weaviate |
+| `npx cmdk-vectorized-cli integrate` | Install integration skill for coding agents |
+| `npx cmdk-vectorized-cli init` | Install intent-map generator skill; produces `public/intent-map.json` |
+| `npx cmdk-vectorized-cli upload` | Validate intent map and upload to Weaviate |
 
 Upload requires `WEAVIATE_URL` and `WEAVIATE_API_KEY`.
 

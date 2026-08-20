@@ -1,5 +1,5 @@
-import type { CommandSearchResult } from "../core/command-types";
-import { normalizeCommandSearchResponse } from "../core/guards";
+import type { CommandSearchResult } from "../../core/command-types";
+import { normalizeCommandSearchResponse } from "../../core/guards";
 
 type SearchClientConfig = {
   endpoint: string;

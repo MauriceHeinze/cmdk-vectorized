@@ -1,12 +1,12 @@
 export { Command } from "cmdk";
 
-export { AICommandPalette } from "./client/ai-command-palette";
-export { CommandVoice } from "./client/command-voice";
-export { useAICommand } from "./client/use-ai-command";
-export { useAICommandPalette } from "./client/use-ai-command-palette";
-export { useAICommandSearch } from "./client/use-ai-command-search";
-export { useCommandVoice } from "./client/use-command-voice";
-export { VoiceWaveform } from "./client/voice-waveform";
+export { AICommandPalette } from "./client/palette/ai-command-palette";
+export { CommandVoice } from "./client/voice/command-voice";
+export { useAICommand } from "./client/search/use-ai-command";
+export { useAICommandPalette } from "./client/palette/use-ai-command-palette";
+export { useAICommandSearch } from "./client/search/use-ai-command-search";
+export { useCommandVoice } from "./client/voice/use-command-voice";
+export { VoiceWaveform } from "./client/voice/voice-waveform";
 export { executeAICommand } from "./core/execute-ai-command";
 
 export type {

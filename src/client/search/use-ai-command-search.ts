@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import type { CommandSearchResult } from "../core/command-types";
+import type { CommandSearchResult } from "../../core/command-types";
 import { createCommandSearchClient, isAbortError } from "./search-client";
 import type {
   UseAICommandSearchOptions,
   UseAICommandSearchResult,
-} from "./types";
-import { useLatest } from "./use-latest";
+} from "../types";
+import { useLatest } from "../hooks/use-latest";
 
 const DEFAULTS = {
   debounceMs: 300,

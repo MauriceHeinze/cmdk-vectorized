@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import type { CommandSearchResult } from "../core/command-types";
-import { executeAICommand } from "../core/execute-ai-command";
-import { isAbortError } from "./search-client";
+import type { CommandSearchResult } from "../../core/command-types";
+import { executeAICommand } from "../../core/execute-ai-command";
+import { isAbortError } from "../search/search-client";
 import {
   createSpeechRecognition,
   speechRecognitionSupported,
@@ -12,9 +12,9 @@ import {
 import type {
   UseCommandVoiceOptions,
   UseCommandVoiceResult,
-} from "./types";
-import { useGlobalShortcut } from "./use-global-shortcut";
-import { useLatest } from "./use-latest";
+} from "../types";
+import { useGlobalShortcut } from "../hooks/use-global-shortcut";
+import { useLatest } from "../hooks/use-latest";
 import { searchVoiceCommand } from "./voice-search";
 
 const DEFAULT_LANGUAGE = "en-US";

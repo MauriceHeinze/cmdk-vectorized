@@ -1,5 +1,5 @@
-import type { CommandSearchResult } from "../core/command-types";
-import type { VoiceAutoExecute, VoiceDecision } from "./types";
+import type { CommandSearchResult } from "../../core/command-types";
+import type { VoiceAutoExecute, VoiceDecision } from "../types";
 import {
   buildPeerBand,
   destinationsIn,

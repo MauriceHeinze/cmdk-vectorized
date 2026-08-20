@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import type { CommandSearchResult } from "../core/command-types";
+import type { CommandSearchResult } from "../../core/command-types";
 import { resolveVoiceDecision } from "./voice-decision";
 
 describe("resolveVoiceDecision", () => {

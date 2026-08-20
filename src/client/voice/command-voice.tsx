@@ -1,4 +1,4 @@
-import type { CommandVoiceProps } from "./types";
+import type { CommandVoiceProps } from "../types";
 import { useCommandVoice } from "./use-command-voice";
 
 export function CommandVoice({ children, labels, buttonProps, ...options }: CommandVoiceProps) {

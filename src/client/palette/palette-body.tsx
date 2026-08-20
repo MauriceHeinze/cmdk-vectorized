@@ -1,12 +1,12 @@
 import { Command } from "cmdk";
 
-import type { CommandSearchResult } from "../core/command-types";
+import type { CommandSearchResult } from "../../core/command-types";
 import type {
   AICommandPaletteClassNames,
   UseAICommandResult,
   UseCommandVoiceResult,
-} from "./types";
-import { VoiceWaveform } from "./voice-waveform";
+} from "../types";
+import { VoiceWaveform } from "../voice/voice-waveform";
 
 function classes(...values: Array<string | undefined>) {
   return values.filter(Boolean).join(" ");

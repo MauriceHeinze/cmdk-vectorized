@@ -4,11 +4,11 @@ import type {
   PaletteMode,
   UseAICommandPaletteOptions,
   UseAICommandPaletteResult,
-} from "./types";
-import { useAICommand } from "./use-ai-command";
-import { useCommandVoice } from "./use-command-voice";
-import { useGlobalShortcut } from "./use-global-shortcut";
-import { useLatest } from "./use-latest";
+} from "../types";
+import { useAICommand } from "../search/use-ai-command";
+import { useCommandVoice } from "../voice/use-command-voice";
+import { useGlobalShortcut } from "../hooks/use-global-shortcut";
+import { useLatest } from "../hooks/use-latest";
 
 export function useAICommandPalette(
   options: UseAICommandPaletteOptions,

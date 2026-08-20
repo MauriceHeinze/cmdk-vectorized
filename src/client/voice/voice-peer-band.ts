@@ -1,4 +1,4 @@
-import type { CommandSearchResult } from "../core/command-types";
+import type { CommandSearchResult } from "../../core/command-types";
 
 export function resultDestination(result: CommandSearchResult): string | null {
   return result.type === "navigation" ? result.href : result.href ?? null;

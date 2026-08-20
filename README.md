@@ -113,8 +113,11 @@ WEAVIATE_URL="..." WEAVIATE_API_KEY="..." npx cmdk-vectorized-cli upload
 ## Repository layout
 
 ```txt
-src/client   React hooks, palette, speech adapter, voice decisions
-src/core     Result contracts, validation, command execution
+src/client/search    text search hooks + HTTP client
+src/client/voice     speech, voice decisions, CommandVoice
+src/client/palette   drop-in AICommandPalette
+src/client/hooks     shared React helpers
+src/core             Result contracts, validation, command execution
 src/search-handler   Framework-neutral Request -> Response helper
 examples/settings-demo-redux   deployed end-to-end demo
 ```

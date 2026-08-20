@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Command } from "cmdk";
 
 import { TextPaletteBody, VoicePaletteBody } from "./palette-body";
-import type { AICommandPaletteProps } from "./types";
+import type { AICommandPaletteProps } from "../types";
 import { useAICommandPalette } from "./use-ai-command-palette";
 
 function classes(...values: Array<string | undefined>) {

@@ -1,5 +1,5 @@
-import type { UseCommandVoiceOptions } from "./types";
-import { createCommandSearchClient } from "./search-client";
+import type { UseCommandVoiceOptions } from "../types";
+import { createCommandSearchClient } from "../search/search-client";
 import { resolveVoiceDecision } from "./voice-decision";
 
 const DEFAULTS = {

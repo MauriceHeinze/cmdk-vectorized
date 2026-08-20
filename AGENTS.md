@@ -101,7 +101,7 @@ pnpm example:plain:dev   # settings shell without cmdk
 Examples:
 
 - `examples/settings-demo-redux` — wired command palette + Weaviate search
-- `examples/settings-demo-plain` — clean settings shell without cmdk (install-prompt / integrate skill sandbox)
+- `examples/settings-demo-plain` — clean settings shell without cmdk (source app for cmdk-integration-test)
 
 ## Constraints for consumer apps
 

@@ -143,7 +143,7 @@ npx cmdk-vectorized upload
 
 | Example | Description |
 |---------|-------------|
-| [`examples/settings-demo-plain`](./examples/settings-demo-plain) | **Clean host** — no cmdk; use to test SupaSearch install prompt |
+| [`examples/settings-demo-plain`](./examples/settings-demo-plain) | **Clean host** — settings shell without cmdk (source for cmdk-integration-test) |
 | [`examples/settings-demo-redux`](./examples/settings-demo-redux) | **Wired demo** — custom `CommandDialog` + smart `useCommandVoice` |
 
 ```bash

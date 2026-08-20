@@ -3,3 +3,11 @@ dist
 coverage
 .vercel
 .env*
+
+# Local agent skill installs (npx cmdk-saas install)
+.agents/
+.claude/
+.codex/
+.opencode/
+.grok/skills/
+.env.cmdk

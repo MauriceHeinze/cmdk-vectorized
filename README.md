@@ -1,37 +1,27 @@
 # cmdk-vectorized
 
-Vector-database search for `cmdk` command palettes, with optional speech-to-text voice input and an optional styled drop-in palette.
+Vector search for React command palettes, from intent discovery to ranked UI results.
 
-Pick your integration depth:
+`cmdk-vectorized` keeps matching on the backend and execution in the host app. It supports an existing `cmdk` UI, a styled drop-in palette, and optional browser speech input.
 
-| Track | Use when… | What you import |
-|-------|-----------|-----------------|
-| **Drop-in** | Greenfield / want UI in minutes | `AICommandPalette` + `cmdk-vectorized/styles.css` |
-| **Headless** | You already have `cmdk` (or custom UI) | `useAICommand` / `useCommandVoice` + `Command` |
-
-Both tracks hit the same search endpoint. Voice uses the **browser Web Speech API**, then the same ranking API as typing. Voice **routes straight** when one intent is clear; it **shows a short list only when multiple intents are plausible**.
-
-Styles for the drop-in are **scoped under `.cmdk-ai`** and never restyle the rest of your app. Headless consumers never import CSS.
-
-<a href="https://www.youtube.com/watch?v=JwHRA-bXtiA" target="_blank" rel="noopener noreferrer">
+<a href="https://www.youtube.com/watch?v=JwHRA-bXtiA">
   <img src="docs/demo-thumbnail.jpg" alt="cmdk-vectorized demo" width="100%">
 </a>
 
-In the **[video demo](https://www.youtube.com/watch?v=JwHRA-bXtiA)** above, a vague typed query and speech-to-text voice input both hit the same vector search endpoint. Ranked results render in `cmdk`, and selecting one triggers app-owned navigation or an action handler.
+[Live demo](https://settings-demo-redux.vercel.app) · [API reference](./docs/api.md) · [Local Weaviate setup](./docs/local-weaviate.md)
 
-Try it yourself here 👉 **[Live demo](https://settings-demo-redux.vercel.app)**
+## How it fits together
 
-[API docs](./docs/api.md) · [AGENTS.md](./AGENTS.md) · [LLM guide](./docs/llm-guide.md)
+```txt
+app routes and actions
+  -> intent-map.json (optional CLI workflow)
+  -> Weaviate or SupaSearch
+  -> GET /api/command-search?q=...&limit=...
+  -> useAICommand / useCommandVoice
+  -> app-owned navigate(href) or actions[actionKey]()
+```
 
-## Looking for…
-
-| You want to… | This package provides… |
-|--------------|------------------------|
-| Ship a palette in ~5 lines | `AICommandPalette` + optional `styles.css` |
-| Add vector search to existing `cmdk` | `useAICommand` + `shouldFilter={false}` |
-| Add voice (Web Speech) on top | `useCommandVoice` / `useAICommandPalette` |
-| Use Weaviate for semantic command search | CLI `init` + `upload` for intent maps |
-| Hosted multi-tenant search | Point `endpoint` + `Authorization: Bearer` at SupaSearch |
+The same endpoint serves typed and transcribed queries. `cmdk` local filtering stays off so backend ranking is preserved.
 
 ## Install
 
@@ -39,35 +29,28 @@ Try it yourself here 👉 **[Live demo](https://settings-demo-redux.vercel.app)*
 npm install cmdk-vectorized cmdk react react-dom
 ```
 
-`cmdk` is also re-exported from this package as `Command`.
+React 18 and 19 are supported.
 
-**Requirements:** `react`, `react-dom`, `cmdk`, and a backend search endpoint. Weaviate is recommended for semantic retrieval.
-
-## Quick start — drop-in
+## Drop-in palette
 
 ```tsx
 import { AICommandPalette } from "cmdk-vectorized";
-import "cmdk-vectorized/styles.css"; // optional default look (scoped to .cmdk-ai)
+import "cmdk-vectorized/styles.css";
 
 export function AppCommands() {
   return (
     <AICommandPalette
       endpoint="/api/command-search"
-      navigate={(href) => {
-        window.location.href = href;
-      }}
-      actions={{
-        "team.invite": () => openInviteModal(),
-      }}
-      placeholder="Search documentation…"
+      navigate={(href) => window.location.assign(href)}
+      actions={{ "team.invite": () => openInviteModal() }}
     />
   );
 }
 ```
 
-Shortcuts: **⌘K** text mode · **⌘M** voice mode · **Esc** close. Theme via CSS variables on the root (`--cmdk-ai-bg`, `--cmdk-ai-fg`, …).
+The default shortcuts are ⌘/Ctrl+K for text and ⌘/Ctrl+M for voice. Styles are scoped under `.cmdk-ai`.
 
-## Quick start — headless (existing cmdk)
+## Existing `cmdk` UI
 
 ```tsx
 import { Command, useAICommand } from "cmdk-vectorized";
@@ -75,29 +58,18 @@ import { Command, useAICommand } from "cmdk-vectorized";
 export function CommandMenu() {
   const command = useAICommand({
     endpoint: "/api/command-search",
-    navigate: (href) => {
-      window.location.href = href;
-    },
-    actions: {
-      "team.invite": () => openInviteModal(),
-    },
+    navigate: (href) => router.push(href),
   });
 
   return (
     <Command shouldFilter={false}>
-      <Command.Input
-        value={command.query}
-        onValueChange={command.setQuery}
-        placeholder="Search commands..."
-      />
+      <Command.Input value={command.query} onValueChange={command.setQuery} />
       <Command.List>
         {command.results.map((result) => (
           <Command.Item
             key={result.id}
             value={result.id}
-            onSelect={() => {
-              void command.execute(result);
-            }}
+            onSelect={() => void command.execute(result)}
           >
             {result.title}
           </Command.Item>
@@ -108,68 +80,60 @@ export function CommandMenu() {
 }
 ```
 
-Render `<Command shouldFilter={false}>` so `cmdk` does not override vector-database ranking.
+Use `useAICommandSearch` for search state only, `useCommandVoice` for speech, or `useAICommandPalette` for a headless text/voice controller.
 
-For a headless mode controller (text + voice shortcuts without styles), use `useAICommandPalette`.
+## Search endpoint
 
-## Agentic setup
+```ts
+import { createCommandSearchHandler } from "cmdk-vectorized/server";
 
-Install the integration skill for coding agents:
+export const GET = createCommandSearchHandler({
+  search: ({ query, limit }) => searchVectorDatabase(query, limit),
+});
+```
+
+The endpoint returns `{ results: CommandSearchResult[] }`. Navigation results carry `href`; action results carry `actionKey`. The host app owns routing, permissions, actions, and error reporting.
+
+Hosted SupaSearch users can point `endpoint` at the SupaSearch API and pass a publishable Bearer key through `headers`.
+
+## Intent tooling
 
 ```bash
 npx cmdk-vectorized integrate
-```
-
-Generate and upload a command corpus to Weaviate:
-
-```bash
 npx cmdk-vectorized init
+WEAVIATE_URL="..." WEAVIATE_API_KEY="..." npx cmdk-vectorized upload
 ```
+
+- `integrate` installs concise integration guidance for coding agents.
+- `init` installs the intent-map generation workflow.
+- `upload` validates `public/intent-map.json`, writes CSV, and uploads to Weaviate.
+
+## Repository layout
 
 ```txt
-public/intent-map.json
-public/intent-map.csv
+src/client   React hooks, palette, speech adapter, voice decisions
+src/core     Result contracts, validation, command execution
+src/server   Framework-neutral Request -> Response helper
+src/tooling  Intent validation, CSV, workflows, Weaviate upload
+examples/settings-demo-redux   deployed end-to-end demo
 ```
+
+The root, `/server`, and `/tooling` entry points keep browser, server, and Node-only code separate.
+
+## Design decisions
+
+- Vector ranking is backend-owned; this is not an LLM chat abstraction.
+- Results describe intent, while the app owns navigation and side effects.
+- Voice uses the browser Web Speech API and the same result contract as text.
+- Clear voice matches navigate directly; close competing destinations stay visible for selection.
+- Runtime validation covers malformed contracts and failed requests without adding retries, caching, or provider-specific layers.
+
+## Development
 
 ```bash
-WEAVIATE_URL="https://example.weaviate.cloud" \
-WEAVIATE_API_KEY="..." \
-npx cmdk-vectorized upload
+pnpm install
+pnpm check
+pnpm example:redux:dev
 ```
 
-`cmdk-vectorized-agent` still works as a legacy alias.
-
-## Example apps
-
-| Example | Description |
-|---------|-------------|
-| [`examples/settings-demo-plain`](./examples/settings-demo-plain) | **Clean host** — settings shell without cmdk (source for cmdk-integration-test) |
-| [`examples/settings-demo-redux`](./examples/settings-demo-redux) | **Wired demo** — custom `CommandDialog` + smart `useCommandVoice` |
-
-```bash
-npx pnpm@10.12.4 install
-npx pnpm@10.12.4 example:redux:dev   # wired demo
-npx pnpm@10.12.4 example:plain:dev   # baseline app (no palette)
-```
-
-With Weaviate:
-
-```bash
-VITE_WEAVIATE_DATABASE_URL=your_cluster_url \
-VITE_WEAVIATE_API_KEY=your_key_here \
-npx pnpm@10.12.4 example:redux:dev
-```
-
-The example imports the local `src/index.ts` entry, so in-repo changes show up without publishing.
-
-## Documentation
-
-- [API reference](./docs/api.md) — hooks, result contract, server helpers, tooling
-- [Local Weaviate playbook](./docs/local-weaviate.md) — copy-paste local dev setup
-
-## Notes
-
-- `href` values are app-owned. The package does not enforce routing conventions.
-- Placeholder styles like `[workspaceId]`, `:workspaceId`, `{workspaceId}`, or `$workspaceId` are just examples.
-- Use `href` for navigation results and `actionKey` for action results.
-- Weaviate is recommended, not required.
+See [docs/api.md](./docs/api.md) for all options and [docs/llm-guide.md](./docs/llm-guide.md) for the dense integration reference.

@@ -95,13 +95,9 @@ pnpm install
 pnpm build
 pnpm test
 pnpm example:redux:dev   # full cmdk-vectorized demo
-pnpm example:plain:dev   # settings shell without cmdk
 ```
 
-Examples:
-
-- `examples/settings-demo-redux` — wired command palette + Weaviate search
-- `examples/settings-demo-plain` — clean settings shell without cmdk (source app for cmdk-integration-test)
+Example: `examples/settings-demo-redux` is the wired command palette and Weaviate demo.
 
 ## Constraints for consumer apps
 

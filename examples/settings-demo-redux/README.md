@@ -6,7 +6,7 @@ This demo wires **headless** `cmdk-vectorized` into a Redux-backed settings app 
 - `useCommandVoice` + custom `SiriVoiceNavigator` (⌘M)
 - Smart voice routing: single clear intent navigates; multiple → pick from list
 
-For the **styled drop-in** path, see [`settings-demo-plain`](../settings-demo-plain).
+The package README also documents the styled drop-in track.
 
 **Live demo:** https://settings-demo-redux.vercel.app
 

@@ -6,7 +6,7 @@ import type {
   UseAICommandSearchOptions,
   UseAICommandSearchResult,
 } from "../types";
-import { useLatest } from "../hooks/use-latest";
+import { useLatest } from "../shared/hooks/use-latest";
 
 const DEFAULTS = {
   debounceMs: 300,

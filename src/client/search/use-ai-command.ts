@@ -4,7 +4,7 @@ import { executeAICommand } from "../../core/execute-ai-command";
 import type { CommandSearchResult } from "../../core/command-types";
 import type { UseAICommandOptions, UseAICommandResult } from "../types";
 import { useAICommandSearch } from "./use-ai-command-search";
-import { useLatest } from "../hooks/use-latest";
+import { useLatest } from "../shared/hooks/use-latest";
 
 export function useAICommand(options: UseAICommandOptions): UseAICommandResult {
   const search = useAICommandSearch(options);

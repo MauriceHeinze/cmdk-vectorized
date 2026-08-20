@@ -116,13 +116,13 @@ WEAVIATE_URL="..." WEAVIATE_API_KEY="..." npx cmdk-vectorized-cli upload
 src/client/search    text search hooks + HTTP client
 src/client/voice     speech, voice decisions, CommandVoice
 src/client/palette   drop-in AICommandPalette
-src/client/hooks     shared React helpers
+src/client/shared    shared React helpers and palette CSS
 src/core             Result contracts, validation, command execution
 src/search-handler   Framework-neutral Request -> Response helper
 examples/settings-demo-redux   deployed end-to-end demo
 ```
 
-The root and `/search-handler` entry points keep browser code separate from the HTTP helper. `cmdk-vectorized/server` is a compatibility alias for the same helper.
+The root and `/search-handler` entry points keep browser code separate from the HTTP helper.
 
 ## Design decisions
 

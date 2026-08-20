@@ -2,7 +2,7 @@ import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { executeAICommand } from "../../core/execute-ai-command";
-import { createFetchResponse } from "../../test/create-fetch-response";
+import { createFetchResponse } from "../../testing/create-fetch-response";
 import { useAICommand } from "./use-ai-command";
 
 describe("useAICommand", () => {

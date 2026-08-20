@@ -2,7 +2,7 @@ import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import type { CommandSearchResult } from "../../core/command-types";
-import { createFetchResponse } from "../../test/create-fetch-response";
+import { createFetchResponse } from "../../testing/create-fetch-response";
 import { useAICommandSearch } from "./use-ai-command-search";
 
 describe("useAICommandSearch lifecycle", () => {

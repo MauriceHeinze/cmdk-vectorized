@@ -64,7 +64,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         'cmdk-vectorized/styles.css': fileURLToPath(
-          new URL('../../src/client/styles/palette.css', import.meta.url),
+          new URL('../../src/client/shared/styles/palette.css', import.meta.url),
         ),
         'cmdk-vectorized/search-handler': fileURLToPath(
           new URL('../../src/search-handler.ts', import.meta.url),

@@ -7,8 +7,8 @@ import type {
 } from "../types";
 import { useAICommand } from "../search/use-ai-command";
 import { useCommandVoice } from "../voice/use-command-voice";
-import { useGlobalShortcut } from "../hooks/use-global-shortcut";
-import { useLatest } from "../hooks/use-latest";
+import { useGlobalShortcut } from "../shared/hooks/use-global-shortcut";
+import { useLatest } from "../shared/hooks/use-latest";
 
 export function useAICommandPalette(
   options: UseAICommandPaletteOptions,

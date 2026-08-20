@@ -13,8 +13,8 @@ import type {
   UseCommandVoiceOptions,
   UseCommandVoiceResult,
 } from "../types";
-import { useGlobalShortcut } from "../hooks/use-global-shortcut";
-import { useLatest } from "../hooks/use-latest";
+import { useGlobalShortcut } from "../shared/hooks/use-global-shortcut";
+import { useLatest } from "../shared/hooks/use-latest";
 import { searchVoiceCommand } from "./voice-search";
 
 const DEFAULT_LANGUAGE = "en-US";

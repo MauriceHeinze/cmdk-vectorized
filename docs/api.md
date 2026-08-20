@@ -28,8 +28,6 @@ Search handler (use in a host route; this is not a running process):
 import { createCommandSearchHandler } from "cmdk-vectorized/search-handler";
 ```
 
-`cmdk-vectorized/server` is a compatibility alias for the same helper.
-
 Intent-map CLI and Weaviate upload:
 
 ```ts

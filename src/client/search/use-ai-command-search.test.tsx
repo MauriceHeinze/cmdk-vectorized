@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { useAICommandSearch } from "./use-ai-command-search";
 import type { CommandSearchResult } from "../../core/command-types";
-import { createFetchResponse } from "../../test/create-fetch-response";
+import { createFetchResponse } from "../../testing/create-fetch-response";
 
 describe("useAICommandSearch", () => {
   beforeEach(() => {

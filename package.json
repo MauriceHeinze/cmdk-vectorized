@@ -40,11 +40,6 @@
       "types": "./dist/search-handler.d.ts",
       "import": "./dist/search-handler.js",
       "require": "./dist/search-handler.cjs"
-    },
-    "./server": {
-      "types": "./dist/search-handler.d.ts",
-      "import": "./dist/search-handler.js",
-      "require": "./dist/search-handler.cjs"
     }
   },
   "files": [
@@ -57,7 +52,7 @@
     "docs/local-weaviate.md"
   ],
   "scripts": {
-    "build": "tsup && tsc --emitDeclarationOnly --outDir dist && cp src/client/styles/palette.css dist/styles.css",
+    "build": "tsup && tsc --emitDeclarationOnly --outDir dist && cp src/client/shared/styles/palette.css dist/styles.css",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --environment jsdom",
     "lint": "eslint src",

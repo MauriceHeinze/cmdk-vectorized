@@ -1,7 +1,7 @@
 import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { createFetchResponse } from "../../test/create-fetch-response";
+import { createFetchResponse } from "../../testing/create-fetch-response";
 import { useCommandVoice } from "./use-command-voice";
 
 describe("useCommandVoice smart routing", () => {

@@ -93,10 +93,14 @@ Upload requires `WEAVIATE_URL` and `WEAVIATE_API_KEY`.
 pnpm install
 pnpm build
 pnpm test
-pnpm example:redux:dev   # full cmdk-vectorized demo
+pnpm example:redux:dev   # headless track (custom CommandDialog)
+pnpm example:plain:dev   # drop-in track (AICommandPalette)
 ```
 
-Example: `examples/settings-demo-redux` is the wired command palette and Weaviate demo.
+Examples:
+
+- `examples/settings-demo-redux` — headless `useAICommand` + custom UI
+- `examples/settings-demo-plain` — drop-in `<AICommandPalette />` + `styles.css`
 
 ## Constraints for consumer apps
 

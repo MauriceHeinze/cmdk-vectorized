@@ -64,7 +64,9 @@
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build",
     "example:redux:dev": "pnpm --dir examples/settings-demo-redux dev",
     "example:redux:typecheck": "pnpm --dir examples/settings-demo-redux typecheck",
-    "example:redux:build": "pnpm --dir examples/settings-demo-redux build"
+    "example:redux:build": "pnpm --dir examples/settings-demo-redux build",
+    "example:plain:dev": "pnpm --dir examples/settings-demo-plain dev",
+    "example:plain:typecheck": "pnpm --dir examples/settings-demo-plain typecheck"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",

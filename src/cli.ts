@@ -2,10 +2,10 @@
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
-import { intentMapToCsv } from "./csv";
-import { INTENT_MAP_CSV_PATH, readIntentMap } from "./intent-map";
-import { uploadIntentMap } from "./weaviate";
-import { installAgentWorkflows, installIntegrationSkill } from "./workflows";
+import { intentMapToCsv } from "./tooling/csv";
+import { INTENT_MAP_CSV_PATH, readIntentMap } from "./tooling/intent-map";
+import { uploadIntentMap } from "./tooling/weaviate";
+import { installAgentWorkflows, installIntegrationSkill } from "./tooling/workflows";
 
 export async function main(argv = process.argv.slice(2), cwd = process.cwd()) {
   const [command] = argv;

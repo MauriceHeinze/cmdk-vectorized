@@ -1,4 +1,4 @@
-import type { CreateCommandSearchHandlerOptions } from "./types";
+import type { CreateCommandSearchHandlerOptions } from "../core/command-types";
 
 const DEFAULT_LIMIT = 20;
 

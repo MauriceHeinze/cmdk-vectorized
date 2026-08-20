@@ -3,7 +3,7 @@ import type {
   CommandSearchResult,
   ExecuteAICommandContext,
   NavigationCommandResult,
-} from "./types";
+} from "./command-types";
 
 function createNavigationHrefError(result: NavigationCommandResult) {
   return new Error(`Navigation command "${result.id}" must use an href starting with "/".`);

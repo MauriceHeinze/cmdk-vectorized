@@ -90,7 +90,7 @@ describe("installAgentWorkflows", () => {
 
     const codexSkill = await readFile(join(cwd, ".codex", "skills", "cmdk-vectorized", "SKILL.md"), "utf8");
     expect(codexSkill).toContain("public/intent-map.json");
-    expect(codexSkill).toContain("Do not generate llms.txt files.");
+    expect(codexSkill).toContain("Do not create llms.txt files.");
   });
 });
 
@@ -110,9 +110,14 @@ describe("installIntegrationSkill", () => {
       join(cwd, ".codex", "skills", "cmdk-vectorized-integrate", "SKILL.md"),
       "utf8",
     );
-    expect(codexSkill).toContain("vector database");
+    const shippedSkill = await readFile(
+      join(process.cwd(), "skills", "cmdk-vectorized-integrate", "SKILL.md"),
+      "utf8",
+    );
+    expect(codexSkill).toBe(shippedSkill);
+    expect(codexSkill).toContain("vector search");
     expect(codexSkill).toContain("shouldFilter={false}");
-    expect(codexSkill).toContain("Do not generate `llms.txt` files in the consumer app");
+    expect(codexSkill).toContain("generate llms.txt files");
   });
 });
 

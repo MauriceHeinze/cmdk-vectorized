@@ -1,8 +1,8 @@
-export { createCommandSearchHandler } from "./create-command-search-handler";
+export { createCommandSearchHandler } from "./server/create-command-search-handler";
 
 export type {
   ActionCommandResult,
   CommandSearchResult,
   CreateCommandSearchHandlerOptions,
   NavigationCommandResult,
-} from "./types";
+} from "./core/command-types";

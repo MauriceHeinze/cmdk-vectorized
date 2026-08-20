@@ -1,4 +1,4 @@
-import type { CommandSearchResult } from "./types";
+import type { CommandSearchResult } from "./command-types";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;

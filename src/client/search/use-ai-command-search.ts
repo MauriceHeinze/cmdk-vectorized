@@ -97,6 +97,8 @@ export function useAICommandSearch(
     }
   }, [cancel, optionsRef]);
 
+  const searchRef = useLatest(search);
+
   useEffect(() => {
     if (query.length < minQueryLength && !searchOnEmptyQuery) {
       cancel();
@@ -106,11 +108,14 @@ export function useAICommandSearch(
       return;
     }
 
-    timerRef.current = window.setTimeout(() => void search(query), debounceMs);
+    // Call through a ref so inline `headers` / `fetcher` / `transformResponse`
+    // (new object identity every parent render) cannot retrigger debounce,
+    // abort the in-flight GET, and loop.
+    timerRef.current = window.setTimeout(() => void searchRef.current(query), debounceMs);
     return () => {
       if (timerRef.current !== null) window.clearTimeout(timerRef.current);
     };
-  }, [cancel, debounceMs, minQueryLength, optionsRef, query, search, searchOnEmptyQuery]);
+  }, [cancel, debounceMs, minQueryLength, optionsRef, query, searchOnEmptyQuery, searchRef]);
 
   useEffect(() => cancel, [cancel]); // abort in-flight search on unmount
 
@@ -124,8 +129,8 @@ export function useAICommandSearch(
 
   const refetch = useCallback(async () => {
     cancel();
-    await search(query);
-  }, [cancel, query, search]);
+    await searchRef.current(query);
+  }, [cancel, query, searchRef]);
 
   return { query, setQuery, results, loading, error, clear, refetch };
 }

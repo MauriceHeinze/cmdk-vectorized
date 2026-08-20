@@ -174,6 +174,96 @@ describe("useAICommandSearch lifecycle", () => {
     expect(result.current.results).toEqual(initialResults);
   });
 
+  it("does not abort/refetch when option object identity changes", async () => {
+    let resolveFetch: ((value: Response) => void) | undefined;
+    const fetcher = vi.fn<typeof fetch>().mockImplementation(
+      (_input, init) =>
+        new Promise((resolve, reject) => {
+          const signal = init?.signal;
+          const onAbort = () => {
+            reject(new DOMException("The operation was aborted.", "AbortError"));
+          };
+          if (signal?.aborted) {
+            onAbort();
+            return;
+          }
+          signal?.addEventListener("abort", onAbort, { once: true });
+          resolveFetch = (value) => {
+            signal?.removeEventListener("abort", onAbort);
+            resolve(value);
+          };
+        }),
+    );
+
+    const { result, rerender } = renderHook(
+      (props: { token: string }) =>
+        useAICommandSearch({
+          endpoint: "/api/search",
+          debounceMs: 200,
+          fetcher,
+          headers: { Authorization: `Bearer ${props.token}` },
+          transformResponse: (data) =>
+            (data as { results: CommandSearchResult[] }).results,
+        }),
+      { initialProps: { token: "ck_site_test" } },
+    );
+
+    act(() => {
+      result.current.setQuery("invite team members");
+    });
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(200);
+    });
+
+    expect(fetcher).toHaveBeenCalledTimes(1);
+
+    // Parent re-renders with a new headers object / transformResponse while
+    // the GET is still in flight (typical consumer: inline options).
+    rerender({ token: "ck_site_test" });
+    rerender({ token: "ck_site_test" });
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(200);
+    });
+
+    expect(fetcher).toHaveBeenCalledTimes(1);
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(600);
+    });
+
+    resolveFetch?.(
+      createFetchResponse([
+        {
+          id: "nav.invite",
+          type: "navigation",
+          title: "Invite team members",
+          href: "/settings/members",
+        },
+      ]),
+    );
+
+    await act(async () => {
+      await Promise.resolve();
+    });
+
+    expect(result.current.loading).toBe(false);
+    expect(result.current.results).toHaveLength(1);
+
+    rerender({ token: "ck_site_test" });
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(2_000);
+    });
+
+    expect(fetcher).toHaveBeenCalledTimes(1);
+    expect(fetcher.mock.calls[0]?.[0]).toBe(
+      "/api/search?q=invite+team+members&limit=20",
+    );
+    expect(result.current.results).toHaveLength(1);
+  });
+
   it("refetch reruns the current query immediately", async () => {
     const fetcher = vi.fn<typeof fetch>().mockResolvedValue(createFetchResponse([]));
 

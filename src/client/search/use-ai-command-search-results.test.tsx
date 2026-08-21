@@ -20,14 +20,14 @@ describe("useAICommandSearch result normalization", () => {
             type: "navigation",
             title: "Low confidence",
             href: "/low",
-            score: 0.69,
+            score: 0.59,
           },
           {
             id: "nav.high",
             type: "navigation",
             title: "High confidence",
             href: "/high",
-            score: 0.7,
+            score: 0.6,
           },
           {
             id: "nav.unscored",
@@ -61,7 +61,7 @@ describe("useAICommandSearch result normalization", () => {
         type: "navigation",
         title: "High confidence",
         href: "/high",
-        score: 0.7,
+        score: 0.6,
       },
       {
         id: "nav.unscored",

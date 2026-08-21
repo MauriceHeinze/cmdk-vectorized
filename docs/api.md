@@ -150,7 +150,7 @@ export function CommandMenu() {
     endpoint: "/api/command-search",
     debounceMs: 150,
     maxResults: 20,
-    minConfidence: 0.7,
+    minConfidence: 0.6,
     navigate: (href) => {
       window.location.href = href;
     },

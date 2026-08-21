@@ -104,7 +104,7 @@ describe("resolveVoiceDecision", () => {
     const resolved = resolveVoiceDecision({
       ...defaults,
       results: [{ ...home, score: 0.1 }],
-      minConfidence: 0.7,
+      minConfidence: 0.6,
     });
 
     expect(resolved.decision).toBe("empty");

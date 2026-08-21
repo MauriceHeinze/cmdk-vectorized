@@ -43,7 +43,7 @@ export default function CommandDialog({
     endpoint: SEARCH_ENDPOINT,
     initialResults,
     maxResults: SEARCH_RESULT_LIMIT,
-    minConfidence: 0.7,
+    minConfidence: 0.6,
     minQueryLength: 1,
     searchOnEmptyQuery: false,
     navigate: (href) => {

@@ -12,7 +12,7 @@ const DEFAULTS = {
   debounceMs: 300,
   minQueryLength: 1,
   maxResults: 20,
-  minConfidence: 0.7,
+  minConfidence: 0.6,
 } as const;
 const EMPTY_RESULTS: CommandSearchResult[] = [];
 
